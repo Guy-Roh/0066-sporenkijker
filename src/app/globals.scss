@@ -1,2 +1,10 @@
 @import "tailwindcss";
 
+* {
+    user-select: none;
+}
+
+.main-app{
+    min-height: 100vh;
+    width: 100%;
+}
