@@ -30,7 +30,11 @@ const MainApp = () => {
 
     return (
         <>
-            <CubeHeightSlider cubeHeight={cubeHeight} setCubeHeight={setCubeHeight} />            <Canvas
+            <CubeHeightSlider 
+            cubeHeight={cubeHeight} 
+            setCubeHeight={setCubeHeight} 
+            />
+            <Canvas
                 className='main-app'
                 fallback={<FallBack />}
                 orthographic
@@ -40,7 +44,9 @@ const MainApp = () => {
                     position: [10, 10, 10]
                 }}
             >
-                <OrbitControls />
+                <OrbitControls
+                    enableRotate={false}
+                />
                 <ambientLight intensity={0.5} />
                 <directionalLight
                     position={[10, 10, 5]}
