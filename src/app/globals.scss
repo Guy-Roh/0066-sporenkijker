@@ -1,14 +1,25 @@
-
 * {
     user-select: none;
+    box-sizing: border-box;
+    font-family: var(--font-noto-sans), sans-serif;
 }
 
-.main-app{
-    canvas{
-    overflow: hidden;
-    min-height: 96vh;
-    width: 100%;
-    }
+.main-panel {
+    position: fixed;
+    top: 10vh;
+    left: 4vmax;
+    width: 30vmax;
+    height: 80vh;
 
-    
+    backdrop-filter: blur(4vmin) brightness(1.2);
+    z-index: 10;
+    padding: 4vmin;
+}
+
+.main-app {
+    canvas {
+        overflow: hidden;
+        min-height: 96vh;
+        width: 100%;
+    }
 }

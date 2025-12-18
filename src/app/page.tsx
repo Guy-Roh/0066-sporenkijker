@@ -1,10 +1,13 @@
-import MainApp from '@/components/UI/MainApp'
-import React from 'react'
+import MainApp from "@/components/UI/MainApp";
+import MainPanel from "@/components/UI/MainPanel";
 
 const Page = () => {
-  return (
-    <MainApp />
-  )
-}
+    return (
+        <>
+            <MainPanel />
+            <MainApp />
+        </>
+    );
+};
 
-export default Page
+export default Page;

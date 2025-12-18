@@ -1,11 +1,24 @@
-import React from 'react'
+"use client";
+import { useAppContext } from "@/app/AppContext";
+import testData from "@/data/testData.json";
+
 
 const MainPanel = () => {
-  return (
-    <aside className="main-panel">
-        MainPanel
-    </aside>
-  )
-}
+    const { activeStation, setActiveStation} = useAppContext();
+    return (
+        <aside className="main-panel">
+            <h1>Control Panel</h1>
+            <select name="station select" id="station-select" value={activeStation ?? ""} onChange={(e) => setActiveStation(e.target.value || null)}>
+                {
+                    testData.testStations.map((station: string) => (
+                        <option key={station} value={station}>
+                            {station}
+                        </option>
+                    ))
+                }
+            </select>
+        </aside>
+    );
+};
 
-export default MainPanel
+export default MainPanel;

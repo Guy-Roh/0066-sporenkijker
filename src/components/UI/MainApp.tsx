@@ -8,32 +8,11 @@ import { useState } from 'react';
 const FallBack = () => {
     return <div>Loading...</div>
 }
-const CubeHeightSlider = ({ cubeHeight, setCubeHeight }: { cubeHeight: number, setCubeHeight: (height: number) => void }) => {
-    return (
-        <div className="cube-height-slider">
-            <label htmlFor="heightRange">Cube Height: {cubeHeight.toFixed(2)}</label>
-            <input
-                type="range"
-                id="heightRange"
-                min="0"
-                max="5"
-                step="0.1"
-                value={cubeHeight}
-                onChange={(e) => setCubeHeight(parseFloat(e.target.value))}
-            />
-        </div>
-    )
-}
-
 const MainApp = () => {
     const [cubeHeight, setCubeHeight] = useState(1);
 
     return (
         <>
-            <CubeHeightSlider 
-            cubeHeight={cubeHeight} 
-            setCubeHeight={setCubeHeight} 
-            />
             <Canvas
                 className='main-app'
                 fallback={<FallBack />}
