@@ -10,9 +10,9 @@ const MainPanel = () => {
             <h1>Control Panel</h1>
             <select name="station select" id="station-select" value={activeStation ?? ""} onChange={(e) => setActiveStation(e.target.value || null)}>
                 {
-                    testData.testStations.map((station: string) => (
-                        <option key={station} value={station}>
-                            {station}
+                    testData.testStations.map((station: any) => (
+                        <option key={station.id} value={station.name}>
+                            {station.name}
                         </option>
                     ))
                 }

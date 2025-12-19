@@ -1,13 +1,85 @@
 {
     "testStations": [
-        "Brussel Zuid",
-        "Brussel Centraal",
-        "Brussel Noord",
-        "Antwerpen Centraal",
-        "Gent Sint-Pieters",
-        "Leuven",
-        "Mechelen",
-        "Brugge",
-        "Kortrijk"
+        {
+            "name": "Brussel Zuid",
+            "id": "BE.NMBS.008893007",
+            "stationPosition": [
+                0,
+                1,
+                0
+            ]
+        },
+        {
+            "name": "Brussel Centraal",
+            "id": "BE.NMBS.008893005",
+            "stationPosition": [
+                3,
+                1,
+                0
+            ]
+        },
+        {
+            "name":"Brussel Noord",
+            "id":"BE.NMBS.008893006",
+            "stationPosition":[
+                6,
+                1,
+                0
+            ]
+        },
+        {
+            "name":"Antwerpen Centraal",
+            "id":"BE.NMBS.008891003",
+            "stationPosition":[
+                9,
+                1,
+                0
+            ]
+        },
+        {
+            "name":"Gent Sint-Pieters",
+            "id":"BE.NMBS.008895001",
+            "stationPosition":[
+                12,
+                1,
+                0
+            ]
+        },
+        {
+            "name":"Leuven",
+            "id":"BE.NMBS.008893120",
+            "stationPosition":[
+                15,
+                1,
+                0
+            ]
+        },
+        {
+            "name":"Mechelen",
+            "id":"BE.NMBS.008891702",
+            "stationPosition":[
+                18,
+                1,
+                0
+            ]
+        },
+        {
+            "name":"Brugge",
+            "id":"BE.NMBS.008894001",
+            "stationPosition":[
+                21,
+                1,
+                0
+            ]
+        },
+        {
+            "name":"Kortrijk",
+            "id":"BE.NMBS.008894300",
+            "stationPosition":[
+                24,
+                1,
+                0
+            ]
+        }
     ]
 }
