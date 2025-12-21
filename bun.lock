@@ -3,7 +3,7 @@
   "configVersion": 1,
   "workspaces": {
     "": {
-      "name": "0066-treinspotter",
+      "name": "0066-sporenkijker",
       "dependencies": {
         "@react-three/drei": "^10.7.7",
         "@react-three/fiber": "^9.4.2",

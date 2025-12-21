@@ -10,7 +10,7 @@ const notoSans = Noto_Sans({
 });
 
 export const metadata: Metadata = {
-    title: "Treinspotter",
+    title: "Sporenkijker",
     description: "3D Digital Twin for Trainspotters",
 };
 
