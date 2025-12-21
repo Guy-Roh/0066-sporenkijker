@@ -1,25 +1,42 @@
-"use client"
+"use client";
 
-import { Canvas } from '@react-three/fiber'
-import { CameraControls } from "@react-three/drei";
-import * as THREE from 'three';
-import testData from "@/data/testData.json";
+import { Canvas } from "@react-three/fiber";
 import {
-    MeshTransmissionMaterial, ContactShadows, useGLTF, Environment
-} from '@react-three/drei';
-import { useAppContext } from '@/app/AppContext';
-import { useEffect, useRef } from 'react';
+    CameraControls,
+    MeshTransmissionMaterial,
+    ContactShadows,
+    useGLTF,
+    Environment,
+} from "@react-three/drei";
+import * as THREE from "three";
+import testData from "@/data/testData.json";
+import { useAppContext } from "@/app/AppContext";
+import { useRef, useEffect } from "react";
 
-const FallBack = () => <div>Loading...</div>
+const FallBack = () => <div>Loading...</div>;
 
 const MainApp = () => {
-const { cameraPosition } = useAppContext();
+    const { cameraPosition } = useAppContext();
+
+    const cameraControlsRef = useRef<CameraControls>(null);
+
+    useEffect(() => {
+        if (cameraControlsRef.current) {
+            cameraControlsRef.current.setPosition(
+                cameraPosition[0],
+                cameraPosition[1],
+                cameraPosition[2],
+                true // enableTransition: true (smooth movement)
+            );
+        }
+    }, [cameraPosition]);
 
     const SphereMesh = ({
-        position
-    }: { position: [number, number, number] }) => 
-    {
-        const { nodes }: any = useGLTF('/models/sphere.glb');
+        position,
+    }: {
+        position: [number, number, number];
+    }) => {
+        const { nodes }: any = useGLTF("/models/sphere.glb");
         return (
             <mesh
                 geometry={nodes.Sphere.geometry}
@@ -35,36 +52,35 @@ const { cameraPosition } = useAppContext();
                     anisotropy={0.1}
                 />
             </mesh>
-        )
-    }
+        );
+    };
+
+    useEffect(() => {
+        console.log("Camera Position Updated:", cameraPosition);
+    }, [cameraPosition]);
 
     return (
         <Canvas
-            className='main-app'
+            className="main-app"
             fallback={<FallBack />}
             shadows={{ type: THREE.PCFSoftShadowMap }}
-            camera={{
-                zoom: 1,
-                position: cameraPosition,
-            }}
         >
-            <ContactShadows scale={100} position={[0, -7.5, 0]} blur={1} far={100} opacity={0.85} />
-            <CameraControls 
-            interactiveArea={{
-                y: 0,
-                x: 0,
-                width: 0,
-                height: 0,
-            }}
+            <ContactShadows
+                scale={100}
+                position={[0, -7.5, 0]}
+                blur={1}
+                far={100}
+                opacity={0.85}
+            />
+
+            <CameraControls
+                ref={cameraControlsRef}
+
             />
             <Environment preset="city" />
             <directionalLight
                 castShadow
-                position={[
-                    10,
-                    10,
-                    5
-                ]}
+                position={[10, 10, 5]}
                 intensity={1}
                 shadow-camera-left={-10}
                 shadow-camera-right={10}
@@ -89,12 +105,16 @@ const { cameraPosition } = useAppContext();
                     />
                 </mesh>
             ))}
-            <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -0.5, 0]} receiveShadow>
+            <mesh
+                rotation={[-Math.PI / 2, 0, 0]}
+                position={[0, -0.5, 0]}
+                receiveShadow
+            >
                 <planeGeometry args={[100, 100]} />
                 <meshStandardMaterial color="lightgrey" />
             </mesh>
         </Canvas>
-    )
-}
+    );
+};
 
-export default MainApp
+export default MainApp;
