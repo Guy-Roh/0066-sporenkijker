@@ -1,12 +1,8 @@
-'use client';
+"use client";
 
-import { useTrainData } from '../Helpers/GetData';
+import { useTrainData } from "../Helpers/GetData";
 
-const DataPanel= ({
-    station
-}:{
-    station?: string;
-}) => {
+const DataPanel = ({ station }: { station?: string }) => {
     const { data, loading, error } = useTrainData(station);
 
     if (loading) {
@@ -43,11 +39,17 @@ const DataPanel= ({
                         <div className="destination">
                             <strong>{train.destination}</strong>
                         </div>
-                        <div className="details">
+                        <div className="details grid">
                             <span>Platform: {train.platform}</span>
                             <span>Time: {train.scheduledTime}</span>
-                            <span className={train.delay > 0 ? 'delayed' : 'on-time'}>
-                                {train.delay > 0 ? `+${Math.round(train.delay)} min` : 'On time'}
+                            <span
+                                className={
+                                    train.delay > 0 ? "delayed" : "on-time"
+                                }
+                            >
+                                {train.delay > 0
+                                    ? `+${Math.round(train.delay)} min`
+                                    : "On time"}
                             </span>
                             <span>Train: {train.vehicleId}</span>
                         </div>
@@ -56,6 +58,6 @@ const DataPanel= ({
             </div>
         </div>
     );
-}
+};
 
 export default DataPanel;

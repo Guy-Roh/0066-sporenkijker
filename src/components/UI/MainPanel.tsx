@@ -5,7 +5,7 @@ import StationSelect from "./StationSelect";
 import DataPanel from "./DataPanel";
 
 const MainPanel = () => {
-            const {
+    const {
         activeStation,
         setActiveStation,
         cameraPosition,
@@ -15,14 +15,11 @@ const MainPanel = () => {
     return (
         <aside className="main-panel">
             <h1>Control Panel</h1>
-            <StationSelect 
-            activeStation={activeStation}
-            setActiveStation={setActiveStation}
+            <StationSelect
+                activeStation={activeStation}
+                setActiveStation={setActiveStation}
             />
-            <DataPanel 
-            station={activeStation ?? undefined}
-            />
-
+            <DataPanel station={activeStation ?? undefined} />
         </aside>
     );
 };

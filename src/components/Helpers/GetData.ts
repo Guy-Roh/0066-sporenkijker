@@ -48,7 +48,7 @@ export const useTrainData = (station: string = 'Antwerpen-Centraal'): UseTrainDa
         fetchTrainData();
         
         // Refresh data every 30 seconds
-        const interval = setInterval(fetchTrainData, 30000);
+        const interval = setInterval(fetchTrainData, 300000);
         
         return () => clearInterval(interval);
     }, [station]);
