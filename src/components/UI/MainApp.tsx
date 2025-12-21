@@ -1,20 +1,24 @@
 "use client"
 
 import { Canvas } from '@react-three/fiber'
-import { OrbitControls } from "@react-three/drei";
+import { CameraControls } from "@react-three/drei";
 import * as THREE from 'three';
 import testData from "@/data/testData.json";
 import {
     MeshTransmissionMaterial, ContactShadows, useGLTF, Environment
 } from '@react-three/drei';
+import { useAppContext } from '@/app/AppContext';
+import { useEffect, useRef } from 'react';
 
 const FallBack = () => <div>Loading...</div>
 
 const MainApp = () => {
+const { cameraPosition } = useAppContext();
 
     const SphereMesh = ({
         position
-    }: { position: [number, number, number] }) => {
+    }: { position: [number, number, number] }) => 
+    {
         const { nodes }: any = useGLTF('/models/sphere.glb');
         return (
             <mesh
@@ -38,20 +42,29 @@ const MainApp = () => {
         <Canvas
             className='main-app'
             fallback={<FallBack />}
-            orthographic
             shadows={{ type: THREE.PCFSoftShadowMap }}
             camera={{
-                zoom: 100,
-                position: [10, 10, 10]
+                zoom: 1,
+                position: cameraPosition,
             }}
         >
             <ContactShadows scale={100} position={[0, -7.5, 0]} blur={1} far={100} opacity={0.85} />
-
-            <OrbitControls enableRotate={false} />
-            <ambientLight intensity={0.5} />
+            <CameraControls 
+            interactiveArea={{
+                y: 0,
+                x: 0,
+                width: 0,
+                height: 0,
+            }}
+            />
+            <Environment preset="city" />
             <directionalLight
                 castShadow
-                position={[10, 10, 5]}
+                position={[
+                    10,
+                    10,
+                    5
+                ]}
                 intensity={1}
                 shadow-camera-left={-10}
                 shadow-camera-right={10}
@@ -66,7 +79,7 @@ const MainApp = () => {
                     castShadow
                     receiveShadow
                 >
-                    <boxGeometry args={[1, 1, 1]} />
+                    <sphereGeometry args={[1, 64, 64]} />
                     <MeshTransmissionMaterial
                         transmission={1}
                         thickness={2}

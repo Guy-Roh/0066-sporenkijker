@@ -4,17 +4,22 @@ import { createContext, useContext, useState, ReactNode } from "react";
 interface AppContextType {
 	activeStation: string | null;
 	setActiveStation: (station: string | null) => void;
+    cameraPosition: [number, number, number];
+    setCameraPosition: (position: [number, number, number]) => void;
 }
 
 const AppContext = createContext<AppContextType | undefined>(undefined);
 
 export const AppProvider = ({ children }: { children: ReactNode }) => {
 	const [activeStation, setActiveStation] = useState<string | null>(null);
+    const [cameraPosition, setCameraPosition] = useState<[number, number, number]>([10, 10, 10]);
 	return (
 		<AppContext.Provider
 			value={{
 				activeStation,
 				setActiveStation,
+                cameraPosition,
+                setCameraPosition
 			}}
 		>
 			{children}
