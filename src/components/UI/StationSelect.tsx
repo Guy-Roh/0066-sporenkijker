@@ -1,31 +1,42 @@
-import { useAppContext } from "@/app/AppContext";
-import React from "react";
+import { useAppContext, Station } from "@/app/AppContext";
 import testData from "@/data/testData.json";
 
-const StationSelect = ({
-    activeStation,
-    setActiveStation,
-}: {
-    activeStation: string | null;
-    setActiveStation: (station: string | null) => void;
-}) => {
+const StationSelect = () => {
+    const { activeStation, setActiveStation } = useAppContext();
+
     if (!testData || !testData.testStations) {
         return <div>No station data available</div>;
     }
 
+    const handleStationChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+        const selectedId = e.target.value;
+        if (!selectedId) {
+            setActiveStation(null);
+        } else {
+            const selectedStation = testData.testStations.find(
+                (station: Station) => station.id === selectedId
+            );
+            setActiveStation(selectedStation || null);
+        }
+    };
+
     return (
-        <select
-            name="station select"
-            id="station-select"
-            value={activeStation ?? ""}
-            onChange={(e) => setActiveStation(e.target.value || null)}
-        >
-            {testData.testStations.map((station: any) => (
-                <option key={station.id} value={station.name}>
+        <div>
+            <h3>
+                Select a station
+            </h3>
+            <div className="station-select flex flex-col">
+            {testData.testStations.map((station: Station) => (
+                <button
+                    key={station.id}
+                    onClick={() => setActiveStation(station)}
+                    className={activeStation?.id === station.id ? "active" : "" + "px-4 py-2 mb-2 bg-gray-200 rounded hover:bg-gray-300"}
+                >
                     {station.name}
-                </option>
+                </button>
             ))}
-        </select>
+            </div>
+        </div>
     );
 };
 

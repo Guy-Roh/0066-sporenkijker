@@ -1,9 +1,10 @@
 "use client";
 
 import { useTrainData } from "../Helpers/GetData";
+import { Station } from "@/app/AppContext";
 
-const DataPanel = ({ station }: { station?: string }) => {
-    const { data, loading, error } = useTrainData(station);
+const DataPanel = ({ station }: { station?: Station }) => {
+    const { data, loading, error } = useTrainData(station?.name);
 
     if (loading) {
         return (
@@ -32,7 +33,7 @@ const DataPanel = ({ station }: { station?: string }) => {
 
     return (
         <div className="data-panel">
-            <h2>Departures from {data.station}</h2>
+            <h2>Departures from {station?.name || data.station}</h2>
             <div className="trains-list">
                 {data.trains.map((train, index) => (
                     <div key={index} className="train-item">

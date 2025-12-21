@@ -16,20 +16,33 @@ import { useRef, useEffect } from "react";
 const FallBack = () => <div>Loading...</div>;
 
 const MainApp = () => {
-    const { cameraPosition } = useAppContext();
+    const { activeStation } = useAppContext();
 
     const cameraControlsRef = useRef<CameraControls>(null);
 
     useEffect(() => {
         if (cameraControlsRef.current) {
-            cameraControlsRef.current.setPosition(
+            const targetPosition = activeStation
+                ? (activeStation.stationPosition as [number, number, number])
+                : ([0, 0, 0] as [number, number, number]);
+
+            const cameraPosition: [number, number, number] = [
+                targetPosition[0] + 5,
+                targetPosition[1] + 3,
+                targetPosition[2] + 5,
+            ];
+
+            cameraControlsRef.current.setLookAt(
                 cameraPosition[0],
                 cameraPosition[1],
                 cameraPosition[2],
-                true // enableTransition: true (smooth movement)
+                targetPosition[0],
+                targetPosition[1],
+                targetPosition[2],
+                true // for smooth camera transition
             );
         }
-    }, [cameraPosition]);
+    }, [activeStation]);
 
     const SphereMesh = ({
         position,
@@ -55,10 +68,6 @@ const MainApp = () => {
         );
     };
 
-    useEffect(() => {
-        console.log("Camera Position Updated:", cameraPosition);
-    }, [cameraPosition]);
-
     return (
         <Canvas
             className="main-app"
@@ -73,10 +82,7 @@ const MainApp = () => {
                 opacity={0.85}
             />
 
-            <CameraControls
-                ref={cameraControlsRef}
-
-            />
+            <CameraControls ref={cameraControlsRef} />
             <Environment preset="city" />
             <directionalLight
                 castShadow
