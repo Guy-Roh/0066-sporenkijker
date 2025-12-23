@@ -12,6 +12,7 @@ import * as THREE from "three";
 import testData from "@/data/testData.json";
 import { useAppContext } from "@/app/AppContext";
 import { useRef, useEffect } from "react";
+import { EffectComposer, DepthOfField } from "@react-three/postprocessing";
 
 const FallBack = () => <div>Loading...</div>;
 
@@ -117,8 +118,24 @@ const MainApp = () => {
                 receiveShadow
             >
                 <planeGeometry args={[100, 100]} />
-                <meshStandardMaterial color="lightgrey" />
+                <meshStandardMaterial color="black" />
             </mesh>
+            <EffectComposer>
+<DepthOfField
+    target={
+        activeStation
+            ? new THREE.Vector3(
+                  activeStation.stationPosition[0],
+                  activeStation.stationPosition[1],
+                  activeStation.stationPosition[2]
+              )
+            : new THREE.Vector3(0, 0, 0)
+    }
+    focalLength={1} // Keep this small for now
+    bokehScale={4}
+    height={480}
+/>
+            </EffectComposer>
         </Canvas>
     );
 };
