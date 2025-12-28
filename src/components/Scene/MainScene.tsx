@@ -66,6 +66,21 @@ const MainScene = () => {
         );
     };
 
+    const MapMesh = () => {
+        const { nodes, materials } = useGLTF("/models/map.glb");
+        return (
+            <group dispose={null}>
+                <mesh
+                    castShadow
+                    receiveShadow
+                    geometry={(nodes.Plane003 as THREE.Mesh).geometry}
+                    material={(nodes.Plane003 as THREE.Mesh).material}
+                    rotation={[Math.PI / 2, 0, 0]}
+                />
+            </group>
+        );
+    };
+
     return (
         <>
             <ContactShadows
@@ -88,7 +103,7 @@ const MainScene = () => {
                 shadow-camera-bottom={-10}
                 shadow-mapSize={[1024, 1024]}
             />
-{/*             {testData.testStations.map((station: any) => (
+            {/*             {testData.testStations.map((station: any) => (
                 <mesh
                     key={station.id}
                     position={station.stationPosition}
@@ -105,16 +120,9 @@ const MainScene = () => {
                     />
                 </mesh>
             ))} */}
-            
-            <mesh
-                rotation={[-Math.PI / 2, 0, 0]}
-                position={[0, -0.5, 0]}
-                receiveShadow
-            >
-                <planeGeometry args={[100, 100]} />
-                <meshStandardMaterial color="black" />
-            </mesh>
-            <EffectComposer>
+            <MapMesh />
+
+            {/*             <EffectComposer>
                 <DepthOfField
                     target={
                         activeStation
@@ -129,7 +137,7 @@ const MainScene = () => {
                     bokehScale={4}
                     height={480}
                 />
-            </EffectComposer>
+            </EffectComposer> */}
         </>
     );
 };

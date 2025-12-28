@@ -9,7 +9,7 @@ interface IRailDeparture {
     vehicle: string;
     platform: string;
 }
-
+/* 
 export async function GET(request: Request) {
     // Parse query params to allow dynamic station selection
     const { searchParams } = new URL(request.url);
@@ -20,7 +20,7 @@ export async function GET(request: Request) {
     try {
         const res = await fetch(url, {
             headers: {
-                'User-Agent': 'sporenkijker/0.1',
+                'User-Agent': 'sporenkijker/0.2',
                 'Accept': 'application/json',
             },
             // Cache control: Revalidate every 30 seconds to avoid stale data
@@ -66,4 +66,4 @@ export async function GET(request: Request) {
     } catch (error) {
         return NextResponse.json({ error: 'Failed to fetch train data' }, { status: 500 });
     }
-}
+} */
