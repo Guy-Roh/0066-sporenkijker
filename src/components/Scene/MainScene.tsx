@@ -18,7 +18,7 @@ const MainScene = () => {
 
     const cameraControlsRef = useRef<CameraControls>(null);
 
-    useEffect(() => {
+/*     useEffect(() => {
         if (cameraControlsRef.current) {
             const targetPosition = activeStation
                 ? (activeStation.stationPosition as [number, number, number])
@@ -40,7 +40,7 @@ const MainScene = () => {
                 true // for smooth camera transition
             );
         }
-    }, [activeStation]);
+    }, [activeStation]); */
 
     const SphereMesh = ({
         position,
