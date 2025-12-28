@@ -88,7 +88,7 @@ const MainScene = () => {
                 shadow-camera-bottom={-10}
                 shadow-mapSize={[1024, 1024]}
             />
-            {testData.testStations.map((station: any) => (
+{/*             {testData.testStations.map((station: any) => (
                 <mesh
                     key={station.id}
                     position={station.stationPosition}
@@ -104,7 +104,8 @@ const MainScene = () => {
                         anisotropy={0.1}
                     />
                 </mesh>
-            ))}
+            ))} */}
+            
             <mesh
                 rotation={[-Math.PI / 2, 0, 0]}
                 position={[0, -0.5, 0]}
