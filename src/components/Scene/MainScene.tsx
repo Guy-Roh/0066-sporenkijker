@@ -62,16 +62,7 @@ const MainScene = () => {
 
             <CameraControls ref={cameraControlsRef} />
             <Environment preset="city" />
-            <directionalLight
-                castShadow
-                position={[10, 10, 5]}
-                intensity={1}
-                shadow-camera-left={-10}
-                shadow-camera-right={10}
-                shadow-camera-top={10}
-                shadow-camera-bottom={-10}
-                shadow-mapSize={[1024, 1024]}
-            />
+
 
             <MapMesh />
 
