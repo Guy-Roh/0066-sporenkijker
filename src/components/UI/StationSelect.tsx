@@ -9,15 +9,11 @@ const StationSelect = () => {
     }
 
     const handleStationChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-        const selectedId = e.target.value;
-        if (!selectedId) {
-            setActiveStation(null);
-        } else {
-            const selectedStation = testData.testStations.find(
-                (station: Station) => station.id === selectedId
-            );
-            setActiveStation(selectedStation || null);
-        }
+        const selectedStation = testData.testStations.find(
+            (station: Station) => station.id === e.target.value
+        );
+        setActiveStation(selectedStation || null);
+        console.log("Selected Station:", selectedStation);
     };
 
     return (
@@ -29,7 +25,7 @@ const StationSelect = () => {
             {testData.testStations.map((station: Station) => (
                 <button
                     key={station.id}
-                    onClick={() => setActiveStation(station)}
+                    onClick={() => handleStationChange({ target: { value: station.id } } as any)}
                     className={activeStation?.id === station.id ? "active" : "" + "px-4 py-2 mb-2 bg-gray-200 rounded hover:bg-gray-300"}
                 >
                     {station.name}

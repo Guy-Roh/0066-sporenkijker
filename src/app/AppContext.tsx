@@ -4,7 +4,6 @@ import { createContext, useContext, useState, ReactNode } from "react";
 export interface Station {
     name: string;
     id: string;
-    stationPosition: number[];
 }
 
 interface AppContextType {

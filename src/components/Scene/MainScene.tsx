@@ -18,16 +18,32 @@ const MainScene = () => {
 
     const cameraControlsRef = useRef<CameraControls>(null);
 
-/*     useEffect(() => {
-        if (cameraControlsRef.current) {
-            const targetPosition = activeStation
-                ? (activeStation.stationPosition as [number, number, number])
-                : ([0, 0, 0] as [number, number, number]);
+    useEffect(() => {
+        if (cameraControlsRef.current && activeStation) {
+            const { nodes } = useGLTF("/models/042_sporenkijker_7.gltf") as any;
+            
+            let targetPosition: [number, number, number];
+            
+            // Convert station ID to match node naming convention (remove dots and spaces)
+            const nodeKey = activeStation.id.replace(/\./g, '').replace(/\s/g, '');
+            const stationNode = nodes[nodeKey];
+
+            if (stationNode) {
+                // Use the position from the Three.js node
+                targetPosition = [
+                    stationNode.position.x,
+                    stationNode.position.y,
+                    stationNode.position.z
+                ];
+            } else {
+                // Fallback to default position when station node not found
+                targetPosition = [0, 0, 0];
+            }
 
             const cameraPosition: [number, number, number] = [
-                targetPosition[0] + 5,
-                targetPosition[1] + 3,
-                targetPosition[2] + 5,
+                targetPosition[0] + 1,
+                targetPosition[1] + 0.8,
+                targetPosition[2] + 1,
             ];
 
             cameraControlsRef.current.setLookAt(
@@ -39,47 +55,70 @@ const MainScene = () => {
                 targetPosition[2],
                 true // for smooth camera transition
             );
-        }
-    }, [activeStation]); */
 
-    const SphereMesh = ({
-        position,
-    }: {
-        position: [number, number, number];
-    }) => {
-        const { nodes }: any = useGLTF("/models/sphere.glb");
-        return (
-            <mesh
-                geometry={nodes.Sphere.geometry}
-                position={[0, 0, 0]}
-                castShadow
-                receiveShadow
-            >
-                <MeshTransmissionMaterial
-                    transmission={1}
-                    thickness={2}
-                    roughness={0}
-                    chromaticAberration={0.1}
-                    anisotropy={0.1}
-                />
-            </mesh>
-        );
-    };
+            // Add zoom effect
+            cameraControlsRef.current.zoomTo(2, true);
+        }
+    }, [activeStation]);
 
     const MapMesh = () => {
-        const { nodes, materials } = useGLTF("/models/map.glb");
+        const { nodes, materials } = useGLTF(
+            "/models/042_sporenkijker_7.gltf"
+        ) as any;
+
         return (
             <group dispose={null}>
                 <mesh
                     castShadow
                     receiveShadow
-                    geometry={(nodes.Plane003 as THREE.Mesh).geometry}
-                    material={(nodes.Plane003 as THREE.Mesh).material}
-                    rotation={[Math.PI / 2, 0, 0]}
+                    geometry={(nodes.Plane002 as THREE.Mesh).geometry}
+                    material={(nodes.Plane002 as THREE.Mesh).material}
+                    position={[
+                        nodes.Plane002?.position?.x || 0,
+                        nodes.Plane002?.position?.y || 0,
+                        nodes.Plane002?.position?.z || 0
+                    ]}
                 />
             </group>
         );
     };
+
+    const StationMarkers = () => {
+        const { nodes } = useGLTF("/models/042_sporenkijker_7.gltf") as any;
+        
+        return (
+            <group>
+                {testData.testStations.map((station) => {
+                    // Convert station ID to match node naming convention
+                    const nodeKey = station.id.replace(/\./g, '').replace(/\s/g, '');
+                    const stationNode = nodes[nodeKey];
+                    
+                    if (stationNode) {
+                        return (
+                            <mesh
+                                key={station.id}
+                                position={[
+                                    stationNode.position.x,
+                                    stationNode.position.y,
+                                    stationNode.position.z
+                                ]}
+                                castShadow
+                                receiveShadow
+                            >
+                                <sphereGeometry args={[0.1, 16, 16]} />
+                                <meshStandardMaterial 
+                                    color={activeStation?.id === station.id ? "#ff6b35" : "#4a90e2"} 
+                                />
+                            </mesh>
+                        );
+                    }
+                    return null;
+                })}
+            </group>
+        );
+    };
+
+
 
     return (
         <>
@@ -103,24 +142,9 @@ const MainScene = () => {
                 shadow-camera-bottom={-10}
                 shadow-mapSize={[1024, 1024]}
             />
-            {/*             {testData.testStations.map((station: any) => (
-                <mesh
-                    key={station.id}
-                    position={station.stationPosition}
-                    castShadow
-                    receiveShadow
-                >
-                    <sphereGeometry args={[1, 64, 64]} />
-                    <MeshTransmissionMaterial
-                        transmission={1}
-                        thickness={2}
-                        roughness={0}
-                        chromaticAberration={0.1}
-                        anisotropy={0.1}
-                    />
-                </mesh>
-            ))} */}
+
             <MapMesh />
+            <StationMarkers />
 
             {/*             <EffectComposer>
                 <DepthOfField
