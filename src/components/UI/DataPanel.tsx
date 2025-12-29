@@ -1,7 +1,7 @@
 "use client";
 
 import { useTrainData } from "../Helpers/GetData";
-import { Station } from "@/app/AppContext";
+import { Station } from "@/app/type";
 
 const DataPanel = ({ station }: { station?: Station }) => {
     const { data, loading, error } = useTrainData(station?.name);
