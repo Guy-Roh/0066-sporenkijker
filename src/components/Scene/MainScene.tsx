@@ -9,9 +9,13 @@ import {
 import * as THREE from "three";
 import { useAppContext } from "@/app/AppContext";
 import { useRef, useEffect } from "react";
-import { EffectComposer, DepthOfField } from "@react-three/postprocessing";
+import {
+    EffectComposer,
+    DepthOfField,
+    N8AO,
+} from "@react-three/postprocessing";
 import { MoveCamera } from "./MoveCamera";
-
+import { BlendFunction } from "postprocessing";
 const MainScene = () => {
     const { activeStation, setNodes } = useAppContext();
 
@@ -60,29 +64,34 @@ const MainScene = () => {
         );
     };
 
-    return (
-        <>
-            <ContactShadows
-                scale={100}
-                position={[0, -7.5, 0]}
-                blur={1}
-                far={1000}
-                opacity={0.85}
-            />
-
-            <CameraControls ref={cameraControlsRef} />
-            <Environment preset="city" />
-
-            <MapMesh />
-
-            <EffectComposer>
+    const FX = () => {
+        return (
+            <EffectComposer enableNormalPass multisampling={0}>
                 <DepthOfField
                     target={DoF.current}
                     bokehScale={2}
+                    focalLength={0.1}
                     height={window.innerHeight}
                     width={window.innerWidth}
                 />
+                <N8AO
+                    aoRadius={10}
+                    distanceFalloff={12}
+                    intensity={4}
+                    screenSpaceRadius={true} // critical for consistent look
+                />
             </EffectComposer>
+        );
+    };
+
+    return (
+        <>
+
+
+            <CameraControls ref={cameraControlsRef} />
+            <Environment preset="city" />
+            <FX />
+            <MapMesh />
         </>
     );
 };
