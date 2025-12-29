@@ -2,7 +2,6 @@
 
 import {
     CameraControls,
-    ContactShadows,
     useGLTF,
     Environment,
 } from "@react-three/drei";
@@ -15,7 +14,6 @@ import {
     N8AO,
 } from "@react-three/postprocessing";
 import { MoveCamera } from "./MoveCamera";
-import { BlendFunction } from "postprocessing";
 const MainScene = () => {
     const { activeStation, setNodes } = useAppContext();
 
@@ -69,17 +67,16 @@ const MainScene = () => {
             <EffectComposer enableNormalPass>
                 <DepthOfField
                     target={DoF.current}
-                    bokehScale={2}
-                    focalLength={0.1}
+                    bokehScale={3}
                     height={window.innerHeight}
                     width={window.innerWidth}
                 />
                 <N8AO
-                    aoRadius={16}
+                    aoRadius={10}
                     distanceFalloff={12}
                     intensity={2}
                     screenSpaceRadius={true}
-                    denoiseSamples={40}
+                    denoiseSamples={6}
                 />
             </EffectComposer>
         );

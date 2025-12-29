@@ -7,7 +7,7 @@ export const MoveCamera = (cameraControlsRef: RefObject<CameraControls | null>, 
         let targetPosition: [number, number, number] = [0, 0, 0];
         if (activeStation.position) {
             targetPosition[0] = activeStation.position[0];
-            targetPosition[1] = activeStation.position[1] ;
+            targetPosition[1] = activeStation.position[1];
             targetPosition[2] = activeStation.position[2];
         }
 
@@ -26,6 +26,8 @@ export const MoveCamera = (cameraControlsRef: RefObject<CameraControls | null>, 
             targetPosition[2],
             true // for smooth camera transition
         );
+
+        cameraControlsRef.current.zoomTo(2, true); // zoom level 15 with smooth transition
 
 
     }
