@@ -1,7 +1,7 @@
 import { CameraControls } from "@react-three/drei";
 import { RefObject } from "react";
 
-export const changeCamera = (cameraControlsRef: RefObject<CameraControls | null>, activeStation: any) => {
+export const MoveCamera = (cameraControlsRef: RefObject<CameraControls | null>, activeStation: any) => {
     if (cameraControlsRef && cameraControlsRef.current && activeStation) {
 
         let targetPosition: [number, number, number] = [0, 0, 0];

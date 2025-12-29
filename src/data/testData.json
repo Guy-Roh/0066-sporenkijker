@@ -20,6 +20,11 @@
             "id":"BE.NMBS.008821006",
             "number": "4"
         },
+                {
+            "name":"Antwerpen Berchem",
+            "id":"BE.NMBS.008821121",
+            "number": "10"
+        },
         {
             "name":"Gent Sint-Pieters",
             "id":"BE.NMBS.008892007",
@@ -44,11 +49,7 @@
             "name":"Kortrijk",
             "id":"BE.NMBS.008896008",
             "number": "9"
-        },
-        {
-            "name":"Antwerpen Berchem",
-            "id":"BE.NMBS.008821121",
-            "number": "10"
         }
+
     ]
 }

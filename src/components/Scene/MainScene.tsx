@@ -10,7 +10,7 @@ import * as THREE from "three";
 import { useAppContext } from "@/app/AppContext";
 import { useRef, useEffect } from "react";
 import { EffectComposer, DepthOfField } from "@react-three/postprocessing";
-import { changeCamera } from "./ChangeCamera";
+import { MoveCamera } from "./MoveCamera";
 
 const MainScene = () => {
     const { activeStation, setNodes } = useAppContext();
@@ -18,7 +18,7 @@ const MainScene = () => {
     const cameraControlsRef = useRef<CameraControls>(null);
 
     useEffect(() => {
-        changeCamera(cameraControlsRef, activeStation);
+        MoveCamera(cameraControlsRef, activeStation);
     }, [activeStation]);
 
     const MapMesh = () => {
@@ -65,23 +65,28 @@ const MainScene = () => {
             <CameraControls ref={cameraControlsRef} />
             <Environment preset="city" />
 
-
             <MapMesh />
 
-                        <EffectComposer>
+            <EffectComposer>
                 <DepthOfField
                     target={
                         activeStation
                             ? new THREE.Vector3(
-                                  activeStation.position ? activeStation.position[0] : 0,
-                                  activeStation.position ? activeStation.position[1] : 0,
-                                  activeStation.position ? activeStation.position[2] : 0
+                                  activeStation.position
+                                      ? activeStation.position[0]
+                                      : 0,
+                                  activeStation.position
+                                      ? activeStation.position[1]
+                                      : 0,
+                                  activeStation.position
+                                      ? activeStation.position[2]
+                                      : 0
                               )
                             : new THREE.Vector3(0, 0, 0)
                     }
                     focalLength={1} // Keep this small for now
-                    bokehScale={4}
-                    height={480}
+                    bokehScale={3}
+                    height={window.innerHeight}
                 />
             </EffectComposer>
         </>
