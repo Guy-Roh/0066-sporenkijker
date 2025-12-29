@@ -16,18 +16,26 @@ const MainScene = () => {
     const { activeStation, setNodes } = useAppContext();
 
     const cameraControlsRef = useRef<CameraControls>(null);
-
+    let DoFTarget = new THREE.Vector3(0, 0, 0);
+    const DoF = useRef(DoFTarget);
     useEffect(() => {
         MoveCamera(cameraControlsRef, activeStation);
+        if (activeStation && activeStation.position) {
+            DoFTarget.set(
+                activeStation.position[0],
+                activeStation.position[1],
+                activeStation.position[2]
+            );
+        }
+        console.log("DoF Target set to:", DoFTarget);
     }, [activeStation]);
 
     const MapMesh = () => {
         const { nodes, materials } = useGLTF(
-            "/models/042_sporenkijker_10.gltf"
+            "/models/042_sporenkijker_10_scaled.gltf"
         ) as any;
 
         useEffect(() => {
-            // Store nodes in context for global access
             setNodes(nodes);
         }, [nodes, setNodes]);
 
@@ -58,7 +66,7 @@ const MainScene = () => {
                 scale={100}
                 position={[0, -7.5, 0]}
                 blur={1}
-                far={100}
+                far={1000}
                 opacity={0.85}
             />
 
@@ -69,24 +77,10 @@ const MainScene = () => {
 
             <EffectComposer>
                 <DepthOfField
-                    target={
-                        activeStation
-                            ? new THREE.Vector3(
-                                  activeStation.position
-                                      ? activeStation.position[0]
-                                      : 0,
-                                  activeStation.position
-                                      ? activeStation.position[1]
-                                      : 0,
-                                  activeStation.position
-                                      ? activeStation.position[2]
-                                      : 0
-                              )
-                            : new THREE.Vector3(0, 0, 0)
-                    }
-                    focalLength={1} // Keep this small for now
-                    bokehScale={3}
+                    target={DoF.current}
+                    bokehScale={2}
                     height={window.innerHeight}
+                    width={window.innerWidth}
                 />
             </EffectComposer>
         </>

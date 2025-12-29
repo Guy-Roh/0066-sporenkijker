@@ -5,8 +5,6 @@ import testData from "@/data/testData.json";
 const StationSelect = () => {
     const { activeStation, setActiveStation, nodes } = useAppContext();
 
-    console.log("StationSelect Nodes:", nodes);
-
     if (!testData || !testData.testStations) {
         return <div>No station data available</div>;
     }

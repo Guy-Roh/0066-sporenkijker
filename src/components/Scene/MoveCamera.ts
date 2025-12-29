@@ -6,13 +6,15 @@ export const MoveCamera = (cameraControlsRef: RefObject<CameraControls | null>, 
 
         let targetPosition: [number, number, number] = [0, 0, 0];
         if (activeStation.position) {
-            targetPosition = activeStation.position;
+            targetPosition[0] = activeStation.position[0];
+            targetPosition[1] = activeStation.position[1] ;
+            targetPosition[2] = activeStation.position[2];
         }
 
         const cameraPosition: [number, number, number] = [
-            targetPosition[0] + 1,
-            targetPosition[1] + 0.8,
-            targetPosition[2] + 1,
+            targetPosition[0],
+            targetPosition[1] - 12,
+            targetPosition[2] + 8
         ];
 
         cameraControlsRef.current.setLookAt(
