@@ -2,13 +2,11 @@
 
 import {
     CameraControls,
-    MeshTransmissionMaterial,
     ContactShadows,
     useGLTF,
     Environment,
 } from "@react-three/drei";
 import * as THREE from "three";
-import testData from "@/data/testData.json";
 import { useAppContext } from "@/app/AppContext";
 import { useRef, useEffect } from "react";
 import { EffectComposer, DepthOfField } from "@react-three/postprocessing";
