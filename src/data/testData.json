@@ -2,39 +2,53 @@
     "testStations": [
         {
             "name": "Brussel Zuid",
-            "id": "BE.NMBS.008893007"
+            "id": "BE.NMBS.008814001",
+            "number": "1"
         },
         {
             "name": "Brussel Centraal",
-            "id": "BE.NMBS.008893005"
+            "id": "BE.NMBS.008813003",
+            "number": "2"
         },
         {
             "name":"Brussel Noord",
-            "id":"BE.NMBS.008893006"
+            "id":"BE.NMBS.008812005",
+            "number": "3"
         },
         {
             "name":"Antwerpen Centraal",
-            "id":"BE.NMBS.008891003"
+            "id":"BE.NMBS.008821006",
+            "number": "4"
         },
         {
             "name":"Gent Sint-Pieters",
-            "id":"BE.NMBS.008895001"
+            "id":"BE.NMBS.008892007",
+            "number": "5"
         },
         {
             "name":"Leuven",
-            "id":"BE.NMBS.008893120"
+            "id":"BE.NMBS.008833001",
+            "number": "6"
         },
         {
             "name":"Mechelen",
-            "id":"BE.NMBS.008891702"
+            "id":"BE.NMBS.008822004",
+            "number": "7"
         },
         {
             "name":"Brugge",
-            "id":"BE.NMBS.008894001"
+            "id":"BE.NMBS.008891009",
+            "number": "8"
         },
         {
             "name":"Kortrijk",
-            "id":"BE.NMBS.008894300"
+            "id":"BE.NMBS.008896008",
+            "number": "9"
+        },
+        {
+            "name":"Antwerpen Berchem",
+            "id":"BE.NMBS.008821121",
+            "number": "10"
         }
     ]
 }
