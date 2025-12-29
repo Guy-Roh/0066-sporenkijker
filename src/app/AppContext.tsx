@@ -1,16 +1,13 @@
 "use client";
 import { createContext, useContext, useState, ReactNode } from "react";
-
-export interface Station {
-    name: string;
-    id: string;
-}
-
+import { Station } from "./type";
 interface AppContextType {
 	activeStation: Station | null;
 	setActiveStation: (station: Station | null) => void;
     cameraPosition: [number, number, number];
     setCameraPosition: (position: [number, number, number]) => void;
+    nodes: any;
+    setNodes: (nodes: any) => void;
 }
 
 const AppContext = createContext<AppContextType | undefined>(undefined);
@@ -18,13 +15,16 @@ const AppContext = createContext<AppContextType | undefined>(undefined);
 export const AppProvider = ({ children }: { children: ReactNode }) => {
 	const [activeStation, setActiveStation] = useState<Station | null>(null);
     const [cameraPosition, setCameraPosition] = useState<[number, number, number]>([10, 10, 10]);
+    const [nodes, setNodes] = useState<any>(null);
 	return (
 		<AppContext.Provider
 			value={{
 				activeStation,
 				setActiveStation,
                 cameraPosition,
-                setCameraPosition
+                setCameraPosition,
+                nodes,
+                setNodes
 			}}
 		>
 			{children}

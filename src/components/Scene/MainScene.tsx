@@ -12,113 +12,43 @@ import testData from "@/data/testData.json";
 import { useAppContext } from "@/app/AppContext";
 import { useRef, useEffect } from "react";
 import { EffectComposer, DepthOfField } from "@react-three/postprocessing";
+import { changeCamera } from "./ChangeCamera";
 
 const MainScene = () => {
-    const { activeStation } = useAppContext();
+    const { activeStation, setNodes } = useAppContext();
 
     const cameraControlsRef = useRef<CameraControls>(null);
 
     useEffect(() => {
-        if (cameraControlsRef.current && activeStation) {
-            const { nodes } = useGLTF("/models/042_sporenkijker_7.gltf") as any;
-            
-            let targetPosition: [number, number, number];
-            
-            // Convert station ID to match node naming convention (remove dots and spaces)
-            const nodeKey = activeStation.id.replace(/\./g, '').replace(/\s/g, '');
-            const stationNode = nodes[nodeKey];
-
-            if (stationNode) {
-                // Use the position from the Three.js node
-                targetPosition = [
-                    stationNode.position.x,
-                    stationNode.position.y,
-                    stationNode.position.z
-                ];
-            } else {
-                // Fallback to default position when station node not found
-                targetPosition = [0, 0, 0];
-            }
-
-            const cameraPosition: [number, number, number] = [
-                targetPosition[0] + 1,
-                targetPosition[1] + 0.8,
-                targetPosition[2] + 1,
-            ];
-
-            cameraControlsRef.current.setLookAt(
-                cameraPosition[0],
-                cameraPosition[1],
-                cameraPosition[2],
-                targetPosition[0],
-                targetPosition[1],
-                targetPosition[2],
-                true // for smooth camera transition
-            );
-
-            // Add zoom effect
-            cameraControlsRef.current.zoomTo(2, true);
-        }
+        changeCamera(cameraControlsRef, activeStation);
     }, [activeStation]);
 
     const MapMesh = () => {
         const { nodes, materials } = useGLTF(
-            "/models/042_sporenkijker_7.gltf"
+            "/models/042_sporenkijker_10.gltf"
         ) as any;
+
+        useEffect(() => {
+            // Store nodes in context for global access
+            setNodes(nodes);
+        }, [nodes, setNodes]);
 
         return (
             <group dispose={null}>
                 <mesh
                     castShadow
                     receiveShadow
-                    geometry={(nodes.Plane002 as THREE.Mesh).geometry}
-                    material={(nodes.Plane002 as THREE.Mesh).material}
+                    geometry={(nodes.Plane003 as THREE.Mesh).geometry}
+                    material={(nodes.Plane003 as THREE.Mesh).material}
                     position={[
-                        nodes.Plane002?.position?.x || 0,
-                        nodes.Plane002?.position?.y || 0,
-                        nodes.Plane002?.position?.z || 0
+                        nodes.Plane003?.position?.x || 0,
+                        nodes.Plane003?.position?.y || 0,
+                        nodes.Plane003?.position?.z || 0,
                     ]}
                 />
             </group>
         );
     };
-
-    const StationMarkers = () => {
-        const { nodes } = useGLTF("/models/042_sporenkijker_7.gltf") as any;
-        
-        return (
-            <group>
-                {testData.testStations.map((station) => {
-                    // Convert station ID to match node naming convention
-                    const nodeKey = station.id.replace(/\./g, '').replace(/\s/g, '');
-                    const stationNode = nodes[nodeKey];
-                    
-                    if (stationNode) {
-                        return (
-                            <mesh
-                                key={station.id}
-                                position={[
-                                    stationNode.position.x,
-                                    stationNode.position.y,
-                                    stationNode.position.z
-                                ]}
-                                castShadow
-                                receiveShadow
-                            >
-                                <sphereGeometry args={[0.1, 16, 16]} />
-                                <meshStandardMaterial 
-                                    color={activeStation?.id === station.id ? "#ff6b35" : "#4a90e2"} 
-                                />
-                            </mesh>
-                        );
-                    }
-                    return null;
-                })}
-            </group>
-        );
-    };
-
-
 
     return (
         <>
@@ -144,7 +74,6 @@ const MainScene = () => {
             />
 
             <MapMesh />
-            <StationMarkers />
 
             {/*             <EffectComposer>
                 <DepthOfField
