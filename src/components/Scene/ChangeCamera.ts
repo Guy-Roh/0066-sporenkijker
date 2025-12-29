@@ -1,4 +1,3 @@
-import { Station } from "@/app/type";
 import { CameraControls } from "@react-three/drei";
 import { RefObject } from "react";
 
@@ -26,7 +25,6 @@ export const changeCamera = (cameraControlsRef: RefObject<CameraControls | null>
             true // for smooth camera transition
         );
 
-        // Add zoom effect
-        cameraControlsRef.current.zoomTo(2, true);
+
     }
 };

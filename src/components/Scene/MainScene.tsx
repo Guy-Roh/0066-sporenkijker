@@ -33,17 +33,21 @@ const MainScene = () => {
 
         return (
             <group dispose={null}>
-                <mesh
-                    castShadow
-                    receiveShadow
-                    geometry={(nodes.Plane003 as THREE.Mesh).geometry}
-                    material={(nodes.Plane003 as THREE.Mesh).material}
-                    position={[
-                        nodes.Plane003?.position?.x || 0,
-                        nodes.Plane003?.position?.y || 0,
-                        nodes.Plane003?.position?.z || 0,
-                    ]}
-                />
+                {Object.entries(nodes).map(([name, node]: [string, any]) => {
+                    if (node.geometry) {
+                        return (
+                            <mesh
+                                key={name}
+                                castShadow
+                                receiveShadow
+                                geometry={node.geometry}
+                                material={node.material || materials.default}
+                                position={node.position}
+                            />
+                        );
+                    }
+                    return null;
+                })}
             </group>
         );
     };
@@ -64,14 +68,14 @@ const MainScene = () => {
 
             <MapMesh />
 
-            {/*             <EffectComposer>
+                        <EffectComposer>
                 <DepthOfField
                     target={
                         activeStation
                             ? new THREE.Vector3(
-                                  activeStation.stationPosition[0],
-                                  activeStation.stationPosition[1],
-                                  activeStation.stationPosition[2]
+                                  activeStation.position ? activeStation.position[0] : 0,
+                                  activeStation.position ? activeStation.position[1] : 0,
+                                  activeStation.position ? activeStation.position[2] : 0
                               )
                             : new THREE.Vector3(0, 0, 0)
                     }
@@ -79,7 +83,7 @@ const MainScene = () => {
                     bokehScale={4}
                     height={480}
                 />
-            </EffectComposer> */}
+            </EffectComposer>
         </>
     );
 };
