@@ -66,7 +66,7 @@ const MainScene = () => {
 
     const FX = () => {
         return (
-            <EffectComposer enableNormalPass multisampling={0}>
+            <EffectComposer enableNormalPass>
                 <DepthOfField
                     target={DoF.current}
                     bokehScale={2}
@@ -75,10 +75,11 @@ const MainScene = () => {
                     width={window.innerWidth}
                 />
                 <N8AO
-                    aoRadius={10}
+                    aoRadius={16}
                     distanceFalloff={12}
-                    intensity={4}
-                    screenSpaceRadius={true} // critical for consistent look
+                    intensity={2}
+                    screenSpaceRadius={true}
+                    denoiseSamples={40}
                 />
             </EffectComposer>
         );
@@ -86,8 +87,6 @@ const MainScene = () => {
 
     return (
         <>
-
-
             <CameraControls ref={cameraControlsRef} />
             <Environment preset="city" />
             <FX />
