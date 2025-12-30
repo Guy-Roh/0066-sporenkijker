@@ -1,21 +1,15 @@
 "use client";
 
 import { CameraControls, useGLTF, Environment } from "@react-three/drei";
-import * as THREE from "three";
 import { useAppContext } from "@/app/AppContext";
 import { useRef, useEffect } from "react";
 import { EffectComposer, DepthOfField } from "@react-three/postprocessing";
-import { MoveCamera, cameraOffset } from "./MoveCamera";
+import { MoveCamera } from "./MoveCamera";
 
 const MainScene = () => {
     const { activeStation, setNodes } = useAppContext();
 
     const cameraControlsRef = useRef<CameraControls>(null);
-    const dofDistance = Math.hypot(
-        cameraOffset.x,
-        cameraOffset.y,
-        cameraOffset.z
-    );
 
     useEffect(() => {
         MoveCamera(cameraControlsRef, activeStation);
@@ -53,8 +47,8 @@ const MainScene = () => {
 
     const FX = () => {
         return (
-            <EffectComposer enableNormalPass>
-                <DepthOfField target={activeStation?.position || [0, 0, 0]} bokehScale={3} />
+            <EffectComposer enableNormalPass multisampling={0}>
+                <DepthOfField target={activeStation?.position || [0, 0, 0]} bokehScale={activeStation ? 3 : 0} />
             </EffectComposer>
         );
     };
