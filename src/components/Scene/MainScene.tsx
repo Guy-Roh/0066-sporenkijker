@@ -1,35 +1,24 @@
 "use client";
 
-import {
-    CameraControls,
-    useGLTF,
-    Environment,
-} from "@react-three/drei";
+import { CameraControls, useGLTF, Environment } from "@react-three/drei";
 import * as THREE from "three";
 import { useAppContext } from "@/app/AppContext";
 import { useRef, useEffect } from "react";
-import {
-    EffectComposer,
-    DepthOfField,
-    N8AO,
-} from "@react-three/postprocessing";
-import { MoveCamera } from "./MoveCamera";
+import { EffectComposer, DepthOfField } from "@react-three/postprocessing";
+import { MoveCamera, cameraOffset } from "./MoveCamera";
+
 const MainScene = () => {
     const { activeStation, setNodes } = useAppContext();
 
     const cameraControlsRef = useRef<CameraControls>(null);
-    let DoFTarget = new THREE.Vector3(0, 0, 0);
-    const DoF = useRef(DoFTarget);
+    const dofDistance = Math.hypot(
+        cameraOffset.x,
+        cameraOffset.y,
+        cameraOffset.z
+    );
+
     useEffect(() => {
         MoveCamera(cameraControlsRef, activeStation);
-        if (activeStation && activeStation.position) {
-            DoFTarget.set(
-                activeStation.position[0],
-                activeStation.position[1],
-                activeStation.position[2]
-            );
-        }
-        console.log("DoF Target set to:", DoFTarget);
     }, [activeStation]);
 
     const MapMesh = () => {
@@ -65,25 +54,14 @@ const MainScene = () => {
     const FX = () => {
         return (
             <EffectComposer enableNormalPass>
-                <DepthOfField
-                    target={DoF.current}
-                    bokehScale={3}
-                    height={window.innerHeight}
-                    width={window.innerWidth}
-                />
-                <N8AO
-                    aoRadius={10}
-                    distanceFalloff={12}
-                    intensity={2}
-                    screenSpaceRadius={true}
-                    denoiseSamples={6}
-                />
+                <DepthOfField target={activeStation?.position || [0, 0, 0]} bokehScale={3} />
             </EffectComposer>
         );
     };
 
     return (
         <>
+            <color attach="background" args={["#d9d9d9"]} />
             <CameraControls ref={cameraControlsRef} />
             <Environment preset="city" />
             <FX />

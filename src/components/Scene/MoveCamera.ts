@@ -1,6 +1,8 @@
 import { CameraControls } from "@react-three/drei";
 import { RefObject } from "react";
 
+export const cameraOffset = { x: 0, y: -12, z: 8 };
+
 export const MoveCamera = (cameraControlsRef: RefObject<CameraControls | null>, activeStation: any) => {
     if (cameraControlsRef && cameraControlsRef.current && activeStation) {
 
@@ -12,9 +14,9 @@ export const MoveCamera = (cameraControlsRef: RefObject<CameraControls | null>, 
         }
 
         const cameraPosition: [number, number, number] = [
-            targetPosition[0],
-            targetPosition[1] - 12,
-            targetPosition[2] + 8
+            targetPosition[0] + cameraOffset.x,
+            targetPosition[1] + cameraOffset.y,
+            targetPosition[2] + cameraOffset.z,
         ];
 
         cameraControlsRef.current.setLookAt(
