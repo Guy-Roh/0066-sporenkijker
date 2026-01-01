@@ -17,7 +17,7 @@ const MainScene = () => {
 
     const MapMesh = () => {
         const { nodes, materials } = useGLTF(
-            "/models/042_sporenkijker_10_scaled.gltf"
+            "/models/042_sporenkijker_15.gltf"
         ) as any;
 
         useEffect(() => {
@@ -55,7 +55,7 @@ const MainScene = () => {
 
     return (
         <>
-            <color attach="background" args={["#d9d9d9"]} />
+            <color attach="background" args={["#212121"]} />
             <CameraControls ref={cameraControlsRef} />
             <Environment preset="city" />
             <FX />

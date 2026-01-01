@@ -29,7 +29,7 @@ export const MoveCamera = (cameraControlsRef: RefObject<CameraControls | null>, 
             true // for smooth camera transition
         );
 
-        cameraControlsRef.current.zoomTo(2, true); // zoom level 15 with smooth transition
+        cameraControlsRef.current.zoomTo(2, true);
 
 
     }
