@@ -12,8 +12,10 @@ const Trains = () => {
 
                 if (!stationNode) return null;
 
-                const isActive = activeStation?.number === station.number;
-                const color = isActive ? "#3b82f6" : "#f97316";
+                let color = "#f97316"; 
+                if (activeStation && activeStation.number === station.number) {
+                    color = "#3b82f6"; 
+                }
 
                 return (
                     <mesh
