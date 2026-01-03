@@ -4,16 +4,16 @@ import { CameraControls, useGLTF, Environment } from "@react-three/drei";
 import { useAppContext } from "@/app/AppContext";
 import { useRef, useEffect } from "react";
 import { EffectComposer, DepthOfField } from "@react-three/postprocessing";
-import { MoveCamera } from "./MoveCamera";
+import { MoveCamera } from "./Camera";
 import Trains from "./Trains";
 
 const MainScene = () => {
-    const { activeStation, setNodes } = useAppContext();
 
+    const { activeStation, setNodes , isMobile} = useAppContext();
     const cameraControlsRef = useRef<CameraControls>(null);
 
     useEffect(() => {
-        MoveCamera(cameraControlsRef, activeStation);
+        MoveCamera(cameraControlsRef, activeStation, isMobile);
     }, [activeStation]);
 
     const MapMesh = () => {

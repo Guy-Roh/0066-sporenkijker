@@ -8,11 +8,18 @@ interface AppContextType {
     setCameraPosition: (position: [number, number, number]) => void;
     nodes: any;
     setNodes: (nodes: any) => void;
+    isMobile: boolean;
 }
 
 const AppContext = createContext<AppContextType | undefined>(undefined);
 
-export const AppProvider = ({ children }: { children: ReactNode }) => {
+export const AppProvider = ({ 
+    children,
+    isMobile
+}: { 
+    children: ReactNode,
+    isMobile: boolean
+}) => {
 	const [activeStation, setActiveStation] = useState<Station | null>(null);
     const [cameraPosition, setCameraPosition] = useState<[number, number, number]>([10, 10, 10]);
     const [nodes, setNodes] = useState<any>(null);
@@ -24,7 +31,8 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
                 cameraPosition,
                 setCameraPosition,
                 nodes,
-                setNodes
+                setNodes,
+                isMobile
 			}}
 		>
 			{children}
