@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Noto_Sans } from "next/font/google";
-import "./globals.scss";
+import "./styles/globals.scss";
 import { AppProvider } from "./AppContext";
 import { userAgent } from "next/server";
 import { headers } from "next/headers";

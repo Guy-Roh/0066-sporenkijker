@@ -35,7 +35,7 @@ const StationSelect = () => {
     return (
         <div>
             <h3>Select a station</h3>
-            <div className="station-select flex flex-col">
+            <div className="station-select">
                 {testData.testStations.map((station: Station) => (
                     <button
                         key={station.id}
@@ -43,8 +43,7 @@ const StationSelect = () => {
                         className={
                             activeStation?.number === station.number
                                 ? "active"
-                                : "" +
-                                  "px-4 py-2 mb-2 bg-gray-200 rounded hover:bg-gray-300"
+                                : ""
                         }
                     >
                         {station.name}

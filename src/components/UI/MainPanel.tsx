@@ -11,7 +11,6 @@ const MainPanel = () => {
 
     return (
         <aside className="main-panel">
-            <h1>Control Panel</h1>
             <StationSelect/>
             <DataPanel station={activeStation ?? undefined} />
         </aside>

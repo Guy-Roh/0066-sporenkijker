@@ -7,7 +7,7 @@ export const MoveCamera = (cameraControlsRef: RefObject<CameraControls | null>, 
 
     let cameraPosition: [number, number, number] = [0, 0, 60];
     if (isMobile) {
-        cameraPosition = [0, 0, 160];
+        cameraPosition = [0, 0, 180];
     }
     
     if (cameraControlsRef && cameraControlsRef.current && activeStation) {

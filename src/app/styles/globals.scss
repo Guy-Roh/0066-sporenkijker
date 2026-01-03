@@ -1,0 +1,99 @@
+@use "tailwindcss";
+@use "./colorVars.scss" as *;
+
+* {
+    user-select: none;
+    box-sizing: border-box;
+    font-family: var(--font-noto-sans), sans-serif;
+}
+
+@mixin mobile {
+    @media screen and (max-aspect-ratio: 3/4) {
+        @content;
+    }
+}
+
+@mixin small-desktop {
+    @media screen and (max-aspect-ratio: 4/3) {
+        @content;
+    }
+}
+
+@mixin desktop {
+    @media screen and (min-aspect-ratio: 4/3) {
+        @content;
+    }
+}
+
+$anim: all 0.32s cubic-bezier(.17, .67, .32, .99);
+
+
+
+.main-panel {
+    position: absolute;
+    bottom: 1vmin;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    width: 60%;
+    height: fit-content;
+    backdrop-filter: blur(4vmin) brightness(1.1);
+    z-index: 20;
+    padding: 2vmin;
+    border-radius: 1vmin;
+    font-family: "Noto Sans", sans-serif;
+    color: $cloud;
+    transition: $anim;
+
+    @include small-desktop() {
+        width: 94%;
+        font-size: 2.5vmin;
+
+
+    }
+
+    .station-select {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        font-size: 2.6vmin;
+
+
+        @include small-desktop() {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        button {
+            text-transform: uppercase;
+            height: 6vh;
+            transition: $anim;
+
+            @include small-desktop() {
+                height: 4vh;
+                padding: 4vmin;
+                font-size: 3.2vmin;
+            }
+
+            &:hover {
+                cursor: pointer;
+                backdrop-filter: brightness(2);
+
+                @include desktop() {
+                    letter-spacing: .1vmin;
+                    font-weight: 600;
+
+                }
+
+                color: $cobalt;
+            }
+        }
+    }
+
+}
+
+.main-app {
+    canvas {
+        overflow: hidden;
+        min-height: 100vh;
+        width: 100%;
+    }
+}
