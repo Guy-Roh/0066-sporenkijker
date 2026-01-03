@@ -1,15 +1,17 @@
 "use client";
 
+import { useAppContext } from "@/app/AppContext";
 import { useTrainData } from "../Helpers/GetData";
-import { Station } from "@/app/type";
+import textData from "@/data/textData.json";
 
-const DataPanel = ({ station }: { station?: Station }) => {
-    const { data, loading, error } = useTrainData(station?.name);
-
+const DataPanel = () => {
+    const { activeStation } = useAppContext();
+    const { data, loading, error } = useTrainData(activeStation?.name as string);
+    if (activeStation || data) {
     if (loading) {
         return (
             <div className="data-panel">
-                <h2>Loading train data...</h2>
+                <h2>{textData.loading_message}</h2>
             </div>
         );
     }
@@ -17,7 +19,7 @@ const DataPanel = ({ station }: { station?: Station }) => {
     if (error) {
         return (
             <div className="data-panel">
-                <h2>Error</h2>
+                <h2>{textData.error_message}</h2>
                 <p>{error}</p>
             </div>
         );
@@ -26,39 +28,46 @@ const DataPanel = ({ station }: { station?: Station }) => {
     if (!data || !data.trains.length) {
         return (
             <div className="data-panel">
-                <h2>No train data available</h2>
+                <h2>{textData.no_trains_message}</h2>
             </div>
         );
     }
 
-    return (
-        <div className="data-panel">
-            <h2>Departures from {station?.name || data.station}</h2>
-            <div className="trains-list">
-                {data.trains.map((train, index) => (
-                    <div key={index} className="train-item">
-                        <div className="destination">
-                            <strong>{train.destination}</strong>
+        return (
+            <div className="data-panel">
+                <h2>{activeStation?.name}</h2>
+                <div className="trains-list">
+                    {data.trains.map((train, index) => (
+                        <div key={index} className="train-item">
+                            <div className="destination">
+                                <strong>{train.destination}</strong>
+                            </div>
+                            <div className="details grid">
+                                <span>
+                                    {textData.platform}: {train.platform}
+                                </span>
+                                <span>
+                                    {textData.departure_time}:{" "}
+                                    {train.scheduledTime}
+                                </span>
+                                <span
+                                    className={
+                                        train.delay > 0 ? "delayed" : "on-time"
+                                    }
+                                >
+                                    {train.delay > 0
+                                        ? `+${Math.round(train.delay)} min`
+                                        : "Op tijd"}
+                                </span>
+                                {/*                             <span>Train: {train.vehicleId}</span>
+                                 */}{" "}
+                            </div>
                         </div>
-                        <div className="details grid">
-                            <span>Platform: {train.platform}</span>
-                            <span>Time: {train.scheduledTime}</span>
-                            <span
-                                className={
-                                    train.delay > 0 ? "delayed" : "on-time"
-                                }
-                            >
-                                {train.delay > 0
-                                    ? `+${Math.round(train.delay)} min`
-                                    : "On time"}
-                            </span>
-                            <span>Train: {train.vehicleId}</span>
-                        </div>
-                    </div>
-                ))}
+                    ))}
+                </div>
             </div>
-        </div>
-    );
+        );
+    }
 };
 
 export default DataPanel;

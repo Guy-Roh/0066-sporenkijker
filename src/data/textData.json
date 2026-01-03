@@ -1,3 +1,10 @@
 {
-    "main_panel_title": "selecteer een station"
+    "main_panel_title": "selecteer een station",
+    "loading_message": "gegevens laden...",
+    "error_message": "fout bij het ophalen van gegevens.",
+    "no_trains_message": "geen vertrekkende treinen gevonden.",
+    "departure_time": "vertrektijd",
+    "destination": "bestemming",
+    "platform": "perron",
+    "delay": "vertraging"
 }

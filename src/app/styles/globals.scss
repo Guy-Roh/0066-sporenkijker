@@ -45,6 +45,21 @@ $anim: all 0.32s cubic-bezier(.17, .67, .32, .99);
     color: $cloud;
     transition: $anim;
 
+    &.minimized{
+        width: 20%;
+        height: 4vh;
+        font-size: 2vmin;
+        transition: $anim;
+        cursor: pointer;
+        &:hover {
+            backdrop-filter: brightness(1.3);
+        }
+
+        * {
+            display: none;
+        }
+    }
+
     @include small-desktop() {
         width: 94%;
         font-size: 2.5vmin;
@@ -86,6 +101,57 @@ $anim: all 0.32s cubic-bezier(.17, .67, .32, .99);
 
                 color: $cobalt;
             }
+        }
+    }
+
+    .minimize-btn {
+        position: absolute;
+        bottom: 1vmin;
+        left: 0;
+        right: 0;
+        width: 10vmin;
+        margin: 0 auto;
+        font-size: 3vmin;
+        border-radius: 1vmin;
+        &:hover {
+            cursor: pointer;
+            background-color: $cobalt;
+        }
+    }
+
+}
+
+.data-panel {
+    position: absolute;
+    top: 1vmin;
+    right: 1vmin;
+    width: 40vw;
+    height: fit-content;
+    backdrop-filter: blur(4vmin) brightness(1.1);
+    z-index: 20;
+    padding: 2vmin;
+    border-radius: 1vmin;
+    font-family: "Noto Sans", sans-serif;
+    color: $cloud;
+    transition: $anim;
+
+
+    @include mobile() {
+        width: 40vmin;
+        font-size: 2.5vmin;
+    }
+
+    h2 {
+        margin-bottom: 2vmin;
+        font-size: 3vmin;
+    }
+
+    .trains-list {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        .train-item{
+            margin: .8vmin;
+            line-height: normal;
         }
     }
 

@@ -19,7 +19,7 @@ interface UseTrainDataResult {
     error: string | null;
 }
 
-export const useTrainData = (station: string = 'Antwerpen-Centraal'): UseTrainDataResult => {
+export const useTrainData = (station: string ): UseTrainDataResult => {
     const [data, setData] = useState<TrainData | null>(null);
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<string | null>(null);

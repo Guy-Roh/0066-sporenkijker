@@ -5,7 +5,7 @@ import { useAppContext } from "@/app/AppContext";
 import { useRef, useEffect } from "react";
 import { EffectComposer, DepthOfField } from "@react-three/postprocessing";
 import { MoveCamera } from "./Camera";
-import Trains from "./Trains";
+import StationMarkers from "./Markers";
 
 const MainScene = () => {
 
@@ -62,7 +62,7 @@ const MainScene = () => {
             <Environment preset="city" />
             <FX />
             <MapMesh />
-            <Trains />
+            <StationMarkers />
         </>
     );
 };
