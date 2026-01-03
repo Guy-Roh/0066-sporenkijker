@@ -1,7 +1,6 @@
 "use client";
 import { useAppContext } from "@/app/AppContext";
 import StationSelect from "./StationSelect";
-import DataPanel from "./DataPanel";
 
 const MainPanel = () => {
     const {
@@ -12,7 +11,6 @@ const MainPanel = () => {
     return (
         <aside className="main-panel">
             <StationSelect/>
-            <DataPanel station={activeStation ?? undefined} />
         </aside>
     );
 };

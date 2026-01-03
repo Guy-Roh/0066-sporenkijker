@@ -49,7 +49,8 @@ const MainScene = () => {
     const FX = () => {
         return (
             <EffectComposer enableNormalPass multisampling={0}>
-                <DepthOfField target={activeStation?.position || [0, 0, 0]} bokehScale={activeStation ? 3 : 0} />
+                <DepthOfField target={activeStation?.position || [0, 0, 0]} bokehScale={activeStation ? 3 : 0} 
+/>
             </EffectComposer>
         );
     };
