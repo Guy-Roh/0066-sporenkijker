@@ -1,6 +1,7 @@
 import { useAppContext } from "@/app/AppContext";
 import { Station } from "@/app/type";
 import testData from "@/data/testData.json";
+import textData from "@/data/textData.json";
 
 const StationSelect = () => {
     const { activeStation, setActiveStation, nodes } = useAppContext();
@@ -34,7 +35,7 @@ const StationSelect = () => {
 
     return (
         <div>
-            <h3>Select a station</h3>
+            <h3>{textData.main_panel_title}</h3>
             <div className="station-select">
                 {testData.testStations.map((station: Station) => (
                     <button
