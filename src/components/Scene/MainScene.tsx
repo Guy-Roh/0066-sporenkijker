@@ -4,12 +4,11 @@ import { CameraControls, useGLTF, Environment } from "@react-three/drei";
 import { useAppContext } from "@/app/AppContext";
 import { useRef, useEffect } from "react";
 import { EffectComposer, DepthOfField } from "@react-three/postprocessing";
-import { MoveCamera } from "./Camera";
+import { MoveCamera } from "../Helpers/Camera";
 import StationMarkers from "./Markers";
 
 const MainScene = () => {
-
-    const { activeStation, setNodes , isMobile} = useAppContext();
+    const { activeStation, setNodes, isMobile } = useAppContext();
     const cameraControlsRef = useRef<CameraControls>(null);
 
     useEffect(() => {
@@ -18,7 +17,7 @@ const MainScene = () => {
 
     const MapMesh = () => {
         const { nodes, materials } = useGLTF(
-            "/models/042_sporenkijker_15.gltf"
+            "/models/042_sporenkijker_16.gltf"
         ) as any;
 
         useEffect(() => {
@@ -49,8 +48,10 @@ const MainScene = () => {
     const FX = () => {
         return (
             <EffectComposer enableNormalPass multisampling={0}>
-                <DepthOfField target={activeStation?.position || [0, 0, 0]} bokehScale={activeStation ? 3 : 0} 
-/>
+                <DepthOfField
+                    target={activeStation?.position || [0, 0, 0]}
+                    bokehScale={activeStation ? 3 : 0}
+                />
             </EffectComposer>
         );
     };

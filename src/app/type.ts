@@ -4,3 +4,22 @@ export interface Station {
     number: string;
     position?: [number, number, number];
 }
+
+export interface Train {
+    destination: string;
+    platform: string;
+    scheduledTime: string;
+    delay: number;
+    vehicleId: string;
+}
+
+export interface TrainData {
+    station: string;
+    trains: Train[];
+}
+
+export interface UseTrainDataResult {
+    trainsData: TrainData | null;
+    loading: boolean;
+    error: string | null;
+}

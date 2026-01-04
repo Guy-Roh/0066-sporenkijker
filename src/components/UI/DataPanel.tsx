@@ -6,8 +6,8 @@ import textData from "@/data/textData.json";
 
 const DataPanel = () => {
     const { activeStation } = useAppContext();
-    const { data, loading, error } = useTrainData(activeStation?.name as string);
-    if (activeStation || data) {
+    const { trainsData, loading, error } = useTrainData(activeStation?.name as string);
+    if (activeStation || trainsData) {
     if (loading) {
         return (
             <div className="data-panel">
@@ -25,7 +25,7 @@ const DataPanel = () => {
         );
     }
 
-    if (!data || !data.trains.length) {
+    if (!trainsData || !trainsData.trains.length) {
         return (
             <div className="data-panel">
                 <h2>{textData.no_trains_message}</h2>
@@ -37,7 +37,7 @@ const DataPanel = () => {
             <div className="data-panel">
                 <h2>{activeStation?.name}</h2>
                 <div className="trains-list">
-                    {data.trains.map((train, index) => (
+                    {trainsData.trains.map((train, index) => (
                         <div key={index} className="train-item">
                             <div className="destination">
                                 <strong>{train.destination}</strong>

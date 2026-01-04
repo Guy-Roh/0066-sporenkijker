@@ -38,8 +38,7 @@ export const MoveCamera = (cameraControlsRef: RefObject<CameraControls | null>, 
             true // for smooth camera transition
         );
 
-        cameraControlsRef.current.zoomTo(2, true);
-        cameraControlsRef.current.truck(0, 1, true);
+        cameraControlsRef.current.zoomTo(8, true);
     } else {
         if (cameraControlsRef && cameraControlsRef.current) {
             cameraControlsRef.current.setLookAt(

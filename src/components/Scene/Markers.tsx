@@ -25,6 +25,7 @@ const StationMarkers = () => {
                             stationNode.position.y,
                             stationNode.position.z,
                         ]}
+                        rotation={[Math.PI / 2, 0, 0]}
                     >
                         <sphereGeometry args={[0.5, 16, 16]} />
                         <meshStandardMaterial color={color} />

@@ -1,26 +1,10 @@
 import { useState, useEffect } from 'react';
 
-interface Train {
-    destination: string;
-    platform: string;
-    scheduledTime: string;
-    delay: number;
-    vehicleId: string;
-}
-
-interface TrainData {
-    station: string;
-    trains: Train[];
-}
-
-interface UseTrainDataResult {
-    data: TrainData | null;
-    loading: boolean;
-    error: string | null;
-}
+import { TrainData, UseTrainDataResult } from '../../app/type';
+import { useAppContext } from '@/app/AppContext';
 
 export const useTrainData = (station: string ): UseTrainDataResult => {
-    const [data, setData] = useState<TrainData | null>(null);
+    const { trainsData, setTrainsData } = useAppContext();
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<string | null>(null);
 
@@ -37,7 +21,7 @@ export const useTrainData = (station: string ): UseTrainDataResult => {
                 }
                 
                 const result: TrainData = await response.json();
-                setData(result);
+                setTrainsData?.(result);
             } catch (err) {
                 setError(err instanceof Error ? err.message : 'Unknown error occurred');
             } finally {
@@ -47,11 +31,11 @@ export const useTrainData = (station: string ): UseTrainDataResult => {
 
         fetchTrainData();
         
-        // Refresh data every 30 seconds
+        // Refresh data every 5 minutes
         const interval = setInterval(fetchTrainData, 300000);
         
         return () => clearInterval(interval);
     }, [station]);
 
-    return { data, loading, error };
+    return { trainsData: trainsData ?? null, loading, error };
 };
