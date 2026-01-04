@@ -8,7 +8,7 @@ import { MoveCamera } from "../Helpers/Camera";
 import StationMarkers from "./Markers";
 
 const MainScene = () => {
-    const { activeStation, setNodes, isMobile } = useAppContext();
+    const { activeStation, setNodes, isMobile, trainsData } = useAppContext();
     const cameraControlsRef = useRef<CameraControls>(null);
 
     useEffect(() => {
@@ -16,17 +16,41 @@ const MainScene = () => {
     }, [activeStation]);
 
     const MapMesh = () => {
-        const { nodes, materials } = useGLTF(
+        const { nodes: meshNodes, materials } = useGLTF(
             "/models/042_sporenkijker_16.gltf"
         ) as any;
 
         useEffect(() => {
-            setNodes(nodes);
-        }, [nodes, setNodes]);
+            setNodes(meshNodes);
+        }, [meshNodes, setNodes]);
+
+        const rawStationId = trainsData?.station || "";
+        const trains = trainsData?.trains || [];
+
+        const cleanStationId = rawStationId.replace(/\./g, "");
+
+        const validTrainKeys = new Set(
+            trains
+                .filter((t: any) => t.platform && t.platform !== "?")
+                .map((t: any) => {
+                    const paddedPlatform = t.platform.toString().padStart(3, "0");
+                    return `${cleanStationId}${paddedPlatform}`;
+                })
+        ); // this will hold keys like "BENMBS008821006001"
+
+
+        const filteredEntries = Object.entries(meshNodes).filter(([name, _]: [string, any]) => {
+            if (name.startsWith("BENMBS")) {
+                return validTrainKeys.has(name);
+            }
+            return true;
+        }); // this keeps all non-station nodes plus only the active station platforms
+
+        const selectedNodes = Object.fromEntries(filteredEntries);
 
         return (
             <group dispose={null}>
-                {Object.entries(nodes).map(([name, node]: [string, any]) => {
+                {Object.entries(selectedNodes).map(([name, node]: [string, any]) => {
                     if (node.geometry) {
                         return (
                             <mesh

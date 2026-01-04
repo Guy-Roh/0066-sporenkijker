@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { TrainData, UseTrainDataResult } from '../../app/type';
 import { useAppContext } from '@/app/AppContext';
 
-export const useTrainData = (station: string ): UseTrainDataResult => {
+export const useTrainData = (stationId: string ): UseTrainDataResult => {
     const { trainsData, setTrainsData } = useAppContext();
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<string | null>(null);
@@ -14,7 +14,7 @@ export const useTrainData = (station: string ): UseTrainDataResult => {
             setError(null);
             
             try {
-                const response = await fetch(`/api/trains?station=${encodeURIComponent(station)}`);
+                const response = await fetch(`/api/trains?stationId=${encodeURIComponent(stationId)}`);
                 
                 if (!response.ok) {
                     throw new Error(`Failed to fetch: ${response.status}`);
@@ -35,7 +35,9 @@ export const useTrainData = (station: string ): UseTrainDataResult => {
         const interval = setInterval(fetchTrainData, 300000);
         
         return () => clearInterval(interval);
-    }, [station]);
+    }, [stationId]);
+
+    console.log('useTrainData:', trainsData);
 
     return { trainsData: trainsData ?? null, loading, error };
 };

@@ -27,7 +27,7 @@ const StationMarkers = () => {
                         ]}
                         rotation={[Math.PI / 2, 0, 0]}
                     >
-                        <sphereGeometry args={[0.5, 16, 16]} />
+                        <sphereGeometry args={[0.2, 16, 16]} />
                         <meshStandardMaterial color={color} />
                     </mesh>
                 );

@@ -13,9 +13,9 @@ interface IRailDeparture {
 export async function GET(request: Request) {
     // Parse query params to allow dynamic station selection
     const { searchParams } = new URL(request.url);
-    const station = searchParams.get('station') || 'Antwerpen-Centraal';
+    const stationId = searchParams.get('stationId') || 'BE.NMBS.008821006';
 
-    const url = `https://api.irail.be/liveboard/?station=${station}&format=json`;
+    const url = `https://api.irail.be/liveboard/?id=${stationId}&format=json`;
 
     try {
         const res = await fetch(url, {
@@ -35,18 +35,18 @@ export async function GET(request: Request) {
         const departures: IRailDeparture[] = data.departures?.departure || [];
 
         // Filter Logic
-        const nowInSeconds = Math.floor(Date.now() / 1000);
+const nowInSeconds = Math.floor(Date.now() / 1000);
 
         const relevantTrains = departures.filter((train) => {
             const scheduledTime = parseInt(train.time);
-            const delay = parseInt(train.delay || '0');
+            // Safety check: ensure delay is a number, default to 0
+            const delay = parseInt(train.delay || '0'); 
             const realDeparture = scheduledTime + delay;
 
             // Difference in minutes
             const diffMinutes = (realDeparture - nowInSeconds) / 60;
 
-            // Keep trains between -5 mins (departing) and +20 mins (approaching)
-            return diffMinutes >= -5 && diffMinutes <= 20;
+            return diffMinutes > -1 && diffMinutes <= 15;
         });
 
         // Format the output object
@@ -61,7 +61,7 @@ export async function GET(request: Request) {
             vehicleId: train.vehicle
         }));
 
-        return NextResponse.json({ station, trains: result });
+        return NextResponse.json({ station: stationId, trains: result });
 
     } catch (error) {
         return NextResponse.json({ error: 'Failed to fetch train data' }, { status: 500 });

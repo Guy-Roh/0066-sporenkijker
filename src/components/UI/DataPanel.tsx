@@ -6,7 +6,7 @@ import textData from "@/data/textData.json";
 
 const DataPanel = () => {
     const { activeStation } = useAppContext();
-    const { trainsData, loading, error } = useTrainData(activeStation?.name as string);
+    const { trainsData, loading, error } = useTrainData(activeStation?.id as string);
     if (activeStation || trainsData) {
     if (loading) {
         return (
