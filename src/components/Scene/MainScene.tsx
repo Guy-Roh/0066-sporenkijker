@@ -17,7 +17,7 @@ const MainScene = () => {
 
     const MapMesh = () => {
         const { nodes: meshNodes, materials } = useGLTF(
-            "/models/042_sporenkijker_16.gltf"
+            "/models/042_sporenkijker_19.gltf"
         ) as any;
 
         useEffect(() => {
@@ -92,13 +92,14 @@ const MainScene = () => {
             <color attach="background" args={["#212121"]} />
             <CameraControls ref={cameraControlsRef} />
             <Environment
-                preset="city"
-                environmentRotation={[-Math.PI / 2, 0, Math.PI / 2]}
-            />
+                backgroundIntensity={1}
+                preset="night"
+/*                 environmentRotation={[-Math.PI / 2, 0, Math.PI / 2]}
+ */            />
             <FX />
             <MapMesh />
-            <StationMarkers />
-        </>
+{/*             <StationMarkers />
+ */}        </>
     );
 };
 
