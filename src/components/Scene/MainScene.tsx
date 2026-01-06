@@ -33,38 +33,45 @@ const MainScene = () => {
             trains
                 .filter((t: any) => t.platform && t.platform !== "?")
                 .map((t: any) => {
-                    const paddedPlatform = t.platform.toString().padStart(3, "0");
+                    const paddedPlatform = t.platform
+                        .toString()
+                        .padStart(3, "0");
                     return `${cleanStationId}${paddedPlatform}`;
                 })
         ); // this will hold keys like "BENMBS008821006001"
 
-
-        const filteredEntries = Object.entries(meshNodes).filter(([name, _]: [string, any]) => {
-            if (name.startsWith("BENMBS")) {
-                return validTrainKeys.has(name);
+        const filteredEntries = Object.entries(meshNodes).filter(
+            ([name, _]: [string, any]) => {
+                if (name.startsWith("BENMBS")) {
+                    return validTrainKeys.has(name);
+                }
+                return true;
             }
-            return true;
-        }); // this keeps all non-station nodes plus only the active station platforms
+        ); // this keeps all non-station nodes plus only the active station platforms
 
         const selectedNodes = Object.fromEntries(filteredEntries);
 
         return (
             <group dispose={null}>
-                {Object.entries(selectedNodes).map(([name, node]: [string, any]) => {
-                    if (node.geometry) {
-                        return (
-                            <mesh
-                                key={name}
-                                castShadow
-                                receiveShadow
-                                geometry={node.geometry}
-                                material={node.material || materials.default}
-                                position={node.position}
-                            />
-                        );
+                {Object.entries(selectedNodes).map(
+                    ([name, node]: [string, any]) => {
+                        if (node.geometry) {
+                            return (
+                                <mesh
+                                    key={name}
+                                    castShadow
+                                    receiveShadow
+                                    geometry={node.geometry}
+                                    material={
+                                        node.material || materials.default
+                                    }
+                                    position={node.position}
+                                />
+                            );
+                        }
+                        return null;
                     }
-                    return null;
-                })}
+                )}
             </group>
         );
     };
@@ -84,7 +91,10 @@ const MainScene = () => {
         <>
             <color attach="background" args={["#212121"]} />
             <CameraControls ref={cameraControlsRef} />
-            <Environment preset="city" />
+            <Environment
+                preset="city"
+                environmentRotation={[-Math.PI / 2, 0, Math.PI / 2]}
+            />
             <FX />
             <MapMesh />
             <StationMarkers />

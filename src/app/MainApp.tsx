@@ -14,6 +14,7 @@ const MainApp = () => {
             shadows={{ type: THREE.PCFSoftShadowMap }}
             dpr={[1, 1.5]}
             gl={{antialias: false}}
+            
         >
             <MainScene />
         </Canvas>

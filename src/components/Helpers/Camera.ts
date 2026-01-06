@@ -4,13 +4,13 @@ import { RefObject } from "react";
 
 
 export const MoveCamera = (cameraControlsRef: RefObject<CameraControls | null>, activeStation: any, isMobile: boolean) => {
-    let cameraPosOffset = { x: 0, y: -16, z: 8 };
-    let cameraPosition: [number, number, number] = [0, 0, 60];
+    let cameraPosOffset = { x: 0, y: 8, z: 16 };
+    let cameraPosition: [number, number, number] = [0, 60, 0];
     if (isMobile) {
-        cameraPosition = [0, 0, 180];
-        cameraPosOffset = { x: 0, y: -10, z: 8 };
+        cameraPosition = [0, 100, 0];
+        cameraPosOffset = { x: 0, y: 8, z: 10 };
     }
-    
+
     if (cameraControlsRef && cameraControlsRef.current && activeStation) {
 
         let targetPosition: [number, number, number] = [0, 0, 0];
@@ -37,8 +37,12 @@ export const MoveCamera = (cameraControlsRef: RefObject<CameraControls | null>, 
             targetPosition[2],
             true // for smooth camera transition
         );
+        if (isMobile) {
+            cameraControlsRef.current.zoomTo(4, true);
+        } else {
+            cameraControlsRef.current.zoomTo(8, true);
+        }
 
-        cameraControlsRef.current.zoomTo(8, true);
     } else {
         if (cameraControlsRef && cameraControlsRef.current) {
             cameraControlsRef.current.setLookAt(
