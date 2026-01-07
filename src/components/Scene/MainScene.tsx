@@ -1,6 +1,6 @@
 "use client";
 
-import { CameraControls, useGLTF, Environment } from "@react-three/drei";
+import { CameraControls, useGLTF, Environment, MeshTransmissionMaterial } from "@react-three/drei";
 import { useAppContext } from "@/app/AppContext";
 import { useRef, useEffect } from "react";
 import { EffectComposer, DepthOfField, Bloom } from "@react-three/postprocessing";
@@ -56,17 +56,26 @@ const MainScene = () => {
                 {Object.entries(selectedNodes).map(
                     ([name, node]: [string, any]) => {
                         if (node.geometry) {
+                            const isGlass = node.material?.name === "Glass";
+                            
                             return (
                                 <mesh
                                     key={name}
                                     castShadow
                                     receiveShadow
                                     geometry={node.geometry}
-                                    material={
-                                        node.material || materials.default
-                                    }
                                     position={node.position}
-                                />
+                                >
+                                    {isGlass ? (
+                                        <MeshTransmissionMaterial
+                                            transmission={1}
+                                            thickness={0.5}
+                                            roughness={0.05}                                          chromaticAberration={0.03}
+                                        />
+                                    ) : (
+                                        <primitive object={node.material || materials.default} attach="material" />
+                                    )}
+                                </mesh>
                             );
                         }
                         return null;
@@ -78,7 +87,7 @@ const MainScene = () => {
 
     const FX = () => {
         return (
-            <EffectComposer enableNormalPass multisampling={0}>
+            <EffectComposer multisampling={0}>
                 <DepthOfField
                     target={activeStation?.position || [0, 0, 0]}
                     bokehScale={activeStation ? 3 : 0}
@@ -93,10 +102,10 @@ const MainScene = () => {
             <color attach="background" args={["#212121"]} />
             <CameraControls ref={cameraControlsRef} />
             <Environment
+                background={false}
                 backgroundIntensity={1}
                 preset="night"
-/*                 environmentRotation={[-Math.PI / 2, 0, Math.PI / 2]}
- */            />
+                />
             <FX />
             <MapMesh />
 {/*             <StationMarkers />

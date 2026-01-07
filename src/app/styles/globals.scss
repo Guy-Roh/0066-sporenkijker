@@ -82,6 +82,7 @@ $anim: all 0.32s cubic-bezier(.17, .67, .32, .99);
             text-transform: uppercase;
             height: 6vh;
             transition: $anim;
+            border-radius: .8vmin;
 
             @include small-desktop() {
                 height: 4vh;
@@ -91,7 +92,7 @@ $anim: all 0.32s cubic-bezier(.17, .67, .32, .99);
 
             &:hover {
                 cursor: pointer;
-                backdrop-filter: brightness(2);
+                background-color: $cloud;
 
                 @include desktop() {
                     letter-spacing: .1vmin;
@@ -137,7 +138,7 @@ $anim: all 0.32s cubic-bezier(.17, .67, .32, .99);
 
 
     @include mobile() {
-        width: 40vmin;
+        width: 100vw;
         font-size: 2.5vmin;
     }
 
@@ -150,8 +151,15 @@ $anim: all 0.32s cubic-bezier(.17, .67, .32, .99);
         display: grid;
         grid-template-columns: repeat(3, 1fr);
         .train-item{
-            margin: .8vmin;
+            padding: .8vmin;
             line-height: normal;
+            transition: $anim;
+            border-radius: .8vmin;
+            &:hover {
+                cursor: pointer;
+                background-color: $cloud;
+                color: $cobalt;
+            }
         }
     }
 

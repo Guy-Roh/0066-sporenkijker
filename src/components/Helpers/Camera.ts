@@ -4,7 +4,7 @@ import { RefObject } from "react";
 
 
 export const MoveCamera = (cameraControlsRef: RefObject<CameraControls | null>, activeStation: any, isMobile: boolean) => {
-    let cameraPosOffset = { x: 0, y: 8, z: 16 };
+    let cameraPosOffset = { x: 0, y: 2, z: 8 };
     let cameraPosition: [number, number, number] = [0, 60, 0];
     if (isMobile) {
         cameraPosition = [0, 100, 0];
@@ -40,7 +40,7 @@ export const MoveCamera = (cameraControlsRef: RefObject<CameraControls | null>, 
         if (isMobile) {
             cameraControlsRef.current.zoomTo(4, true);
         } else {
-            cameraControlsRef.current.zoomTo(8, true);
+            cameraControlsRef.current.zoomTo(6, true);
         }
 
     } else {
