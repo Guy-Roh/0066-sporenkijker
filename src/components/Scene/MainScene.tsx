@@ -3,7 +3,7 @@
 import { CameraControls, useGLTF, Environment } from "@react-three/drei";
 import { useAppContext } from "@/app/AppContext";
 import { useRef, useEffect } from "react";
-import { EffectComposer, DepthOfField } from "@react-three/postprocessing";
+import { EffectComposer, DepthOfField, Bloom } from "@react-three/postprocessing";
 import { MoveCamera } from "../Helpers/Camera";
 import StationMarkers from "./Markers";
 
@@ -17,7 +17,7 @@ const MainScene = () => {
 
     const MapMesh = () => {
         const { nodes: meshNodes, materials } = useGLTF(
-            "/models/042_sporenkijker_19.gltf"
+            "/models/042_sporenkijker_16.gltf"
         ) as any;
 
         useEffect(() => {
@@ -83,6 +83,7 @@ const MainScene = () => {
                     target={activeStation?.position || [0, 0, 0]}
                     bokehScale={activeStation ? 3 : 0}
                 />
+                <Bloom luminanceThreshold={1} mipmapBlur />
             </EffectComposer>
         );
     };
