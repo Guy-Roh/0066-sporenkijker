@@ -11,6 +11,8 @@ interface AppContextType {
     isMobile: boolean;
     trainsData?: TrainData | null;
     setTrainsData?: (data: TrainData | null) => void;
+    currentPlatform?: string | null;
+    setCurrentPlatform?: (platform: string | null) => void;
 }
 
 const AppContext = createContext<AppContextType | undefined>(undefined);

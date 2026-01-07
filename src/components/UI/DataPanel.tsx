@@ -5,7 +5,7 @@ import { useTrainData } from "../Helpers/GetData";
 import textData from "@/data/textData.json";
 
 const DataPanel = () => {
-    const { activeStation } = useAppContext();
+    const { activeStation, currentPlatform, setCurrentPlatform } = useAppContext();
     const { trainsData, loading, error } = useTrainData(
         activeStation?.id as string
     );

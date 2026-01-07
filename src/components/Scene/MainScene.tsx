@@ -4,7 +4,7 @@ import { CameraControls, useGLTF, Environment, MeshTransmissionMaterial } from "
 import { useAppContext } from "@/app/AppContext";
 import { useRef, useEffect } from "react";
 import { EffectComposer, DepthOfField, Bloom } from "@react-three/postprocessing";
-import { MoveCamera } from "../Helpers/Camera";
+import { MoveCameraToStation, PanCameraToPlatform } from "../Helpers/Camera";
 import StationMarkers from "./Markers";
 
 const MainScene = () => {
@@ -12,8 +12,12 @@ const MainScene = () => {
     const cameraControlsRef = useRef<CameraControls>(null);
 
     useEffect(() => {
-        MoveCamera(cameraControlsRef, activeStation, isMobile);
+        MoveCameraToStation(cameraControlsRef, activeStation, isMobile);
     }, [activeStation]);
+/* 
+    useEffect(() => {
+        PanCameraToPlatform(cameraControlsRef, activeStation, trainsData);
+    }, [trainsData]); */
 
     const MapMesh = () => {
         const { nodes: meshNodes, materials } = useGLTF(
@@ -102,9 +106,10 @@ const MainScene = () => {
             <color attach="background" args={["#212121"]} />
             <CameraControls ref={cameraControlsRef} />
             <Environment
+                files={"/img/hdri/capehill.hdr"}
                 background={false}
-                backgroundIntensity={1}
-                preset="night"
+                backgroundIntensity={.2}
+                backgroundRotation={[0, 0, Math.PI]}
                 />
             <FX />
             <MapMesh />

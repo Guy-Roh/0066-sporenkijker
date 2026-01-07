@@ -13,7 +13,7 @@ const MainApp = () => {
             fallback={<FallBack />}
             shadows={{ type: THREE.PCFSoftShadowMap }}
             dpr={[1, 1.5]}
-            gl={{antialias: false}}
+            gl={{antialias: true, toneMapping: THREE.ACESFilmicToneMapping}}
             
         >
             <MainScene />
