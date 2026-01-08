@@ -1,7 +1,20 @@
 import { Train, TrainData } from "@/app/type";
 
-const getTrainPosition = (train: Train) => {
+export const getTrainPosition = (platformNumber: string, stationId: string, meshNodes: any) => {
+    const cleanStationId = stationId.replace(/\./g, "");
+    const paddedPlatform = platformNumber.toString().padStart(3, "0");
+    const trainKey = `${cleanStationId}${paddedPlatform}`;
 
+    const trainNode = meshNodes[trainKey];
+    if (trainNode) {
+        return [
+            trainNode.position.x,
+            trainNode.position.y,
+            trainNode.position.z,
+        ];
+    } else {
+        return undefined;
+    }
 }
 
 export const filterTrains = (meshNodes: any, trainsData: TrainData) => {

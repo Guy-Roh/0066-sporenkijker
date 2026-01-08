@@ -46,11 +46,29 @@ const nowInSeconds = Math.floor(Date.now() / 1000);
             // Difference in minutes
             const diffMinutes = (realDeparture - nowInSeconds) / 60;
 
-            return diffMinutes > -1 && diffMinutes <= 15;
+            return diffMinutes > -1 && diffMinutes <= 15 && train.platform !== '?'; // only upcoming trains with known platforms
         });
 
+        // Keep only earliest train per platform
+        const platformMap = new Map<string, IRailDeparture>();
+        relevantTrains.forEach((train) => {
+            const existing = platformMap.get(train.platform);
+            const trainTime = parseInt(train.time) + parseInt(train.delay || '0');
+            
+            if (!existing) {
+                platformMap.set(train.platform, train);
+            } else {
+                const existingTime = parseInt(existing.time) + parseInt(existing.delay || '0');
+                if (trainTime < existingTime) {
+                    platformMap.set(train.platform, train);
+                }
+            }
+        });
+
+        const uniqueTrains = Array.from(platformMap.values());
+
         // Format the output object
-        const result = relevantTrains.map((train) => ({
+        const result = uniqueTrains.map((train) => ({
             destination: train.station,
             platform: train.platform,
             scheduledTime: new Date(parseInt(train.time) * 1000).toLocaleTimeString('en-GB', {

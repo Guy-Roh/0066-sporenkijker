@@ -14,12 +14,11 @@ import {
     Bloom,
 } from "@react-three/postprocessing";
 import { MoveCameraToStation, PanCameraToPlatform } from "../Helpers/Camera";
-import StationMarkers from "./Markers";
 import { filterTrains } from "../Helpers/Trains";
 import { TrainData } from "@/app/type";
 
 const MainScene = () => {
-    const { activeStation, nodes, setNodes, isMobile, trainsData } =
+    const { activeStation, nodes, setNodes, isMobile, trainsData, currentPlatform } =
         useAppContext();
     const cameraControlsRef = useRef<CameraControls>(null);
     const { nodes: meshNodes, materials } = useGLTF(
@@ -34,13 +33,34 @@ const MainScene = () => {
         MoveCameraToStation(cameraControlsRef, activeStation, isMobile);
     }, [activeStation]);
 
+    useEffect(() => {
+        if (currentPlatform){
+        PanCameraToPlatform(
+            cameraControlsRef,
+            currentPlatform?.position as [number, number, number],
+            isMobile
+        );
+        }
+
+    }, [currentPlatform, activeStation, nodes]);
+
     const MapMesh = () => {
+        const getSelectedTrainKey = () => {
+            if (!currentPlatform || !activeStation) return null;
+            const cleanStationId = activeStation.id.replace(/\./g, "");
+            const paddedPlatform = currentPlatform.number.toString().padStart(3, "0");
+            return `${cleanStationId}${paddedPlatform}`;
+        };
+
+        const selectedTrainKey = getSelectedTrainKey();
+
         return (
             <group dispose={null}>
                 {nodes &&
                     Object.entries(nodes).map(([name, node]: [string, any]) => {
                         if (node.geometry) {
                             const isGlass = node.material?.name === "Glass";
+                            const isSelectedTrain = name === selectedTrainKey;
 
                             return (
                                 <mesh
@@ -64,6 +84,12 @@ const MainScene = () => {
                                                 materials.default
                                             }
                                             attach="material"
+                                        />
+                                    )}
+                                    {isSelectedTrain && (
+                                        <meshStandardMaterial
+                                            emissive="#ffffff"
+                                            emissiveIntensity={6}
                                         />
                                     )}
                                 </mesh>

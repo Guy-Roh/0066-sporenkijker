@@ -1,32 +1,23 @@
 "use client";
 
 import { useAppContext } from "@/app/AppContext";
-import { useTrainData } from "../Helpers/GetData";
+import { Platform } from "@/app/type";
 import textData from "@/data/textData.json";
+import { getTrainPosition } from "../Helpers/Trains";
 
-const DataPanel = () => {
-    const { activeStation, currentPlatform, setCurrentPlatform } = useAppContext();
-    const { trainsData, loading, error } = useTrainData(
-        activeStation?.id as string
-    );
+const PlatformSelect = () => {
+    const { activeStation, currentPlatform, setCurrentPlatform, trainsData, nodes } =
+        useAppContext();
+
+    const handlePlatformChange = (platformNumber: string) => {
+        setCurrentPlatform({
+            number: platformNumber,
+            position: getTrainPosition(platformNumber, activeStation?.id || "", nodes) as [number, number, number],
+        });
+        console.log();
+    };
+
     if (activeStation || trainsData) {
-        if (loading) {
-            return (
-                <div className="data-panel">
-                    <h2>{textData.loading_message}</h2>
-                </div>
-            );
-        }
-
-        if (error) {
-            return (
-                <div className="data-panel">
-                    <h2>{textData.error_message}</h2>
-                    <p>{error}</p>
-                </div>
-            );
-        }
-
         if (!trainsData || !trainsData.trains.length) {
             return (
                 <div className="data-panel">
@@ -39,7 +30,17 @@ const DataPanel = () => {
                     <h2>{activeStation?.name}</h2>
                     <div className="trains-list">
                         {trainsData.trains.map((train, index) => (
-                            <div key={index} className="train-item">
+                            <div
+                                key={index}
+                                className={`train-item ${
+                                    currentPlatform?.number === train.platform
+                                        ? "active"
+                                        : ""
+                                }`}
+                                onClick={() =>
+                                    handlePlatformChange(train.platform)
+                                }
+                            >
                                 <div className="destination">
                                     <strong>{train.destination}</strong>
                                 </div>
@@ -62,8 +63,7 @@ const DataPanel = () => {
                                             ? `+${Math.round(train.delay)} min`
                                             : "Op tijd"}
                                     </span>
-                                    {/*                             <span>Train: {train.vehicleId}</span>
-                                     */}{" "}
+
                                 </div>
                             </div>
                         ))}
@@ -74,4 +74,4 @@ const DataPanel = () => {
     }
 };
 
-export default DataPanel;
+export default PlatformSelect;

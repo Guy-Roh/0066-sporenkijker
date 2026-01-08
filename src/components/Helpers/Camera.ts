@@ -7,12 +7,13 @@ const cameraConfig = {
         mobile: [0, 100, 0] as [number, number, number],
     },
     offset: {
-        default: { x: 0, y: 2, z: 8 },
+        default: { x: 0, y: 1, z: 8 },
         mobile: { x: 0, y: 2, z: 8 },
     },
     zoomLevel: {
         default: 6,
         mobile: 4,
+        selectedPlatform: 16,
     }
 };
 
@@ -68,7 +69,7 @@ export const PanCameraToPlatform = (
     
     const type = isMobile ? 'mobile' : 'default';
     const currentOffset = cameraConfig.offset[type];
-    const currentZoom = cameraConfig.zoomLevel[type];
+    const currentZoom = cameraConfig.zoomLevel.selectedPlatform;
     const target: [number, number, number] = [
         platformPosition[0],
         platformPosition[1],
@@ -81,8 +82,7 @@ export const PanCameraToPlatform = (
         target[2] + currentOffset.z,
     ];
 
-    cameraControlsRef.current.setLookAt(
-        camPos[0], camPos[1], camPos[2],
+    cameraControlsRef.current.setTarget(
         target[0], target[1], target[2],
         true
     );

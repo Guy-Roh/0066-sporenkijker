@@ -1,6 +1,6 @@
 "use client";
 import { createContext, useContext, useState, ReactNode } from "react";
-import { Station, TrainData } from "./type";
+import { Platform, Station, TrainData } from "./type";
 interface AppContextType {
 	activeStation: Station | null;
 	setActiveStation: (station: Station | null) => void;
@@ -11,8 +11,8 @@ interface AppContextType {
     isMobile: boolean;
     trainsData?: TrainData | null;
     setTrainsData?: (data: TrainData | null) => void;
-    currentPlatform?: string | null;
-    setCurrentPlatform?: (platform: string | null) => void;
+    currentPlatform: Platform | null;
+    setCurrentPlatform: (platform: Platform | null) => void;
 }
 
 const AppContext = createContext<AppContextType | undefined>(undefined);
@@ -28,6 +28,7 @@ export const AppProvider = ({
     const [cameraPosition, setCameraPosition] = useState<[number, number, number]>([10, 10, 10]);
     const [nodes, setNodes] = useState<any>(null);
     const [trainsData, setTrainsData] = useState<TrainData | null>(null);
+    const [currentPlatform, setCurrentPlatform] = useState<Platform | null>(null);
 	return (
 		<AppContext.Provider
 			value={{
@@ -39,7 +40,9 @@ export const AppProvider = ({
                 setNodes,
                 isMobile,
                 trainsData,
-                setTrainsData
+                setTrainsData,
+                currentPlatform,
+                setCurrentPlatform
 			}}
 		>
 			{children}

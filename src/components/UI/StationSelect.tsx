@@ -2,9 +2,14 @@ import { useAppContext } from "@/app/AppContext";
 import { Station } from "@/app/type";
 import testData from "@/data/testData.json";
 import textData from "@/data/textData.json";
+import { useTrainData } from "../Helpers/GetData";
 
 const StationSelect = () => {
-    const { activeStation, setActiveStation, nodes, setNodes } = useAppContext();
+    const { activeStation, setActiveStation, nodes } = useAppContext();
+
+    const { trainsData, loading, error } = useTrainData(
+        activeStation?.id as string
+    );
 
     if (!testData || !testData.testStations) {
         return <div>No station data available</div>;

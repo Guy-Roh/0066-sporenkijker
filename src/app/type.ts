@@ -1,3 +1,8 @@
+export interface Platform {
+    number: string;
+    position: [number, number, number];
+}
+
 export interface Station {
     name: string;
     id: string;

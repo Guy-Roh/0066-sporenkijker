@@ -155,6 +155,11 @@ $anim: all 0.32s cubic-bezier(.17, .67, .32, .99);
             line-height: normal;
             transition: $anim;
             border-radius: .8vmin;
+            &.active {
+                background-color: $cobalt;
+                color: $cloud;
+                font-weight: 600;
+            }
             &:hover {
                 cursor: pointer;
                 background-color: $cloud;
