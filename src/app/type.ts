@@ -11,6 +11,7 @@ export interface Train {
     scheduledTime: string;
     delay: number;
     vehicleId: string;
+    position?: [number, number, number];
 }
 
 export interface TrainData {

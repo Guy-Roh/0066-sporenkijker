@@ -4,7 +4,7 @@ import testData from "@/data/testData.json";
 import textData from "@/data/textData.json";
 
 const StationSelect = () => {
-    const { activeStation, setActiveStation, nodes } = useAppContext();
+    const { activeStation, setActiveStation, nodes, setNodes } = useAppContext();
 
     if (!testData || !testData.testStations) {
         return <div>No station data available</div>;
