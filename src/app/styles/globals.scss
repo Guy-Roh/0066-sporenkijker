@@ -97,8 +97,8 @@ $anim: all 0.32s cubic-bezier(.17, .67, .32, .99);
 
             @include small-desktop() {
                 height: 4vh;
-                padding: 4vmin;
-                font-size: 3.2vmin;
+                padding: 1.4vmin;
+                font-size: 3vmin;
             }
 
             &:hover {

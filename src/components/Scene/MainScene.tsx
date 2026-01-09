@@ -76,7 +76,7 @@ const MainScene = () => {
                                     )}
                                     {isSelectedTrain && (
                                         <meshStandardMaterial
-                                            emissive="#ffffff"
+                                            emissive="#1d82ff"
                                             emissiveIntensity={6}
                                         />
                                     )}
@@ -113,8 +113,6 @@ const MainScene = () => {
             />
             <FX />
             <MapMesh />
-            {/*             <StationMarkers />
-             */}{" "}
         </>
     );
 };

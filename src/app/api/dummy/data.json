@@ -1,0 +1,395 @@
+[
+    {
+        "station": "BE.NMBS.008821006",
+        "trains": [
+            {
+                "destination": "Brussels-South/Brussels-Midi",
+                "platform": "24",
+                "scheduledTime": "17:19",
+                "delay": 14,
+                "vehicleId": "BE.NMBS.EC9248"
+            },
+            {
+                "destination": "Mol",
+                "platform": "6",
+                "scheduledTime": "17:24",
+                "delay": 0,
+                "vehicleId": "BE.NMBS.S332967"
+            },
+            {
+                "destination": "Charleroi-Central",
+                "platform": "23",
+                "scheduledTime": "17:25",
+                "delay": 0,
+                "vehicleId": "BE.NMBS.IC2039"
+            },
+            {
+                "destination": "Leuven",
+                "platform": "13",
+                "scheduledTime": "17:30",
+                "delay": 0,
+                "vehicleId": "BE.NMBS.IC2917"
+            },
+            {
+                "destination": "Amsterdam CS",
+                "platform": "22",
+                "scheduledTime": "17:30",
+                "delay": 0,
+                "vehicleId": "BE.NMBS.EUR9357"
+            },
+            {
+                "destination": "Aarschot",
+                "platform": "2",
+                "scheduledTime": "17:36",
+                "delay": 0,
+                "vehicleId": "BE.NMBS.P8282"
+            },
+            {
+                "destination": "Poperinge",
+                "platform": "12",
+                "scheduledTime": "17:36",
+                "delay": 0,
+                "vehicleId": "BE.NMBS.IC717"
+            }
+        ]
+    },
+    {
+        "station": "BE.NMBS.008814001",
+        "trains": [
+            {
+                "destination": "Essen",
+                "platform": "18",
+                "scheduledTime": "21:50",
+                "delay": 0,
+                "vehicleId": "BE.NMBS.IC2020"
+            },
+            {
+                "destination": "Ghent-Sint-Pieters",
+                "platform": "17",
+                "scheduledTime": "21:53",
+                "delay": 0,
+                "vehicleId": "BE.NMBS.IC3642"
+            },
+            {
+                "destination": "Knokke",
+                "platform": "12",
+                "scheduledTime": "21:51",
+                "delay": 0,
+                "vehicleId": "BE.NMBS.IC2843"
+            },
+            {
+                "destination": "Amsterdam CS",
+                "platform": "4",
+                "scheduledTime": "21:53",
+                "delay": 0,
+                "vehicleId": "BE.NMBS.EUR9387"
+            },
+            {
+                "destination": "Mons",
+                "platform": "8",
+                "scheduledTime": "21:56",
+                "delay": 2,
+                "vehicleId": "BE.NMBS.IC3742"
+            },
+            {
+                "destination": "Antwerp-Central",
+                "platform": "19",
+                "scheduledTime": "21:56",
+                "delay": 0,
+                "vehicleId": "BE.NMBS.IC3121"
+            },
+            {
+                "destination": "Welkenraedt",
+                "platform": "6",
+                "scheduledTime": "21:56",
+                "delay": 0,
+                "vehicleId": "BE.NMBS.IC520"
+            },
+            {
+                "destination": "Aalst",
+                "platform": "9",
+                "scheduledTime": "22:02",
+                "delay": 0,
+                "vehicleId": "BE.NMBS.S102072"
+            }
+        ]
+    },
+    {
+        "station": "BE.NMBS.008813003",
+        "trains": [
+            {
+                "destination": "Brussels-South/Brussels-Midi",
+                "platform": "4",
+                "scheduledTime": "21:53",
+                "delay": 0,
+                "vehicleId": "BE.NMBS.IC2441"
+            },
+            {
+                "destination": "Mons",
+                "platform": "2",
+                "scheduledTime": "21:48",
+                "delay": 5,
+                "vehicleId": "BE.NMBS.IC3742"
+            },
+            {
+                "destination": "Louvain-la-Neuve",
+                "platform": "3",
+                "scheduledTime": "21:52",
+                "delay": 1,
+                "vehicleId": "BE.NMBS.S86570"
+            },
+            {
+                "destination": "Essen",
+                "platform": "5",
+                "scheduledTime": "21:55",
+                "delay": 0,
+                "vehicleId": "BE.NMBS.IC2020"
+            },
+            {
+                "destination": "Brussels-South/Brussels-Midi",
+                "platform": "6",
+                "scheduledTime": "21:59",
+                "delay": 0,
+                "vehicleId": "BE.NMBS.IC3142"
+            },
+            {
+                "destination": "Welkenraedt",
+                "platform": "1",
+                "scheduledTime": "22:01",
+                "delay": 0,
+                "vehicleId": "BE.NMBS.IC520"
+            }
+        ]
+    },
+    {
+        "station": "BE.NMBS.008812005",
+        "trains": [
+            {
+                "destination": "Ostend",
+                "platform": "4",
+                "scheduledTime": "22:54",
+                "delay": 8,
+                "vehicleId": "BE.NMBS.IC544"
+            },
+            {
+                "destination": "Brussels-South/Brussels-Midi",
+                "platform": "9",
+                "scheduledTime": "23:01",
+                "delay": 0,
+                "vehicleId": "BE.NMBS.IC1944"
+            },
+            {
+                "destination": "Brussels-South/Brussels-Midi",
+                "platform": "12",
+                "scheduledTime": "23:02",
+                "delay": 0,
+                "vehicleId": "BE.NMBS.IC2044"
+            },
+            {
+                "destination": "Antwerp-Central",
+                "platform": "10",
+                "scheduledTime": "23:03",
+                "delay": 0,
+                "vehicleId": "BE.NMBS.IC2021"
+            },
+            {
+                "destination": "Brussels Airport - Zaventem",
+                "platform": "5",
+                "scheduledTime": "23:04",
+                "delay": 0,
+                "vehicleId": "BE.NMBS.IC1921"
+            },
+            {
+                "destination": "Oudenaarde",
+                "platform": "8",
+                "scheduledTime": "23:05",
+                "delay": 0,
+                "vehicleId": "BE.NMBS.S86594"
+            },
+            {
+                "destination": "Welkenraedt",
+                "platform": "3",
+                "scheduledTime": "23:08",
+                "delay": 0,
+                "vehicleId": "BE.NMBS.IC521"
+            },
+            {
+                "destination": "Antwerp-Central",
+                "platform": "11",
+                "scheduledTime": "23:08",
+                "delay": 0,
+                "vehicleId": "BE.NMBS.IC3122"
+            },
+            {
+                "destination": "Aalst",
+                "platform": "1",
+                "scheduledTime": "23:14",
+                "delay": 0,
+                "vehicleId": "BE.NMBS.S102073"
+            }
+        ]
+    },
+    {
+        "station": "BE.NMBS.008821121",
+        "trains": [
+            {
+                "destination": "Lokeren",
+                "platform": "2",
+                "scheduledTime": "23:01",
+                "delay": 0,
+                "vehicleId": "BE.NMBS.S341472"
+            },
+            {
+                "destination": "Antwerp-Central",
+                "platform": "10",
+                "scheduledTime": "23:02",
+                "delay": 0,
+                "vehicleId": "BE.NMBS.IC4521"
+            },
+            {
+                "destination": "Leuven",
+                "platform": "5",
+                "scheduledTime": "23:03",
+                "delay": 0,
+                "vehicleId": "BE.NMBS.L2872"
+            },
+            {
+                "destination": "Brussels-South/Brussels-Midi",
+                "platform": "9",
+                "scheduledTime": "23:11",
+                "delay": 0,
+                "vehicleId": "BE.NMBS.IC3144"
+            }
+        ]
+    },
+    {
+        "station": "BE.NMBS.008892007",
+        "trains": [
+            {
+                "destination": "Bruges",
+                "platform": "10",
+                "scheduledTime": "23:02",
+                "delay": 5,
+                "vehicleId": "BE.NMBS.IC1543"
+            },
+            {
+                "destination": "Geraardsbergen",
+                "platform": "5",
+                "scheduledTime": "23:05",
+                "delay": 0,
+                "vehicleId": "BE.NMBS.S521873"
+            },
+            {
+                "destination": "Kortrijk",
+                "platform": "7",
+                "scheduledTime": "23:09",
+                "delay": 0,
+                "vehicleId": "BE.NMBS.IC443"
+            },
+            {
+                "destination": "Aalst",
+                "platform": "9",
+                "scheduledTime": "23:12",
+                "delay": 0,
+                "vehicleId": "BE.NMBS.IC3623"
+            }
+        ]
+    },
+    {
+        "station": "BE.NMBS.008833001",
+        "trains": [
+            {
+                "destination": "Landen",
+                "platform": "3",
+                "scheduledTime": "23:07",
+                "delay": 0,
+                "vehicleId": "BE.NMBS.IC1521"
+            },
+            {
+                "destination": "Bruges",
+                "platform": "1",
+                "scheduledTime": "23:07",
+                "delay": 0,
+                "vehicleId": "BE.NMBS.IC2845"
+            },
+            {
+                "destination": "Hasselt",
+                "platform": "8",
+                "scheduledTime": "23:13",
+                "delay": 0,
+                "vehicleId": "BE.NMBS.L2473"
+            }
+        ]
+    },
+    {
+        "station": "BE.NMBS.008822004",
+        "trains": [
+            {
+                "destination": "Turnhout",
+                "platform": "7",
+                "scheduledTime": "23:04",
+                "delay": 1,
+                "vehicleId": "BE.NMBS.IC3421"
+            },
+            {
+                "destination": "Hasselt",
+                "platform": "12",
+                "scheduledTime": "23:08",
+                "delay": 0,
+                "vehicleId": "BE.NMBS.IC2622"
+            },
+            {
+                "destination": "Brussels-South/Brussels-Midi",
+                "platform": "11",
+                "scheduledTime": "23:14",
+                "delay": 0,
+                "vehicleId": "BE.NMBS.IC4544"
+            },
+            {
+                "destination": "Dendermonde",
+                "platform": "5",
+                "scheduledTime": "23:15",
+                "delay": 0,
+                "vehicleId": "BE.NMBS.IC4144"
+            },
+            {
+                "destination": "Antwerp-Central",
+                "platform": "3",
+                "scheduledTime": "23:16",
+                "delay": 0,
+                "vehicleId": "BE.NMBS.S11971"
+            }
+        ]
+    },
+    {
+        "station": "BE.NMBS.008891009",
+        "trains": [
+            {
+                "destination": "Liège-Guillemins",
+                "platform": "7",
+                "scheduledTime": "23:04",
+                "delay": 3,
+                "vehicleId": "BE.NMBS.IC522"
+            },
+            {
+                "destination": "Knokke",
+                "platform": "8",
+                "scheduledTime": "23:06",
+                "delay": 4,
+                "vehicleId": "BE.NMBS.IC2843"
+            }
+        ]
+    },
+    {
+        "station": "BE.NMBS.008896008",
+        "trains": [
+            {
+                "destination": "Poperinge",
+                "platform": "5",
+                "scheduledTime": "23:10",
+                "delay": 0,
+                "vehicleId": "BE.NMBS.IC721"
+            }
+        ]
+    }
+]

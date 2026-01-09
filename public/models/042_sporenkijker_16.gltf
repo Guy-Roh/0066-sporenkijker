@@ -655,7 +655,7 @@
 					0.800000011920929,
 					0.800000011920929,
 					0.800000011920929,
-					0.6000000238418579
+					0.8
 				],
 				"roughnessFactor":0.5
 			}
@@ -663,13 +663,13 @@
 		{
 			"doubleSided":true,
 			"emissiveFactor":[
-				0.15895678290484586,
-				0.8468456193429104,
+				1,
+				1,
 				1
 			],
 			"extensions":{
 				"KHR_materials_emissive_strength":{
-					"emissiveStrength":2.0000481605529785
+					"emissiveStrength":1
 				}
 			},
 			"name":"Train",

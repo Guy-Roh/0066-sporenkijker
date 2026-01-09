@@ -4,18 +4,18 @@ import { select } from "three/tsl";
 
 const cameraConfig = {
     position: {
-        default: [0, 60, 0] as [number, number, number],
-        mobile: [0, 100, 0] as [number, number, number],
+        default: [0, 40, 0] as [number, number, number],
+        mobile: [0, 140, 0] as [number, number, number],
     },
     offset: {
-        default: { x: 0, y: 3, z: 8 },
-        mobile: { x: 0, y: 2, z: 8 },
-        selectedPlatform: { x: 0, y: 1, z: 6},
+        default: { x: 1, y: 3, z: 8 },
+        mobile: { x: 1, y: 2, z: 8 },
+        selectedPlatform: { x: 1, y: 1, z: 6},
     },
     zoomLevel: {
         default: 4,
         mobile: 4,
-        selectedPlatform: 16,
+        selectedPlatform: 12,
     }
 };
 

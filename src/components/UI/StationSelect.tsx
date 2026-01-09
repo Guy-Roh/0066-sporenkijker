@@ -9,9 +9,6 @@ const StationSelect = () => {
     const { activeStation, setActiveStation, nodes, cameraControlsRef, isMobile } = useAppContext();
 
     const { trainsData } = useTrainData(activeStation ? activeStation.id : "");
-    if (!trainsData || !trainsData.trains) {
-        return <div>No station data available</div>;
-    }
 
     const handleStationChange = (stationNumber: string) => {
         const selectedStation = stationData.allStations.find(
