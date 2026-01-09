@@ -1,5 +1,6 @@
 import { CameraControls } from "@react-three/drei";
 import { RefObject } from "react";
+import { select } from "three/tsl";
 
 const cameraConfig = {
     position: {
@@ -7,11 +8,12 @@ const cameraConfig = {
         mobile: [0, 100, 0] as [number, number, number],
     },
     offset: {
-        default: { x: 0, y: 1, z: 8 },
+        default: { x: 0, y: 3, z: 8 },
         mobile: { x: 0, y: 2, z: 8 },
+        selectedPlatform: { x: 0, y: 1, z: 6},
     },
     zoomLevel: {
-        default: 6,
+        default: 4,
         mobile: 4,
         selectedPlatform: 16,
     }
@@ -67,13 +69,12 @@ export const PanCameraToPlatform = (
 ) => {
     if (!cameraControlsRef?.current) return;
     
-    const type = isMobile ? 'mobile' : 'default';
-    const currentOffset = cameraConfig.offset[type];
+    const currentOffset = cameraConfig.offset.selectedPlatform;
     const currentZoom = cameraConfig.zoomLevel.selectedPlatform;
     const target: [number, number, number] = [
         platformPosition[0],
         platformPosition[1],
-        platformPosition[2]
+        platformPosition[2]+ .8
     ];
 
     const camPos: [number, number, number] = [
@@ -82,12 +83,15 @@ export const PanCameraToPlatform = (
         target[2] + currentOffset.z,
     ];
 
-    cameraControlsRef.current.setTarget(
+    cameraControlsRef.current.setLookAt(
+        camPos[0], camPos[1], camPos[2],
         target[0], target[1], target[2],
         true
     );
 
     cameraControlsRef.current.zoomTo(currentZoom, true);
+        cameraControlsRef.current.truck(0, 0, true);
+
 }
 
 export const ResetCamera = (

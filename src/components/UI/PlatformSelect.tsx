@@ -35,13 +35,13 @@ const PlatformSelect = () => {
     if (activeStation || trainsData) {
         if (!trainsData || !trainsData.trains.length) {
             return (
-                <div className="data-panel">
+                <div className="platform-panel">
                     <h2>{textData.no_trains_message}</h2>
                 </div>
             );
         } else {
             return (
-                <div className="data-panel">
+                <div className="platform-panel glass">
                     <h2>{activeStation?.name}</h2>
                     <div className="trains-list">
                         {trainsData.trains.map((train, index) => (

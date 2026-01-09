@@ -4,7 +4,8 @@
 * {
     user-select: none;
     box-sizing: border-box;
-    font-family: var(--font-noto-sans), sans-serif;
+        font-family: "Noto Sans", sans-serif;
+
 }
 
 @mixin mobile {
@@ -27,6 +28,14 @@
 
 $anim: all 0.32s cubic-bezier(.17, .67, .32, .99);
 
+.glass {
+    backdrop-filter: blur(4vmin) brightness(1.2);
+    background: #ffffff4e;
+    border-radius: 1vmin;
+    border: 0.2vmin solid #ffffff98;
+    color: $charcoal;
+}
+
 
 
 .main-panel {
@@ -37,13 +46,12 @@ $anim: all 0.32s cubic-bezier(.17, .67, .32, .99);
     margin: 0 auto;
     width: 60%;
     height: fit-content;
-    backdrop-filter: blur(4vmin) brightness(1.1);
+    backdrop-filter: blur(2vmin) ;
     z-index: 20;
     padding: 2vmin;
     border-radius: 1vmin;
-    font-family: "Noto Sans", sans-serif;
-    color: $cloud;
     transition: $anim;
+    font-weight: 600;
 
     &.minimized{
         width: 20%;
@@ -74,6 +82,8 @@ $anim: all 0.32s cubic-bezier(.17, .67, .32, .99);
         font-size: 2.6vmin;
 
 
+
+
         @include small-desktop() {
             grid-template-columns: repeat(2, 1fr);
         }
@@ -83,6 +93,7 @@ $anim: all 0.32s cubic-bezier(.17, .67, .32, .99);
             height: 6vh;
             transition: $anim;
             border-radius: .8vmin;
+            margin: 0.2vmin;
 
             @include small-desktop() {
                 height: 4vh;
@@ -122,18 +133,17 @@ $anim: all 0.32s cubic-bezier(.17, .67, .32, .99);
 
 }
 
-.data-panel {
+.platform-panel {
     position: absolute;
     top: 1vmin;
     right: 1vmin;
     width: 40vw;
     height: fit-content;
-    backdrop-filter: blur(4vmin) brightness(1.1);
+    backdrop-filter: blur(4vmin) brightness(1.2);
     z-index: 20;
     padding: 2vmin;
     border-radius: 1vmin;
     font-family: "Noto Sans", sans-serif;
-    color: $cloud;
     transition: $anim;
 
 

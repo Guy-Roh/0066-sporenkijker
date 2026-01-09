@@ -16,7 +16,7 @@ const MainPanel = () => {
     }
 
     return (
-        <aside className={`main-panel ${isHidden ? 'minimized' : ''}`}
+        <aside className={`main-panel glass ${isHidden ? 'minimized' : ''}`}
         onClick={handleMaximize}
         >
             <StationSelect/>

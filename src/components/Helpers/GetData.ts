@@ -14,7 +14,7 @@ export const useTrainData = (stationId: string ): UseTrainDataResult => {
             setError(null);
             
             try {
-                const response = await fetch(`/api/trains?stationId=${encodeURIComponent(stationId)}`);
+                const response = await fetch(`/api/dummy?stationId=${encodeURIComponent(stationId)}`);
                 
                 if (!response.ok) {
                     throw new Error(`Failed to fetch: ${response.status}`);
