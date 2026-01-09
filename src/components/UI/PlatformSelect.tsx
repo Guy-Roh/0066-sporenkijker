@@ -1,20 +1,35 @@
 "use client";
 
 import { useAppContext } from "@/app/AppContext";
-import { Platform } from "@/app/type";
 import textData from "@/data/textData.json";
 import { getTrainPosition } from "../Helpers/Trains";
+import { MoveCameraToStation, PanCameraToPlatform } from "../Helpers/Camera";
 
 const PlatformSelect = () => {
-    const { activeStation, currentPlatform, setCurrentPlatform, trainsData, nodes } =
+    const { activeStation, currentPlatform, setCurrentPlatform, trainsData, nodes, cameraControlsRef, isMobile } =
         useAppContext();
 
     const handlePlatformChange = (platformNumber: string) => {
+
+        const platformPosition = getTrainPosition(platformNumber, activeStation?.id || "", nodes) as [number, number, number];
+
+        if (currentPlatform?.number === platformNumber) {
+            // Deselect platform and reset camera to station
+            setCurrentPlatform(null);
+            if (activeStation?.id) {
+                MoveCameraToStation(cameraControlsRef, activeStation, isMobile);
+            }
+            return;
+        }
         setCurrentPlatform({
             number: platformNumber,
-            position: getTrainPosition(platformNumber, activeStation?.id || "", nodes) as [number, number, number],
+            position: platformPosition,
+            stationId: activeStation?.id,
         });
-        console.log();
+
+        if (activeStation?.id && platformPosition) {
+            PanCameraToPlatform(cameraControlsRef, platformPosition, isMobile);
+        }
     };
 
     if (activeStation || trainsData) {

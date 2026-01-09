@@ -18,9 +18,8 @@ import { filterTrains } from "../Helpers/Trains";
 import { TrainData } from "@/app/type";
 
 const MainScene = () => {
-    const { activeStation, nodes, setNodes, isMobile, trainsData, currentPlatform } =
+    const { activeStation, nodes, setNodes, isMobile, trainsData, currentPlatform, cameraControlsRef } =
         useAppContext();
-    const cameraControlsRef = useRef<CameraControls>(null);
     const { nodes: meshNodes, materials } = useGLTF(
         "/models/042_sporenkijker_16.gltf"
     ) as any;
@@ -30,19 +29,8 @@ const MainScene = () => {
     }, [meshNodes, trainsData]);
 
     useEffect(() => {
-        MoveCameraToStation(cameraControlsRef, activeStation, isMobile);
-    }, [activeStation]);
-
-    useEffect(() => {
-        if (currentPlatform){
-        PanCameraToPlatform(
-            cameraControlsRef,
-            currentPlatform?.position as [number, number, number],
-            isMobile
-        );
-        }
-
-    }, [currentPlatform, activeStation, nodes]);
+        MoveCameraToStation(cameraControlsRef, null, isMobile);
+    }, []);
 
     const MapMesh = () => {
         const getSelectedTrainKey = () => {

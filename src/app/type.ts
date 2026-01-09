@@ -1,6 +1,7 @@
 export interface Platform {
     number: string;
     position: [number, number, number];
+    stationId?: string;
 }
 
 export interface Station {

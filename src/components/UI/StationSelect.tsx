@@ -1,22 +1,20 @@
 import { useAppContext } from "@/app/AppContext";
 import { Station } from "@/app/type";
-import testData from "@/data/testData.json";
 import textData from "@/data/textData.json";
 import { useTrainData } from "../Helpers/GetData";
+import { MoveCameraToStation } from "../Helpers/Camera";
+import stationData from "@/data/stationData.json";
 
 const StationSelect = () => {
-    const { activeStation, setActiveStation, nodes } = useAppContext();
+    const { activeStation, setActiveStation, nodes, cameraControlsRef, isMobile } = useAppContext();
 
-    const { trainsData, loading, error } = useTrainData(
-        activeStation?.id as string
-    );
-
-    if (!testData || !testData.testStations) {
+    const { trainsData } = useTrainData(activeStation ? activeStation.id : "");
+    if (!trainsData || !trainsData.trains) {
         return <div>No station data available</div>;
     }
 
     const handleStationChange = (stationNumber: string) => {
-        const selectedStation = testData.testStations.find(
+        const selectedStation = stationData.allStations.find(
             (station: Station) => station.number === stationNumber
         );
 
@@ -25,16 +23,19 @@ const StationSelect = () => {
         const stationNode = nodes ? nodes[nodeKey] : null;
 
         if (stationNode) {
-            setActiveStation({
+            const newStation = {
                 ...selectedStation!,
                 position: [
                     stationNode.position.x,
                     stationNode.position.y,
                     stationNode.position.z,
-                ],
-            });
+                ] as [number, number, number],
+            };
+            setActiveStation(newStation);
+            MoveCameraToStation(cameraControlsRef, newStation, isMobile);
         } else {
             setActiveStation(selectedStation || null);
+            MoveCameraToStation(cameraControlsRef, selectedStation || null, isMobile);
         }
     };
 
@@ -42,7 +43,7 @@ const StationSelect = () => {
         <div>
             <h3>{textData.main_panel_title}</h3>
             <div className="station-select">
-                {testData.testStations.map((station: Station) => (
+                {stationData.allStations.map((station: Station) => (
                     <button
                         key={station.id}
                         onClick={() => handleStationChange(station.number)}
