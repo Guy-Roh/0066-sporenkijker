@@ -15,6 +15,10 @@ interface AppContextType {
     currentPlatform: Platform | null;
     setCurrentPlatform: (platform: Platform | null) => void;
     cameraControlsRef: RefObject<CameraControls | null>;
+    isLoading: boolean;
+    setIsLoading: (loading: boolean) => void;
+    error: string | null;
+    setError: (error: string | null) => void;
 }
 
 const AppContext = createContext<AppContextType | undefined>(undefined);
@@ -26,12 +30,15 @@ export const AppProvider = ({
     children: ReactNode,
     isMobile: boolean
 }) => {
+
 	const [activeStation, setActiveStation] = useState<Station | null>(null);
     const [cameraPosition, setCameraPosition] = useState<[number, number, number]>([10, 10, 10]);
     const [nodes, setNodes] = useState<any>(null);
     const [trainsData, setTrainsData] = useState<TrainData | null>(null);
     const [currentPlatform, setCurrentPlatform] = useState<Platform | null>(null);
     const cameraControlsRef = useRef<CameraControls>(null);
+            const [isLoading, setIsLoading] = useState(false);
+    const [error, setError] = useState<string | null>(null);
 	return (
 		<AppContext.Provider
 			value={{
@@ -46,7 +53,11 @@ export const AppProvider = ({
                 setTrainsData,
                 currentPlatform,
                 setCurrentPlatform,
-                cameraControlsRef
+                cameraControlsRef,
+                isLoading,
+                setIsLoading,
+                error,
+                setError,
 			}}
 		>
 			{children}

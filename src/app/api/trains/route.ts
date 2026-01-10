@@ -23,8 +23,8 @@ export async function GET(request: Request) {
                 'User-Agent': 'sporenkijker/0.2',
                 'Accept': 'application/json',
             },
-            // Cache control: Revalidate every 30 seconds to avoid stale data
-            next: { revalidate: 30 }
+            // Cache control: Revalidate every 60 seconds to avoid stale data
+            next: { revalidate: 60 }
         });
 
         if (!res.ok) {
@@ -35,12 +35,12 @@ export async function GET(request: Request) {
         const departures: IRailDeparture[] = data.departures?.departure || [];
 
         // Filter Logic
-const nowInSeconds = Math.floor(Date.now() / 1000);
+        const nowInSeconds = Math.floor(Date.now() / 1000);
 
         const relevantTrains = departures.filter((train) => {
             const scheduledTime = parseInt(train.time);
             // Safety check: ensure delay is a number, default to 0
-            const delay = parseInt(train.delay || '0'); 
+            const delay = parseInt(train.delay || '0');
             const realDeparture = scheduledTime + delay;
 
             // Difference in minutes
@@ -54,7 +54,7 @@ const nowInSeconds = Math.floor(Date.now() / 1000);
         relevantTrains.forEach((train) => {
             const existing = platformMap.get(train.platform);
             const trainTime = parseInt(train.time) + parseInt(train.delay || '0');
-            
+
             if (!existing) {
                 platformMap.set(train.platform, train);
             } else {

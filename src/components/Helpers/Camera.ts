@@ -10,7 +10,7 @@ const cameraConfig = {
     offset: {
         default: { x: 0, y: 3, z: 8 },
         mobile: { x: 0, y: 2, z: 8 },
-        selectedPlatform: { x: 0, y: 1, z: 6},
+        selectedPlatform: { x: 0, y: 1, z: 6 },
     },
     zoomLevel: {
         default: 4,
@@ -20,8 +20,8 @@ const cameraConfig = {
 };
 
 export const MoveCameraToStation = (
-    cameraControlsRef: RefObject<CameraControls | null>, 
-    activeStation: any, 
+    cameraControlsRef: RefObject<CameraControls | null>,
+    activeStation: any,
     isMobile: boolean
 ) => {
     if (!cameraControlsRef?.current) return;
@@ -35,7 +35,7 @@ export const MoveCameraToStation = (
         const target: [number, number, number] = [
             activeStation.position[0],
             activeStation.position[1],
-            activeStation.position[2]
+            activeStation.position[2] + (isMobile ? 0.5 : 1),
         ];
 
         const camPos: [number, number, number] = [
@@ -52,6 +52,7 @@ export const MoveCameraToStation = (
 
         cameraControlsRef.current.zoomTo(currentZoom, true);
 
+
     } else {
         cameraControlsRef.current.setLookAt(
             defaultPos[0], defaultPos[1], defaultPos[2],
@@ -59,22 +60,23 @@ export const MoveCameraToStation = (
             true
         );
         cameraControlsRef.current.zoomTo(1, true);
+
     }
 };
 
 export const PanCameraToPlatform = (
-    cameraControlsRef: RefObject<CameraControls | null>, 
-    platformPosition: [number, number, number], 
+    cameraControlsRef: RefObject<CameraControls | null>,
+    platformPosition: [number, number, number],
     isMobile: boolean
 ) => {
     if (!cameraControlsRef?.current) return;
-    
+
     const currentOffset = cameraConfig.offset.selectedPlatform;
     const currentZoom = cameraConfig.zoomLevel.selectedPlatform;
     const target: [number, number, number] = [
         platformPosition[0],
         platformPosition[1],
-        platformPosition[2]+ .8
+        platformPosition[2] + (isMobile ? 0.5 : 1),
     ];
 
     const camPos: [number, number, number] = [
@@ -90,12 +92,11 @@ export const PanCameraToPlatform = (
     );
 
     cameraControlsRef.current.zoomTo(currentZoom, true);
-        cameraControlsRef.current.truck(0, 0, true);
 
 }
 
 export const ResetCamera = (
-    cameraControlsRef: RefObject<CameraControls | null>, 
+    cameraControlsRef: RefObject<CameraControls | null>,
     isMobile: boolean
 ) => {
     if (!cameraControlsRef?.current) return;

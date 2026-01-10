@@ -20,7 +20,7 @@ import MapMesh from "./MapMesh";
 const MainScene = () => {
     const { activeStation, setNodes, isMobile, trainsData, cameraControlsRef } =
         useAppContext();
-    const { nodes: meshNodes, materials } = useGLTF(
+    const { nodes: meshNodes } = useGLTF(
         "/models/042_export.gltf"
     ) as any;
 
