@@ -8,9 +8,9 @@ const cameraConfig = {
         mobile: [0, 140, 0] as [number, number, number],
     },
     offset: {
-        default: { x: 1, y: 3, z: 8 },
-        mobile: { x: 1, y: 2, z: 8 },
-        selectedPlatform: { x: 1, y: 1, z: 6},
+        default: { x: 0, y: 3, z: 8 },
+        mobile: { x: 0, y: 2, z: 8 },
+        selectedPlatform: { x: 0, y: 1, z: 6},
     },
     zoomLevel: {
         default: 4,

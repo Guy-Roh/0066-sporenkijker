@@ -29,10 +29,9 @@
 $anim: all 0.32s cubic-bezier(.17, .67, .32, .99);
 
 .glass {
-    backdrop-filter: blur(4vmin) brightness(1.2);
+    backdrop-filter: blur(2vmin) brightness(1.2);
     background: #ffffff4e;
     border-radius: 1vmin;
-    border: 0.2vmin solid #ffffff98;
     color: $charcoal;
 }
 
@@ -46,7 +45,6 @@ $anim: all 0.32s cubic-bezier(.17, .67, .32, .99);
     margin: 0 auto;
     width: 60%;
     height: fit-content;
-    backdrop-filter: blur(2vmin) ;
     z-index: 20;
     padding: 2vmin;
     border-radius: 1vmin;

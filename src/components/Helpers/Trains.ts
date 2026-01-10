@@ -34,15 +34,17 @@ export const filterTrains = (meshNodes: any, trainsData: TrainData) => {
             })
     ); // this will hold keys like "BENMBS008821006001"
 
-    const filteredEntries = Object.entries(meshNodes).filter(
-        ([name, _]: [string, any]) => {
-            if (name.startsWith("BENMBS")) {
-                return validTrainKeys.has(name);
+    const selectedNodes: any = {};
+    
+    for (const [name, node] of Object.entries(meshNodes)) {
+        if (name.startsWith("BENMBS")) {
+            if (validTrainKeys.has(name)) {
+                selectedNodes[name] = node;
             }
-            return true;
+        } else {
+            selectedNodes[name] = node;
         }
-    ); // this keeps all non-station nodes plus only the active station platforms
-
-    const selectedNodes = Object.fromEntries(filteredEntries);
+    }
+    
     return selectedNodes;
 }
