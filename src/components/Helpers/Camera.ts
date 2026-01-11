@@ -1,6 +1,5 @@
 import { CameraControls } from "@react-three/drei";
 import { RefObject } from "react";
-import { select } from "three/tsl";
 
 const cameraConfig = {
     position: {
