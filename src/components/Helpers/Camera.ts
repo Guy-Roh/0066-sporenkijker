@@ -1,3 +1,4 @@
+import { Station } from "@/app/type";
 import { CameraControls } from "@react-three/drei";
 import { RefObject } from "react";
 
@@ -7,20 +8,20 @@ const cameraConfig = {
         mobile: [0, 140, 0] as [number, number, number],
     },
     offset: {
-        default: { x: 0, y: 3, z: 8 },
-        mobile: { x: 0, y: 2, z: 8 },
+        default: { x: 1, y: 3, z: 8 },
+        mobile: { x: .6, y: .7, z: 8 },
         selectedPlatform: { x: 0, y: .3, z: 6 },
     },
     zoomLevel: {
         default: 4,
-        mobile: 4,
+        mobile: 3.2,
         selectedPlatform: 12,
     }
 };
 
 export const MoveCameraToStation = (
     cameraControlsRef: RefObject<CameraControls | null>,
-    activeStation: any,
+    activeStation: Station | null,
     isMobile: boolean
 ) => {
     if (!cameraControlsRef?.current) return;

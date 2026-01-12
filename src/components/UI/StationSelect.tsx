@@ -39,7 +39,7 @@ const StationSelect = () => {
         const nodeKey = `station_${selectedStation?.number}`;
         const stationNode = nodes ? nodes[nodeKey] : null;
 
-        let targetStation: any = selectedStation || null;
+        let targetStation: Station | null = selectedStation || null;
 
         if (stationNode && selectedStation) {
             targetStation = {

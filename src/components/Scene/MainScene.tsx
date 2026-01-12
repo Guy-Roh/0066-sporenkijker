@@ -37,7 +37,7 @@ const MainScene = () => {
             <EffectComposer multisampling={0}>
                 <DepthOfField
                     target={activeStation?.position || [0, 0, 0]}
-                    bokehScale={activeStation ? 3 : 0}
+                    bokehScale={activeStation ? 2 : 0}
                 />
                 <Bloom luminanceThreshold={1} mipmapBlur />
             </EffectComposer>
