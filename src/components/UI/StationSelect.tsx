@@ -23,7 +23,7 @@ const StationSelect = () => {
         // If clicked station is already active, unset it and reset camera
         if (activeStation?.number === stationNumber) {
             setActiveStation(null);
-            setTrainsData?.(null);
+            setTrainsData(null);
             ResetCamera(cameraControlsRef, isMobile);
             return;
         }
@@ -58,11 +58,11 @@ const StationSelect = () => {
         if (targetStation?.id) {
             setIsLoading(true);
             setError(null);
-            setTrainsData?.(null); 
+            setTrainsData(null); 
 
             try {
                 const data = await fetchTrainData(targetStation.id);
-                setTrainsData?.(data);
+                setTrainsData(data);
             } catch (err) {
                 setError("Failed to load train data");
                 console.error(err);

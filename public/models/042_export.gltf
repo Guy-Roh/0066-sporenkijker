@@ -751,17 +751,18 @@
 			}
 		},
 		{
-			"doubleSided":true,
-			"name":"MetalDarkMatte",
-			"pbrMetallicRoughness":{
-				"baseColorFactor":[
-					0.800000011920929,
-					0.800000011920929,
-					0.800000011920929,
-					1
-				],
-				"roughnessFactor":0.25
-			}
+"doubleSided": true,
+    "name": "MetalDarkMatte",
+    "pbrMetallicRoughness": {
+        "baseColorFactor": [
+            0.800000011920929,
+            0.800000011920929,
+            0.800000011920929,
+            1
+        ],
+        "metallicFactor": 1,
+        "roughnessFactor": 0.6
+    }
 		},
 		{
 			"doubleSided":true,
