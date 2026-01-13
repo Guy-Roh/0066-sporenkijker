@@ -51,9 +51,9 @@ const MainScene = () => {
             <color attach="background" args={["#212121"]} />
             <CameraControls ref={cameraControlsRef} />
             <Environment
-/*                 files={"/img/hdri/capehill.hdr"} */
-                preset={"night"} // either this or the hdri works
-                background={false}
+                files={"/img/hdri/capehill.hdr"}
+/*                 preset={"night"} // either this or the hdri works
+ */                background={false}
                 backgroundIntensity={1}
                 backgroundRotation={[0, 0, Math.PI]}
             />
