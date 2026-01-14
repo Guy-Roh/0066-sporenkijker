@@ -4,6 +4,7 @@ import { useAppContext } from "@/app/AppContext";
 import textData from "@/data/textData.json";
 import { getTrainPosition } from "../Helpers/Trains";
 import { MoveCameraToStation, PanCameraToPlatform } from "../Helpers/Camera";
+import { Vector3Tuple } from "three";
 
 const PlatformSelect = () => {
     const { 
@@ -25,7 +26,7 @@ const PlatformSelect = () => {
             platformNumber, 
             activeStation?.id || "", 
             nodes
-        ) as [number, number, number];
+        ) as Vector3Tuple;
 
         if (currentPlatform?.number === platformNumber) {
             setCurrentPlatform(null);

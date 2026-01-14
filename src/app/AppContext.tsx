@@ -2,11 +2,12 @@
 import { createContext, useContext, useState, ReactNode, RefObject, useRef } from "react";
 import { CameraControls } from "@react-three/drei";
 import { NodesMap, Platform, Station, TrainData } from "./type";
+import { Vector3Tuple } from "three";
 interface AppContextType {
     activeStation: Station | null;
     setActiveStation: (station: Station | null) => void;
-    cameraPosition: [number, number, number];
-    setCameraPosition: (position: [number, number, number]) => void;
+    cameraPosition: Vector3Tuple;
+    setCameraPosition: (position: Vector3Tuple) => void;
     nodes: NodesMap | null;
     setNodes: (nodes: NodesMap | null) => void;
     isMobile: boolean;
@@ -32,7 +33,7 @@ export const AppProvider = ({
 }) => {
 
 	const [activeStation, setActiveStation] = useState<Station | null>(null);
-    const [cameraPosition, setCameraPosition] = useState<[number, number, number]>([10, 10, 10]);
+    const [cameraPosition, setCameraPosition] = useState<Vector3Tuple>([10, 10, 10]);
     const [nodes, setNodes] = useState<NodesMap | null>(null);
     const [trainsData, setTrainsData] = useState<TrainData | null>(null);
     const [currentPlatform, setCurrentPlatform] = useState<Platform | null>(null);
