@@ -3,82 +3,92 @@
         {
             "name": "Brussel Zuid",
             "id": "BE.NMBS.008814001",
-            "offset": { 
-                "desktop": { "x": 1, "y": 3, "z": 8 },
-                "mobile": { "x": 0.6, "y": 0.7, "z": 8 }
+            "offset": {
+                "desktop": [1, 3, 8],
+                "mobile": [0.6, 0.7, 8],
+                "selectedPlatform": [0, 0.3, 6]
             }
         },
         {
             "name": "Brussel Centraal",
             "id": "BE.NMBS.008813003",
-            "offset": { 
-                "desktop": { "x": 1, "y": 3, "z": 8 },
-                "mobile": { "x": 0.6, "y": 0.7, "z": 8 }
+            "offset": {
+                "desktop": [1, 3, 8],
+                "mobile": [0.6, 0.7, 8],
+                "selectedPlatform": [0, 0.3, 6]
             }
         },
         {
             "name": "Brussel Noord",
             "id": "BE.NMBS.008812005",
-            "offset": { 
-                "desktop": { "x": 1, "y": 3, "z": 8 },
-                "mobile": { "x": 0.6, "y": 0.7, "z": 8 }
+            "offset": {
+                "desktop": [1, 3, 8],
+                "mobile": [0.6, 0.7, 8],
+                "selectedPlatform": [0, 0.3, 6]
             }
         },
         {
             "name": "Antwerpen Centraal",
             "id": "BE.NMBS.008821006",
-            "offset": { 
-                "desktop": { "x": 1, "y": 3, "z": 8 },
-                "mobile": { "x": 0.6, "y": 0.7, "z": 8 }
+            "offset": {
+                "desktop": [1, 3, 8],
+                "mobile": [0.6, 0.7, 8],
+                "selectedPlatform": [0, 0.3, 6]
             }
         },
         {
             "name": "Antwerpen Berchem",
             "id": "BE.NMBS.008821121",
-            "offset": { 
-                "desktop": { "x": 5, "y": 2, "z": 7 },
-                "mobile": { "x": 0.6, "y": 0.7, "z": 8 }
+            "offset": {
+                "desktop": [4, 2, 7],
+                "mobile": [4.6, 0.7, 7],
+                "selectedPlatform": [0, 0.3, 6]
             }
         },
         {
             "name": "Gent Sint-Pieters",
             "id": "BE.NMBS.008892007",
             "number": "5",
-            "offset": { 
-                "desktop": { "x": 1, "y": 3, "z": 8 },
-                "mobile": { "x": 0.6, "y": 0.7, "z": 8 }
+            "offset": {
+                "desktop": [1, 3, 8],
+                "mobile": [0.6, 0.7, 8],
+                "selectedPlatform": [0, 0.3, 6]
             }
         },
         {
             "name": "Leuven",
             "id": "BE.NMBS.008833001",
-            "offset": { 
-                "desktop": { "x": 1, "y": 3, "z": 8 },
-                "mobile": { "x": 0.6, "y": 0.7, "z": 8 }
+            "offset": {
+                "desktop": [1, 3, 8],
+                "mobile": [0.6, 0.7, 8],
+                "selectedPlatform": [0, 0.3, 6]
             }
         },
         {
             "name": "Mechelen",
             "id": "BE.NMBS.008822004",
-            "offset": { 
-                "desktop": { "x": 1, "y": 3, "z": 8 },
-                "mobile": { "x": 0.6, "y": 0.7, "z": 8 }
+            "offset": {
+                "desktop": [1, 3, 8],
+                "mobile": [0.6, 0.7, 8],
+                "selectedPlatform": [0, 0.3, 6]
             }
         },
         {
             "name": "Brugge",
             "id": "BE.NMBS.008891009",
-            "offset": { 
-                "desktop": { "x": 1, "y": 3, "z": 8 },
-                "mobile": { "x": 0.6, "y": 0.7, "z": 8 }
+            "offset": {
+                "desktop": [1, 3, 8],
+                "mobile": [0.6, 0.7, 8],
+                "selectedPlatform": [0, 0.3, 6]
             }
         },
         {
             "name": "Kortrijk",
             "id": "BE.NMBS.008896008",
-            "offset": { 
-                "desktop": { "x": 1, "y": 3, "z": 8 },
-                "mobile": { "x": 0.6, "y": 0.7, "z": 8 }
+            "offset": {
+                "desktop": [1, 3, 8],
+                "mobile": [0.6, 0.7, 8],
+                "selectedPlatform": [0, 0.3, 6]
             }
         }
     ]

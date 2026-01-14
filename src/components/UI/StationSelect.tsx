@@ -35,12 +35,12 @@ const StationSelect = () => {
             console.log("Active station", activeStation);
 
         const selectedStation = stationData.allStations.find(
-            (station: Station) => station.id === stationId
-        );
+            (station) => station.id === stationId
+        ) as Station | undefined;
 
         const stationNode = nodes ? nodes[CleanId(stationId)] : null;
 
-        let targetStation: Station | null = selectedStation || null;
+        let targetStation: Station | null = (selectedStation) || null;
 
         if (stationNode && selectedStation) {
             targetStation = {
@@ -49,7 +49,7 @@ const StationSelect = () => {
                     stationNode.position.x,
                     stationNode.position.y,
                     stationNode.position.z,
-                ] as [number, number, number],
+                ],
             };
         }
 
@@ -81,7 +81,7 @@ const StationSelect = () => {
             {error && <p style={{ color: "red" }}>{error}</p>}
 
             <div className="station-select">
-                {stationData.allStations.map((station: Station) => (
+                {stationData.allStations.map((station) => (
                     <button
                         key={station.id}
                         disabled={isLoading}

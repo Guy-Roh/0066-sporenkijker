@@ -1,8 +1,9 @@
-import { Object3D } from "three";
+import { Object3D, Vector3Tuple } from "three";
 
+//Vector3Tuple type is just [number, number, number]
 export interface Platform {
     number: string;
-    position: [number, number, number];
+    position: Vector3Tuple;
     stationId?: string;
 }
 
@@ -11,10 +12,11 @@ export type NodesMap = Record<string, Object3D>;
 export interface Station {
     name: string;
     id: string;
-    position?: [number, number, number];
+    position?: Vector3Tuple;
     offset?: {
-        desktop: { x: number; y: number; z: number };
-        mobile: { x: number; y: number; z: number };
+        desktop: Vector3Tuple;
+        mobile: Vector3Tuple;
+        selectedPlatform: Vector3Tuple;
     };
 }
 
@@ -24,7 +26,7 @@ export interface Train {
     scheduledTime: string;
     delay: number;
     vehicleId: string;
-    position?: [number, number, number];
+    position?: Vector3Tuple;
 }
 
 export interface TrainData {

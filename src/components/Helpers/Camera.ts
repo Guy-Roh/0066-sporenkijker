@@ -1,16 +1,17 @@
 import { Station } from "@/app/type";
 import { CameraControls } from "@react-three/drei";
 import { RefObject } from "react";
+import { Vector3Tuple } from "three";
 
 const cameraConfig = {
     position: {
-        default: [0, 40, 0] as [number, number, number],
-        mobile: [0, 140, 0] as [number, number, number],
+        default: [0, 40, 0] as Vector3Tuple,
+        mobile: [0, 140, 0] as Vector3Tuple,
     },
     offset: {
-        default: { x: 1, y: 3, z: 8 },
-        mobile: { x: .6, y: .7, z: 8 },
-        selectedPlatform: { x: 0, y: .3, z: 6 },
+        default: [1, 3, 8] as Vector3Tuple,
+        mobile: [0.6, 0.7, 8] as Vector3Tuple,
+        selectedPlatform: [0, 0.3, 6] as Vector3Tuple,
     },
     zoomLevel: {
         default: 4,
@@ -39,16 +40,16 @@ export const MoveCameraToStation = (
     const defaultPos = cameraConfig.position[type];
 
     if (activeStation && activeStation.position) {
-        const target: [number, number, number] = [
+        const target: Vector3Tuple = [
             activeStation.position[0],
             activeStation.position[1],
             activeStation.position[2] + (isMobile ? 0.5 : 1),
         ];
 
-        const camPos: [number, number, number] = [
-            target[0] + currentOffset.x,
-            target[1] + currentOffset.y,
-            target[2] + currentOffset.z,
+        const camPos: Vector3Tuple = [
+            target[0] + currentOffset[0],
+            target[1] + currentOffset[1],
+            target[2] + currentOffset[2],
         ];
 
         cameraControlsRef.current.setLookAt(
@@ -73,23 +74,23 @@ export const MoveCameraToStation = (
 
 export const PanCameraToPlatform = (
     cameraControlsRef: RefObject<CameraControls | null>,
-    platformPosition: [number, number, number],
+    platformPosition: Vector3Tuple,
     isMobile: boolean
 ) => {
     if (!cameraControlsRef?.current) return;
 
     const currentOffset = cameraConfig.offset.selectedPlatform;
     const currentZoom = cameraConfig.zoomLevel.selectedPlatform;
-    const target: [number, number, number] = [
+    const target: Vector3Tuple = [
         platformPosition[0],
         platformPosition[1],
         platformPosition[2] + (isMobile ? 0.5 : 1),
     ];
 
-    const camPos: [number, number, number] = [
-        target[0] + currentOffset.x,
-        target[1] + currentOffset.y,
-        target[2] + currentOffset.z,
+    const camPos: Vector3Tuple = [
+        target[0] + currentOffset[0],
+        target[1] + currentOffset[1],
+        target[2] + currentOffset[2],
     ];
 
     cameraControlsRef.current.setLookAt(
