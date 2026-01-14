@@ -3,53 +3,83 @@
         {
             "name": "Brussel Zuid",
             "id": "BE.NMBS.008814001",
-            "offset": { "x": 1, "y": 3, "z": 8 }
+            "offset": { 
+                "desktop": { "x": 1, "y": 3, "z": 8 },
+                "mobile": { "x": 0.6, "y": 0.7, "z": 8 }
+            }
         },
         {
             "name": "Brussel Centraal",
             "id": "BE.NMBS.008813003",
-            "offset": { "x": 1, "y": 3, "z": 8 }
+            "offset": { 
+                "desktop": { "x": 1, "y": 3, "z": 8 },
+                "mobile": { "x": 0.6, "y": 0.7, "z": 8 }
+            }
         },
         {
             "name": "Brussel Noord",
             "id": "BE.NMBS.008812005",
-            "offset": { "x": 1, "y": 3, "z": 8 }
+            "offset": { 
+                "desktop": { "x": 1, "y": 3, "z": 8 },
+                "mobile": { "x": 0.6, "y": 0.7, "z": 8 }
+            }
         },
         {
             "name": "Antwerpen Centraal",
             "id": "BE.NMBS.008821006",
-            "offset": { "x": 1, "y": 3, "z": 8 }
+            "offset": { 
+                "desktop": { "x": 1, "y": 3, "z": 8 },
+                "mobile": { "x": 0.6, "y": 0.7, "z": 8 }
+            }
         },
         {
             "name": "Antwerpen Berchem",
             "id": "BE.NMBS.008821121",
-            "offset": { "x": 5, "y": 2, "z": 7 }
+            "offset": { 
+                "desktop": { "x": 5, "y": 2, "z": 7 },
+                "mobile": { "x": 0.6, "y": 0.7, "z": 8 }
+            }
         },
         {
             "name": "Gent Sint-Pieters",
             "id": "BE.NMBS.008892007",
             "number": "5",
-            "offset": { "x": 1, "y": 3, "z": 8 }
+            "offset": { 
+                "desktop": { "x": 1, "y": 3, "z": 8 },
+                "mobile": { "x": 0.6, "y": 0.7, "z": 8 }
+            }
         },
         {
             "name": "Leuven",
             "id": "BE.NMBS.008833001",
-            "offset": { "x": 1, "y": 3, "z": 8 }
+            "offset": { 
+                "desktop": { "x": 1, "y": 3, "z": 8 },
+                "mobile": { "x": 0.6, "y": 0.7, "z": 8 }
+            }
         },
         {
             "name": "Mechelen",
             "id": "BE.NMBS.008822004",
-            "offset": { "x": 1, "y": 3, "z": 8 }
+            "offset": { 
+                "desktop": { "x": 1, "y": 3, "z": 8 },
+                "mobile": { "x": 0.6, "y": 0.7, "z": 8 }
+            }
         },
         {
             "name": "Brugge",
             "id": "BE.NMBS.008891009",
-            "offset": { "x": 1, "y": 3, "z": 8 }
+            "offset": { 
+                "desktop": { "x": 1, "y": 3, "z": 8 },
+                "mobile": { "x": 0.6, "y": 0.7, "z": 8 }
+            }
         },
         {
             "name": "Kortrijk",
             "id": "BE.NMBS.008896008",
-            "offset": { "x": 1, "y": 3, "z": 8 }
+            "offset": { 
+                "desktop": { "x": 1, "y": 3, "z": 8 },
+                "mobile": { "x": 0.6, "y": 0.7, "z": 8 }
+            }
         }
     ]
 }

@@ -21,7 +21,7 @@ const cameraConfig = {
 
 const getStationOffset = (station: Station | null, isMobile: boolean) => {
     if (station?.offset) {
-        return station.offset;
+        return isMobile ? station.offset.mobile : station.offset.desktop;
     }
     return isMobile ? cameraConfig.offset.mobile : cameraConfig.offset.default;
 };

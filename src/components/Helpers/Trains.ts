@@ -42,9 +42,7 @@ export const filterTrains = (meshNodes: NodesMap, trainsData: TrainData) => {
     const validStationIds = new Set(stationData.allStations.map(s => CleanId(s.id)));
 
     const selectedNodes: NodesMap = {};
-    
-    console.log("Valid train keys:", Array.from(validTrainKeys));
-    
+        
     for (const [name, node] of Object.entries(meshNodes)) {
         if (validStationIds.has(name)) {
             // This is a station node

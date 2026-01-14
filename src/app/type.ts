@@ -13,9 +13,8 @@ export interface Station {
     id: string;
     position?: [number, number, number];
     offset?: {
-        x: number;
-        y: number;
-        z: number;
+        desktop: { x: number; y: number; z: number };
+        mobile: { x: number; y: number; z: number };
     };
 }
 
