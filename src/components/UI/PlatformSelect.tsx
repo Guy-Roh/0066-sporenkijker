@@ -19,6 +19,8 @@ const PlatformSelect = () => {
     } = useAppContext();
 
     const handlePlatformChange = (platformNumber: string) => {
+        if (!nodes) return;
+        
         const platformPosition = getTrainPosition(
             platformNumber, 
             activeStation?.id || "", 

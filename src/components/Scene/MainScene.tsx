@@ -36,15 +36,15 @@ const FX = ({ activeStation }: { activeStation: Station | null }) => {
 const MainScene = () => {
     const { activeStation, setNodes, isMobile, trainsData, cameraControlsRef } =
         useAppContext();
-    const { nodes: meshNodes } = useGLTF("/models/042_export.gltf");
+    const { nodes: meshNodes } = useGLTF("/models/042_export_2.gltf");
 
     useEffect(() => {
         setNodes(filterTrains(meshNodes, trainsData as TrainData));
-    }, [meshNodes, trainsData]);
+    }, [meshNodes, trainsData, setNodes]);
 
     useEffect(() => {
         MoveCameraToStation(cameraControlsRef, null, isMobile);
-    }, []);
+    }, [cameraControlsRef, isMobile]);
 
     return (
         <>
