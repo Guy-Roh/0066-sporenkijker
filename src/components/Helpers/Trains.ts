@@ -1,10 +1,14 @@
-import { Train, TrainData } from "@/app/type";
+import { NodesMap, Train, TrainData } from "@/app/type";
 import { Object3D } from "three";
+import stationData from "@/data/stationData.json";
+
+export const CleanId = (stationId: string) => {
+    return stationId.replace(/\./g, "");
+}
 
 export const getTrainPosition = (platformNumber: string, stationId: string, meshNodes: Record<string, Object3D>) => {
-    const cleanStationId = stationId.replace(/\./g, "");
     const paddedPlatform = platformNumber.toString().padStart(3, "0");
-    const trainKey = `${cleanStationId}${paddedPlatform}`;
+    const trainKey = `${CleanId(stationId)}${paddedPlatform}`;
 
     const trainNode = meshNodes[trainKey];
     if (trainNode) {
@@ -18,11 +22,10 @@ export const getTrainPosition = (platformNumber: string, stationId: string, mesh
     }
 }
 
-export const filterTrains = (meshNodes: Record<string, Object3D>, trainsData: TrainData) => {
+// This function filters the mesh nodes to include only the stations and the platforms relevant to the trains at the specified station
+export const filterTrains = (meshNodes: NodesMap, trainsData: TrainData) => {
     const rawStationId = trainsData?.station || "";
     const trains = trainsData?.trains || [];
-
-    const cleanStationId = rawStationId.replace(/\./g, "");
 
     const validTrainKeys = new Set(
         trains
@@ -31,22 +34,30 @@ export const filterTrains = (meshNodes: Record<string, Object3D>, trainsData: Tr
                 const paddedPlatform = t.platform
                     .toString()
                     .padStart(3, "0");
-                return `${cleanStationId}${paddedPlatform}`;
+                return `${CleanId(rawStationId)}${paddedPlatform}`;
             })
-    ); // this will hold keys like "BENMBS008821006001"
+    ); 
+    // this will hold keys like "BENMBS008821121002"
 
-    const selectedNodes: Record<string, Object3D> = {};
-    console.log("The selected nodes are", selectedNodes);
+    const validStationIds = new Set(stationData.allStations.map(s => CleanId(s.id)));
+
+    const selectedNodes: NodesMap = {};
+    
+    console.log("Valid train keys:", Array.from(validTrainKeys));
     
     for (const [name, node] of Object.entries(meshNodes)) {
-        if (name.startsWith("BENMBS")) {
-            if (validTrainKeys.has(name)) {
-                selectedNodes[name] = node;
-            }
-        } else {
+        if (validStationIds.has(name)) {
+            // This is a station node
             selectedNodes[name] = node;
-        }
+        } else if (validTrainKeys.has(name)) {
+            // This is a platform with an active train
+            selectedNodes[name] = node;
+        } else if (!name.startsWith("BE")) {
+            // Keep all non-station/platform nodes
+            selectedNodes[name] = node;
+        } 
     }
+
     
     return selectedNodes;
 }

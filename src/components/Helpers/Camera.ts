@@ -19,6 +19,13 @@ const cameraConfig = {
     }
 };
 
+const getStationOffset = (station: Station | null, isMobile: boolean) => {
+    if (station?.offset) {
+        return station.offset;
+    }
+    return isMobile ? cameraConfig.offset.mobile : cameraConfig.offset.default;
+};
+
 export const MoveCameraToStation = (
     cameraControlsRef: RefObject<CameraControls | null>,
     activeStation: Station | null,
@@ -27,7 +34,7 @@ export const MoveCameraToStation = (
     if (!cameraControlsRef?.current) return;
 
     const type = isMobile ? 'mobile' : 'default';
-    const currentOffset = cameraConfig.offset[type];
+    const currentOffset = getStationOffset(activeStation, isMobile);
     const currentZoom = cameraConfig.zoomLevel[type];
     const defaultPos = cameraConfig.position[type];
 

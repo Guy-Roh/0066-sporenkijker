@@ -4,6 +4,7 @@ import textData from "@/data/textData.json";
 import { fetchTrainData } from "../Helpers/GetData";
 import { MoveCameraToStation, ResetCamera } from "../Helpers/Camera";
 import stationData from "@/data/stationData.json";
+import { CleanId } from "../Helpers/Trains";
 
 const StationSelect = () => {
     const {
@@ -19,9 +20,9 @@ const StationSelect = () => {
         error,
     } = useAppContext();
 
-    const handleStationChange = async (stationNumber: string) => {
+    const handleStationChange = async (stationId: string) => {
         // If clicked station is already active, unset it and reset camera
-        if (activeStation?.number === stationNumber) {
+        if (activeStation?.id === stationId) {
             setActiveStation(null);
             setTrainsData(null);
             ResetCamera(cameraControlsRef, isMobile);
@@ -31,13 +32,13 @@ const StationSelect = () => {
         // Reset error and start loading
         setError(null);
         setIsLoading(true);
+            console.log("Active station", activeStation);
 
         const selectedStation = stationData.allStations.find(
-            (station: Station) => station.number === stationNumber
+            (station: Station) => station.id === stationId
         );
 
-        const nodeKey = `station_${selectedStation?.number}`;
-        const stationNode = nodes ? nodes[nodeKey] : null;
+        const stationNode = nodes ? nodes[CleanId(stationId)] : null;
 
         let targetStation: Station | null = selectedStation || null;
 
@@ -84,9 +85,9 @@ const StationSelect = () => {
                     <button
                         key={station.id}
                         disabled={isLoading}
-                        onClick={() => handleStationChange(station.number)}
+                        onClick={() => handleStationChange(station.id)}
                         className={
-                            activeStation?.number === station.number
+                            activeStation?.id === station.id
                                 ? "active"
                                 : ""
                         }

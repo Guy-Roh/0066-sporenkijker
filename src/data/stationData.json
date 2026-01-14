@@ -3,53 +3,53 @@
         {
             "name": "Brussel Zuid",
             "id": "BE.NMBS.008814001",
-            "number": "1"
+            "offset": { "x": 1, "y": 3, "z": 8 }
         },
         {
             "name": "Brussel Centraal",
             "id": "BE.NMBS.008813003",
-            "number": "2"
+            "offset": { "x": 1, "y": 3, "z": 8 }
         },
         {
-            "name":"Brussel Noord",
-            "id":"BE.NMBS.008812005",
-            "number": "3"
+            "name": "Brussel Noord",
+            "id": "BE.NMBS.008812005",
+            "offset": { "x": 1, "y": 3, "z": 8 }
         },
         {
-            "name":"Antwerpen Centraal",
-            "id":"BE.NMBS.008821006",
-            "number": "4"
-        },
-                {
-            "name":"Antwerpen Berchem",
-            "id":"BE.NMBS.008821121",
-            "number": "10"
+            "name": "Antwerpen Centraal",
+            "id": "BE.NMBS.008821006",
+            "offset": { "x": 1, "y": 3, "z": 8 }
         },
         {
-            "name":"Gent Sint-Pieters",
-            "id":"BE.NMBS.008892007",
-            "number": "5"
+            "name": "Antwerpen Berchem",
+            "id": "BE.NMBS.008821121",
+            "offset": { "x": 5, "y": 2, "z": 7 }
         },
         {
-            "name":"Leuven",
-            "id":"BE.NMBS.008833001",
-            "number": "6"
+            "name": "Gent Sint-Pieters",
+            "id": "BE.NMBS.008892007",
+            "number": "5",
+            "offset": { "x": 1, "y": 3, "z": 8 }
         },
         {
-            "name":"Mechelen",
-            "id":"BE.NMBS.008822004",
-            "number": "7"
+            "name": "Leuven",
+            "id": "BE.NMBS.008833001",
+            "offset": { "x": 1, "y": 3, "z": 8 }
         },
         {
-            "name":"Brugge",
-            "id":"BE.NMBS.008891009",
-            "number": "8"
+            "name": "Mechelen",
+            "id": "BE.NMBS.008822004",
+            "offset": { "x": 1, "y": 3, "z": 8 }
         },
         {
-            "name":"Kortrijk",
-            "id":"BE.NMBS.008896008",
-            "number": "9"
+            "name": "Brugge",
+            "id": "BE.NMBS.008891009",
+            "offset": { "x": 1, "y": 3, "z": 8 }
+        },
+        {
+            "name": "Kortrijk",
+            "id": "BE.NMBS.008896008",
+            "offset": { "x": 1, "y": 3, "z": 8 }
         }
-
     ]
 }
