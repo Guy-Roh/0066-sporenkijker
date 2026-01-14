@@ -32,17 +32,17 @@
             "id": "BE.NMBS.008821006",
             "offset": {
                 "desktop": [1, 3, 8],
-                "mobile": [0.6, 0.7, 8],
-                "selectedPlatform": [0, 0.3, 6]
+                "mobile": [0.6, 1, 8],
+                "selectedPlatform": [0, 0.45, 6]
             }
         },
         {
             "name": "Antwerpen Berchem",
             "id": "BE.NMBS.008821121",
             "offset": {
-                "desktop": [4, 2, 7],
-                "mobile": [4.6, 0.7, 7],
-                "selectedPlatform": [0, 0.3, 6]
+                "desktop": [5, 3, 6],
+                "mobile": [4.6, 3, 7],
+                "selectedPlatform": [3.6, 1, 6]
             }
         },
         {

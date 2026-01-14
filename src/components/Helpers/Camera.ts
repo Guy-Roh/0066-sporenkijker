@@ -5,18 +5,18 @@ import { Vector3Tuple } from "three";
 
 const cameraConfig = {
     position: {
-        default: [0, 40, 0] as Vector3Tuple,
-        mobile: [0, 140, 0] as Vector3Tuple,
+        default: [0, 40, 0],
+        mobile: [0, 140, 0],
     },
     offset: {
-        default: [1, 3, 8] as Vector3Tuple,
-        mobile: [0.6, 0.7, 8] as Vector3Tuple,
-        selectedPlatform: [0, 0.3, 6] as Vector3Tuple,
+        default: [1, 3, 8],
+        mobile: [0.6, 0.7, 8],
+        selectedPlatform: [0, 0.3, 6],
     },
     zoomLevel: {
         default: 4,
         mobile: 3.2,
-        selectedPlatform: 12,
+        selectedPlatform: 10,
     }
 };
 
@@ -75,16 +75,19 @@ export const MoveCameraToStation = (
 export const PanCameraToPlatform = (
     cameraControlsRef: RefObject<CameraControls | null>,
     platformPosition: Vector3Tuple,
+    activeStation: Station | null,
     isMobile: boolean
 ) => {
     if (!cameraControlsRef?.current) return;
 
-    const currentOffset = cameraConfig.offset.selectedPlatform;
+    const currentOffset = activeStation?.offset?.selectedPlatform || cameraConfig.offset.selectedPlatform;
+    console.log("Using offset:", currentOffset);
+    console.log( "Active station:", activeStation);
     const currentZoom = cameraConfig.zoomLevel.selectedPlatform;
     const target: Vector3Tuple = [
         platformPosition[0],
         platformPosition[1],
-        platformPosition[2] + (isMobile ? 0.5 : 1),
+        platformPosition[2] ,
     ];
 
     const camPos: Vector3Tuple = [
