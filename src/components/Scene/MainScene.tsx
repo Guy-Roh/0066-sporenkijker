@@ -27,7 +27,7 @@ const FX = ({ activeStation }: { activeStation: Station | null }) => {
                 target={activeStation?.position || [0, 0, 0]}
                 bokehScale={activeStation?.position ? 2 : 0}
             />
-            <Bloom luminanceThreshold={1} mipmapBlur />
+            <Bloom luminanceThreshold={.8} mipmapBlur />
             <ToneMapping mode={AgXToneMapping} />
         </EffectComposer>
     );
@@ -36,7 +36,7 @@ const FX = ({ activeStation }: { activeStation: Station | null }) => {
 const MainScene = () => {
     const { activeStation, setNodes, isMobile, trainsData, cameraControlsRef } =
         useAppContext();
-    const { nodes: meshNodes } = useGLTF("/models/042_export_2.gltf");
+    const { nodes: meshNodes } = useGLTF("/models/042_export.gltf");
 
     useEffect(() => {
         setNodes(filterTrains(meshNodes, trainsData as TrainData));

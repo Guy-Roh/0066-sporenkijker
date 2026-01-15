@@ -48,7 +48,7 @@ const MapMesh = () => {
                                     {isSelectedTrain && (
                                         <meshStandardMaterial
                                             emissive="#1d82ff"
-                                            emissiveIntensity={6}
+                                            emissiveIntensity={10}
                                         />
                                     )}
                                 </mesh>
