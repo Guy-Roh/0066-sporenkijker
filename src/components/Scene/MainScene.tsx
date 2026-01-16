@@ -19,7 +19,6 @@ import { filterTrains } from "../Helpers/Trains";
 import { Station, TrainData } from "@/app/type";
 import MapMesh from "./MapMesh";
 import { AgXToneMapping } from "three"; // <--- Import constants
-
 const FX = ({ activeStation }: { activeStation: Station | null }) => {
     return (
         <EffectComposer multisampling={0}>
@@ -36,7 +35,7 @@ const FX = ({ activeStation }: { activeStation: Station | null }) => {
 const MainScene = () => {
     const { activeStation, setNodes, isMobile, trainsData, cameraControlsRef } =
         useAppContext();
-    const { nodes: meshNodes } = useGLTF("/models/042_export.gltf");
+    const { nodes: meshNodes } = useGLTF("/models/042_export_2.gltf");
 
     useEffect(() => {
         setNodes(filterTrains(meshNodes, trainsData as TrainData));
