@@ -21,7 +21,7 @@ import MapMesh from "./MapMesh";
 import { AgXToneMapping } from "three"; // <--- Import constants
 const FX = ({ activeStation }: { activeStation: Station | null }) => {
     return (
-        <EffectComposer multisampling={0}>
+        <EffectComposer multisampling={4}>
             <DepthOfField
                 target={activeStation?.position || [0, 0, 0]}
                 bokehScale={activeStation?.position ? 2 : 0}
