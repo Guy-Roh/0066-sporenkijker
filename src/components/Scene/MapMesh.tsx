@@ -40,9 +40,11 @@ const MapMesh = () => {
                                     {isGlass && (
                                         <MeshTransmissionMaterial
                                             transmission={1}
-                                            thickness={0.5}
+                                            thickness={0.6}
                                             roughness={0.05}
                                             chromaticAberration={0.03}
+                                            ior={1.5}
+                                            color={"rgba(168, 229, 255, 1)"}
                                         />
                                     )}
                                     {isSelectedTrain && (
