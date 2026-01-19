@@ -20,7 +20,7 @@ export async function GET(request: Request) {
     try {
         const res = await fetch(url, {
             headers: {
-                'User-Agent': 'sporenkijker/0.2',
+                'User-Agent': 'sporenkijker/0.59',
                 'Accept': 'application/json',
             },
             // Cache control: Revalidate every 60 seconds to avoid stale data
@@ -82,6 +82,6 @@ export async function GET(request: Request) {
         return NextResponse.json({ station: stationId, trains: result });
 
     } catch (error) {
-        return NextResponse.json({ error: 'Failed to fetch train data' }, { status: 500 });
+        return NextResponse.json({ error: error }, { status: 500 });
     }
 }

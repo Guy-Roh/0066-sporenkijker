@@ -1,18 +1,13 @@
 "use client";
 
-import {
-    CameraControls,
-    useGLTF,
-    Environment,
-} from "@react-three/drei";
+import { CameraControls, useGLTF, Environment } from "@react-three/drei";
 import { useAppContext } from "@/app/AppContext";
 import { useEffect } from "react";
 import {
     EffectComposer,
     DepthOfField,
     Bloom,
-        ToneMapping,
-
+    ToneMapping,
 } from "@react-three/postprocessing";
 import { MoveCameraToStation } from "../Helpers/Camera";
 import { filterTrains } from "../Helpers/Trains";
@@ -26,7 +21,7 @@ const FX = ({ activeStation }: { activeStation: Station | null }) => {
                 target={activeStation?.position || [0, 0, 0]}
                 bokehScale={activeStation?.position ? 2 : 0}
             />
-            <Bloom luminanceThreshold={.8} mipmapBlur />
+            <Bloom luminanceThreshold={0.8} mipmapBlur />
             <ToneMapping mode={AgXToneMapping} />
         </EffectComposer>
     );
@@ -35,7 +30,7 @@ const FX = ({ activeStation }: { activeStation: Station | null }) => {
 const MainScene = () => {
     const { activeStation, setNodes, isMobile, trainsData, cameraControlsRef } =
         useAppContext();
-    const { nodes: meshNodes } = useGLTF("/models/042_export_2.gltf");
+    const { nodes: meshNodes } = useGLTF("/models/042_export.gltf");
 
     useEffect(() => {
         setNodes(filterTrains(meshNodes, trainsData as TrainData));
@@ -51,8 +46,8 @@ const MainScene = () => {
             <CameraControls ref={cameraControlsRef} />
             <Environment
                 files={"/img/hdri/capehill.hdr"}
-/*                 preset={"night"} // either this or the hdri works
- */                background={false}
+                //preset={"night"} // either this or the hdri works
+                background={false}
                 backgroundIntensity={1}
                 backgroundRotation={[0, 0, Math.PI]}
             />
