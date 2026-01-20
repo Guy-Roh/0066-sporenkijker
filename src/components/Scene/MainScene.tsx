@@ -21,7 +21,9 @@ const FX = ({ activeStation }: { activeStation: Station | null }) => {
                 target={activeStation?.position || [0, 0, 0]}
                 bokehScale={activeStation?.position ? 2 : 0}
             />
-            <Bloom luminanceThreshold={0.8} mipmapBlur />
+            <Bloom 
+            luminanceThreshold={0.8} 
+            mipmapBlur />
             <ToneMapping mode={AgXToneMapping} />
         </EffectComposer>
     );
