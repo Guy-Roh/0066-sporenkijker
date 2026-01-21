@@ -43,7 +43,7 @@ const PlatformSelect = () => {
         });
 
         if (activeStation?.id && platformPosition) {
-            PanCameraToPlatform(cameraControlsRef, platformPosition, activeStation);
+            PanCameraToPlatform(cameraControlsRef, platformPosition, activeStation, isMobile);
         }
     };
 
