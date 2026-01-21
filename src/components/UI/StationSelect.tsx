@@ -25,51 +25,46 @@ const StationSelect = () => {
         if (activeStation?.id === stationId) {
             setActiveStation(null);
             setTrainsData(null);
+            setError(null);
             ResetCamera(cameraControlsRef, isMobile);
             return;
         }
-
-        // Reset error and start loading
-        setError(null);
-        setIsLoading(true);
-            console.log("Active station", activeStation);
 
         const selectedStation = stationData.allStations.find(
             (station) => station.id === stationId
         ) as Station | undefined;
 
+        if (!selectedStation) return;
+
         const stationNode = nodes ? nodes[CleanId(stationId)] : null;
 
-        let targetStation: Station | null = (selectedStation) || null;
-
-        if (stationNode && selectedStation) {
-            targetStation = {
-                ...selectedStation,
-                position: [
-                    stationNode.position.x,
-                    stationNode.position.y,
-                    stationNode.position.z,
-                ],
-            };
-        }
+        const targetStation: Station = stationNode
+            ? {
+                  ...selectedStation,
+                  position: [
+                      stationNode.position.x,
+                      stationNode.position.y,
+                      stationNode.position.z,
+                  ],
+              }
+            : selectedStation;
 
         setActiveStation(targetStation);
         MoveCameraToStation(cameraControlsRef, targetStation, isMobile);
 
-        if (targetStation?.id) {
-            setIsLoading(true);
-            setError(null);
-            setTrainsData(null); 
+        // Fetch train data
+        setIsLoading(true);
+        setError(null);
+        setTrainsData(null);
 
-            try {
-                const data = await fetchTrainData(targetStation.id);
-                setTrainsData(data);
-            } catch (err) {
-                setError("Failed to load train data");
-                console.error(err);
-            } finally {
-                setIsLoading(false);
-            }
+        try {
+            const data = await fetchTrainData(targetStation.id);
+            setTrainsData(data);
+        } catch (err) {
+            setError("Failed to load train data");
+            console.error(err);
+        } finally {
+            setIsLoading(false);
         }
     };
 

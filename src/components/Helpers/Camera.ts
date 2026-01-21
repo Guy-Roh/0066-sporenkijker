@@ -77,6 +77,7 @@ export const PanCameraToPlatform = (
     cameraControlsRef: RefObject<CameraControls | null>,
     platformPosition: Vector3Tuple,
     activeStation: Station | null,
+    isMobile: boolean
 ) => {
     if (!cameraControlsRef?.current) return;
 
