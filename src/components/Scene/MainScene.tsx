@@ -12,7 +12,11 @@ import {
 import { filterTrains } from "../Helpers/Trains";
 import { Station, TrainData } from "@/app/type";
 import MapMesh from "./MapMesh";
-import { AgXToneMapping } from "three"; // <--- Import constants
+import { AgXToneMapping } from "three";
+import { ResetCamera } from "../Helpers/Camera";
+
+
+
 const FX = ({ activeStation }: { activeStation: Station | null }) => {
     return (
         <EffectComposer multisampling={2}>
@@ -29,21 +33,31 @@ const FX = ({ activeStation }: { activeStation: Station | null }) => {
 };
 
 const MainScene = () => {
-    const { activeStation, setNodes, trainsData, cameraControlsRef } =
+    const { activeStation, setNodes, trainsData, cameraControlsRef, isMobile} =
         useAppContext();
     const { nodes: meshNodes } = useGLTF("/models/042_export_2.gltf");
 
     useEffect(() => {
+        ResetCamera(cameraControlsRef, isMobile, true);
+    }, []);
+
+    useEffect(() => {
         setNodes(filterTrains(meshNodes, trainsData as TrainData));
+
     }, [meshNodes, trainsData, setNodes]);
 
     return (
         <>
             <color attach="background" args={["#212121"]} />
-            <CameraControls ref={cameraControlsRef} />
+            <CameraControls 
+                ref={cameraControlsRef}
+
+            />
             <Environment
-                files={"/img/hdri/capehill.hdr"}
+                files={"/img/hdri/ragen2k.exr"}
                 //preset={"city"} // either this or the hdri works
+                environmentIntensity={.7}
+                environmentRotation={[0, 0, 0 ]}
                 background={false}
             />
             
