@@ -26,7 +26,7 @@ const StationSelect = () => {
             setActiveStation(null);
             setTrainsData(null);
             setError(null);
-            ResetCamera(cameraControlsRef, isMobile);
+            ResetCamera(cameraControlsRef, isMobile, false);
             return;
         }
 

@@ -3,10 +3,10 @@ import { CameraControls } from "@react-three/drei";
 import { RefObject } from "react";
 import { Vector3Tuple } from "three";
 
-const cameraConfig = {
+export const cameraConfig = {
     position: {
-        default: [0, 60, 0],
-        mobile: [0, 140, 0],
+        default: [16, 80, 50],
+        mobile: [36, 160, 90],
     },
     offset: {
         default: [1, 3, 8],
@@ -39,7 +39,7 @@ export const MoveCameraToStation = (
     const currentZoom = cameraConfig.zoomLevel[type];
     const defaultPos = cameraConfig.position[type];
     console.log("Using offset:", currentOffset);
-    console.log( "Active station:", activeStation);
+    console.log("Active station:", activeStation);
     if (activeStation && activeStation.position) {
         const target: Vector3Tuple = [
             activeStation.position[0],
@@ -77,7 +77,6 @@ export const PanCameraToPlatform = (
     cameraControlsRef: RefObject<CameraControls | null>,
     platformPosition: Vector3Tuple,
     activeStation: Station | null,
-    isMobile: boolean
 ) => {
     if (!cameraControlsRef?.current) return;
 
@@ -87,7 +86,7 @@ export const PanCameraToPlatform = (
     const target: Vector3Tuple = [
         platformPosition[0],
         platformPosition[1],
-        platformPosition[2] ,
+        platformPosition[2],
     ];
 
     const camPos: Vector3Tuple = [
@@ -108,9 +107,11 @@ export const PanCameraToPlatform = (
 
 export const ResetCamera = (
     cameraControlsRef: RefObject<CameraControls | null>,
-    isMobile: boolean
+    isMobile: boolean,
+    initialRender: boolean = true
 ) => {
     if (!cameraControlsRef?.current) return;
+    const animation = !initialRender;
 
     const type = isMobile ? 'mobile' : 'default';
     const defaultPos = cameraConfig.position[type];
@@ -118,7 +119,8 @@ export const ResetCamera = (
     cameraControlsRef.current.setLookAt(
         defaultPos[0], defaultPos[1], defaultPos[2],
         0, 0, 0,
-        true
+        animation
     );
-    cameraControlsRef.current.zoomTo(1, true);
+    cameraControlsRef.current.zoomTo(1, animation);
+    cameraControlsRef.current.truck(0, 30, true);
 }

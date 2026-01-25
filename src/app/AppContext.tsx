@@ -1,13 +1,17 @@
 "use client";
-import { createContext, useContext, useState, ReactNode, RefObject, useRef } from "react";
+import {
+    createContext,
+    useContext,
+    useState,
+    ReactNode,
+    RefObject,
+    useRef,
+} from "react";
 import { CameraControls } from "@react-three/drei";
 import { NodesMap, Platform, Station, TrainData } from "./type";
-import { Vector3Tuple } from "three";
 interface AppContextType {
     activeStation: Station | null;
     setActiveStation: (station: Station | null) => void;
-    cameraPosition: Vector3Tuple;
-    setCameraPosition: (position: Vector3Tuple) => void;
     nodes: NodesMap | null;
     setNodes: (nodes: NodesMap | null) => void;
     isMobile: boolean;
@@ -24,29 +28,27 @@ interface AppContextType {
 
 const AppContext = createContext<AppContextType | undefined>(undefined);
 
-export const AppProvider = ({ 
+export const AppProvider = ({
     children,
-    isMobile
-}: { 
-    children: ReactNode,
-    isMobile: boolean
+    isMobile,
+}: {
+    children: ReactNode;
+    isMobile: boolean;
 }) => {
-
-	const [activeStation, setActiveStation] = useState<Station | null>(null);
-    const [cameraPosition, setCameraPosition] = useState<Vector3Tuple>([10, 10, 10]);
+    const [activeStation, setActiveStation] = useState<Station | null>(null);
     const [nodes, setNodes] = useState<NodesMap | null>(null);
     const [trainsData, setTrainsData] = useState<TrainData | null>(null);
-    const [currentPlatform, setCurrentPlatform] = useState<Platform | null>(null);
+    const [currentPlatform, setCurrentPlatform] = useState<Platform | null>(
+        null,
+    );
     const cameraControlsRef = useRef<CameraControls>(null);
-            const [isLoading, setIsLoading] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
-	return (
-		<AppContext.Provider
-			value={{
-				activeStation,
-				setActiveStation,
-                cameraPosition,
-                setCameraPosition,
+    return (
+        <AppContext.Provider
+            value={{
+                activeStation,
+                setActiveStation,
                 nodes,
                 setNodes,
                 isMobile,
@@ -59,19 +61,19 @@ export const AppProvider = ({
                 setIsLoading,
                 error,
                 setError,
-			}}
-		>
-			{children}
-		</AppContext.Provider>
-	);
+            }}
+        >
+            {children}
+        </AppContext.Provider>
+    );
 };
 
 export const useAppContext = () => {
-	const context = useContext(AppContext);
-	if (!context) {
-		throw new Error("useAppContext must be used within AppProvider");
-	}
-	return context;
+    const context = useContext(AppContext);
+    if (!context) {
+        throw new Error("useAppContext must be used within AppProvider");
+    }
+    return context;
 };
 
 export default AppContext;
