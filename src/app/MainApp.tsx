@@ -14,7 +14,7 @@ const WebGLApp = () => {
             className="main-app"
             fallback={<FallBack />}
             gl={{antialias: true}}
-            dpr={[1,1.4]}
+            dpr={[1,1.2]}
             
         >
             <MainScene />

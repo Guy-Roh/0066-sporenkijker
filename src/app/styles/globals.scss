@@ -4,7 +4,7 @@
 * {
     user-select: none;
     box-sizing: border-box;
-        font-family: "Noto Sans", sans-serif;
+    font-family: "Noto Sans", sans-serif;
 
 }
 
@@ -35,7 +35,7 @@ $anim: all 0.32s cubic-bezier(.17, .67, .32, .99);
     color: $charcoal;
 }
 
-.hidden{
+.hidden {
     display: none;
 }
 
@@ -55,12 +55,13 @@ $anim: all 0.32s cubic-bezier(.17, .67, .32, .99);
     transition: $anim;
     font-weight: 600;
 
-    &.minimized{
+    &.minimized {
         width: 20%;
         height: 4vh;
         font-size: 2vmin;
         transition: $anim;
         cursor: pointer;
+
         &:hover {
             backdrop-filter: brightness(1.3);
         }
@@ -133,6 +134,7 @@ $anim: all 0.32s cubic-bezier(.17, .67, .32, .99);
         margin: 0 auto;
         font-size: 3vmin;
         border-radius: 1vmin;
+
         &:hover {
             cursor: pointer;
             background-color: $cobalt;
@@ -155,6 +157,7 @@ $anim: all 0.32s cubic-bezier(.17, .67, .32, .99);
     transition: $anim;
 
     text-align: center;
+
     @include mobile() {
         width: 98%;
         margin: auto;
@@ -163,27 +166,46 @@ $anim: all 0.32s cubic-bezier(.17, .67, .32, .99);
 
     h2 {
         margin-bottom: 2vmin;
-        font-size: 3vmin;
+        font-size: 4vmin;
+        text-transform: uppercase;
+        font-weight: 700;
     }
 
     .trains-list {
         display: grid;
         grid-template-columns: repeat(4, 1fr);
-        .train-item{
+
+        .train-item {
             padding: .8vmin;
             line-height: normal;
             transition: $anim;
             border-radius: .8vmin;
             font-size: 2.2vmin;
+
             .destination {
                 font-weight: 600;
-                font-size: 2.4vmin;
+                font-size: 1.6vmin;
+
+                @include mobile() {
+                    font-size: 2.6vmin;
+                }
             }
+
+            .details {
+                font-weight: 400;
+                font-size: 1.8vmin;
+
+                @include mobile() {
+                    font-size: 2.6vmin;
+                }
+            }
+
             &.active {
                 background-color: $cobalt;
                 color: $cloud;
                 font-weight: 600;
             }
+
             &:hover {
                 cursor: pointer;
                 background-color: $cloud;

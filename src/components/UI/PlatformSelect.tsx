@@ -21,6 +21,11 @@ const PlatformSelect = () => {
         error 
     } = useAppContext();
 
+    const formatDestination = (dest: string) => {
+        if (dest === "Brussels-South/Brussels-Midi") return "Brussel Zuid";
+        return dest;
+    };
+
     const handlePlatformChange = (platformNumber: string) => {
         if (!nodes) return;
         
@@ -105,7 +110,7 @@ const PlatformSelect = () => {
                         onClick={() => handlePlatformChange(train.platform)}
                     >
                         <div className="destination">
-                            <strong>{train.destination}</strong>
+                            <strong>{formatDestination(train.destination)}</strong>
                         </div>
                         <div className="details grid">
                             <span>
