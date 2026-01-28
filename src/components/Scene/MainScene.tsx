@@ -24,7 +24,7 @@ const FX = ({ activeStation }: { activeStation: Station | null }) => {
         <EffectComposer multisampling={2}>
             <DepthOfField
                 target={activeStation?.position || [0, 0, 0]}
-                bokehScale={isMobile&&activeStation?.position ? .6 : activeStation?.position ? 2 : 0}
+                bokehScale={isMobile&&activeStation?.position ?  1 : activeStation?.position ? 2 : 0}
             />
             <Bloom
                 luminanceThreshold={0.8}

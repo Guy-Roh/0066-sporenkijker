@@ -30,9 +30,13 @@ $anim: all 0.32s cubic-bezier(.17, .67, .32, .99);
 
 .glass {
     backdrop-filter: blur(2vmin) brightness(1.2);
-    background: #ffffff4e;
+    background: #ffffff6a;
     border-radius: 1vmin;
     color: $charcoal;
+}
+
+.hidden{
+    display: none;
 }
 
 
@@ -94,8 +98,8 @@ $anim: all 0.32s cubic-bezier(.17, .67, .32, .99);
             margin: 0.2vmin;
 
             @include small-desktop() {
-                height: 4vh;
-                padding: 1.4vmin;
+                height: 3vh;
+                padding: 1vmin;
                 font-size: 3vmin;
             }
 
@@ -150,9 +154,10 @@ $anim: all 0.32s cubic-bezier(.17, .67, .32, .99);
     font-family: "Noto Sans", sans-serif;
     transition: $anim;
 
-
+    text-align: center;
     @include mobile() {
-        width: 100vw;
+        width: 98%;
+        margin: auto;
         font-size: 2.5vmin;
     }
 
@@ -163,12 +168,17 @@ $anim: all 0.32s cubic-bezier(.17, .67, .32, .99);
 
     .trains-list {
         display: grid;
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(4, 1fr);
         .train-item{
             padding: .8vmin;
             line-height: normal;
             transition: $anim;
             border-radius: .8vmin;
+            font-size: 2.2vmin;
+            .destination {
+                font-weight: 600;
+                font-size: 2.4vmin;
+            }
             &.active {
                 background-color: $cobalt;
                 color: $cloud;
