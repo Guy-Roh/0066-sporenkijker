@@ -10,9 +10,8 @@ const MainApp = () => {
         <Canvas
             className="main-app"
             fallback={<FallBack />}
-            shadows
             gl={{antialias: true}}
-            dpr={[1,1]}
+            dpr={[1,2]}
             
         >
             <MainScene />
