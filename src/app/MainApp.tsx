@@ -11,7 +11,7 @@ const MainApp = () => {
             className="main-app"
             fallback={<FallBack />}
             gl={{antialias: true}}
-            dpr={[1,2]}
+            dpr={[1,1.4]}
             
         >
             <MainScene />
