@@ -5,6 +5,8 @@ import textData from "@/data/textData.json";
 import { getTrainPosition } from "../Helpers/Trains";
 import { MoveCameraToStation, PanCameraToPlatform } from "../Helpers/Camera";
 import { Vector3Tuple } from "three";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faClock, faTrainTram } from "@fortawesome/free-solid-svg-icons";
 
 const PlatformSelect = () => {
     const { 
@@ -84,6 +86,10 @@ const PlatformSelect = () => {
         );
     }
 
+    const isSelectedTrain = (trainPlatform: string) => {
+        return currentPlatform && currentPlatform.number === trainPlatform;
+    }
+
     return (
         <div className="platform-panel glass">
             <h2>{activeStation.name}</h2>
@@ -92,7 +98,7 @@ const PlatformSelect = () => {
                     <div
                         key={index}
                         className={`train-item ${
-                            currentPlatform?.number === train.platform
+                            isSelectedTrain(train.platform)
                                 ? "active"
                                 : ""
                         }`}
@@ -103,17 +109,18 @@ const PlatformSelect = () => {
                         </div>
                         <div className="details grid">
                             <span>
-                                {textData.platform}: {train.platform}
-                            </span>
-                            <span>
-                                {textData.departure_time}:{" "}
+                            <FontAwesomeIcon icon={faTrainTram} />
+                            {train.platform}
+                            {" "}
+                                <FontAwesomeIcon icon={faClock} />
                                 {train.scheduledTime}
                             </span>
                             <span
                                 className={
-                                    train.delay > 0
-                                        ? "delayed"
-                                        : "on-time"
+                                    !isSelectedTrain(train.platform)&& train.delay > 0
+                                        ? "delay"
+                                        : "hidden"
+                                        
                                 }
                             >
                                 {train.delay > 0
