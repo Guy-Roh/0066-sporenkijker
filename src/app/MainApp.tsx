@@ -11,13 +11,13 @@ const MainApp = () => {
         <Canvas
             className="main-app"
             fallback={<FallBack />}
-            shadows={{ type: THREE.PCFSoftShadowMap }}
-            dpr={[1, 1]}
+            shadows
             gl={{antialias: true}}
             
         >
             <MainScene />
         </Canvas>
+
     );
 };
 

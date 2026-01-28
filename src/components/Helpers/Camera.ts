@@ -40,6 +40,7 @@ export const MoveCameraToStation = (
     const defaultPos = cameraConfig.position[type];
     console.log("Using offset:", currentOffset);
     console.log("Active station:", activeStation);
+    
     if (activeStation && activeStation.position) {
         const target: Vector3Tuple = [
             activeStation.position[0],

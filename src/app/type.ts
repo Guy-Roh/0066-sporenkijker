@@ -7,12 +7,14 @@ export interface Platform {
     stationId?: string;
 }
 
+
 export type NodesMap = Record<string, Object3D>;
 
 export interface Station {
     name: string;
     id: string;
     position?: Vector3Tuple;
+    rotation?: Vector3Tuple;
     offset?: {
         desktop: Vector3Tuple;
         mobile: Vector3Tuple;

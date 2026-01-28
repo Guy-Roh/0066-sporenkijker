@@ -24,16 +24,16 @@ const FX = ({ activeStation }: { activeStation: Station | null }) => {
                 target={activeStation?.position || [0, 0, 0]}
                 bokehScale={activeStation?.position ? 2 : 0}
             />
-            <Bloom 
-            luminanceThreshold={0.8} 
-            mipmapBlur />
+            <Bloom
+                luminanceThreshold={0.8}
+                mipmapBlur />
             <ToneMapping mode={AgXToneMapping} />
         </EffectComposer>
     );
 };
 
 const MainScene = () => {
-    const { activeStation, setNodes, trainsData, cameraControlsRef, isMobile} =
+    const { activeStation, setNodes, trainsData, cameraControlsRef, isMobile } =
         useAppContext();
     const { nodes: meshNodes } = useGLTF("/models/042_export_2.gltf");
 
@@ -48,22 +48,19 @@ const MainScene = () => {
 
     return (
         <>
-            <color attach="background" args={["#212121"]} />
-            <CameraControls 
+            <color attach="background" args={["#1d1d1d"]} />
+            <CameraControls
                 ref={cameraControlsRef}
-
             />
             <Environment
                 files={"/img/hdri/ragen2k.exr"}
-                //preset={"city"} // either this or the hdri works
                 environmentIntensity={.7}
-                environmentRotation={[0, 0, 0 ]}
+                environmentRotation={[0, 2.44346,0 ]}
                 background={false}
             />
-            
             <FX activeStation={activeStation} />
-
             <MapMesh />
+
         </>
     );
 };
