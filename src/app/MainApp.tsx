@@ -13,12 +13,19 @@ const WebGLApp = () => {
         <Canvas
             className="main-app"
             fallback={<FallBack />}
+<<<<<<< HEAD
             shadows={{ type: THREE.PCFSoftShadowMap }}
             dpr={[1, 1]}
             gl={{ antialias: true }}
+=======
+            shadows
+            gl={{antialias: true}}
+            
+>>>>>>> 895249b (update: baked textures)
         >
             <MainScene />
         </Canvas>
+
     );
 };
 

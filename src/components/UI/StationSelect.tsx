@@ -46,6 +46,11 @@ const StationSelect = () => {
                       stationNode.position.y,
                       stationNode.position.z,
                   ],
+                    rotation: [
+                        stationNode.rotation.x,
+                        stationNode.rotation.y,
+                        stationNode.rotation.z,
+                    ],
               }
             : selectedStation;
 
