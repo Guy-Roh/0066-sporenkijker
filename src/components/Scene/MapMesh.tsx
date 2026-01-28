@@ -34,7 +34,6 @@ const MapMesh = () => {
                                     material={node.material}
                                     position={node.position}
                                     rotation={node.rotation}
-
                                 >
                                     {isGlass && (
                                         <MeshTransmissionMaterial
