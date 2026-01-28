@@ -1,7 +1,6 @@
 "use client";
 
 import { Canvas } from "@react-three/fiber";
-import * as THREE from "three";
 import MainScene from "@/components/Scene/MainScene";
 import WebGPU from "three/addons/capabilities/WebGPU.js";
 import { Effects } from "@react-three/drei";
@@ -20,6 +19,7 @@ const WebGLApp = () => {
 =======
             shadows
             gl={{antialias: true}}
+            dpr={[1,1]}
             
 >>>>>>> 895249b (update: baked textures)
         >
