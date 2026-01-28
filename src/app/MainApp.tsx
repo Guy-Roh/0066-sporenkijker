@@ -13,9 +13,9 @@ const WebGLApp = () => {
         <Canvas
             className="main-app"
             fallback={<FallBack />}
-            shadows={{ type: THREE.PCFSoftShadowMap }}
-            dpr={[1, 1]}
-            gl={{ antialias: true }}
+            gl={{antialias: true}}
+            dpr={[1,1.4]}
+            
         >
             <MainScene />
         </Canvas>
