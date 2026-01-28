@@ -18,11 +18,13 @@ import { ResetCamera } from "../Helpers/Camera";
 
 
 const FX = ({ activeStation }: { activeStation: Station | null }) => {
+    const { isMobile } = useAppContext();
+
     return (
         <EffectComposer multisampling={2}>
             <DepthOfField
                 target={activeStation?.position || [0, 0, 0]}
-                bokehScale={activeStation?.position ? 2 : 0}
+                bokehScale={isMobile ? 1 : activeStation?.position ? 2 : 0}
             />
             <Bloom
                 luminanceThreshold={0.8}
