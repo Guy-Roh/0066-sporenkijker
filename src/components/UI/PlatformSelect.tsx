@@ -122,7 +122,7 @@ const PlatformSelect = () => {
                             </span>
                             <span
                                 className={
-                                    !isSelectedTrain(train.platform)&& train.delay > 0
+                                    isSelectedTrain(train.platform)&& train.delay > 0
                                         ? "delay"
                                         : "hidden"
                                         
