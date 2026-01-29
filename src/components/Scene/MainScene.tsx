@@ -37,7 +37,7 @@ const FX = ({ activeStation }: { activeStation: Station | null }) => {
 const MainScene = () => {
     const { activeStation, setNodes, trainsData, cameraControlsRef, isMobile } =
         useAppContext();
-    const { nodes: meshNodes } = useGLTF("/models/042_export_2.gltf");
+    const { nodes: meshNodes } = useGLTF("/models/042_export_4.gltf");
 
     useEffect(() => {
         ResetCamera(cameraControlsRef, isMobile, true);
