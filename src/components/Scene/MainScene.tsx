@@ -57,7 +57,7 @@ const MainScene = () => {
             <Environment
                 files={"/img/hdri/ragen2k.exr"}
                 environmentIntensity={.7}
-                environmentRotation={[0, 2.44346,0 ]}
+                environmentRotation={[0, -2.44346,0 ]}
                 background={false}
             />
             <FX activeStation={activeStation} />

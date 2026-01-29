@@ -146,8 +146,8 @@ $anim: all 0.32s cubic-bezier(.17, .67, .32, .99);
 .platform-panel {
     position: absolute;
     top: 1vmin;
-    right: 1vmin;
-    width: 40vw;
+    left: 1vmin;
+    width: fit-content;
     height: fit-content;
     backdrop-filter: blur(4vmin) brightness(1.2);
     z-index: 20;
@@ -166,14 +166,22 @@ $anim: all 0.32s cubic-bezier(.17, .67, .32, .99);
 
     h2 {
         margin-bottom: 2vmin;
-        font-size: 4vmin;
+        font-size: 2.6vmin;
         text-transform: uppercase;
         font-weight: 700;
+        @include mobile() {
+            font-size: 4vmin;
+        }
     }
 
     .trains-list {
-        display: grid;
+
+        display: flex;
+        flex-direction: column;
+        @include small-desktop() {
+                 display: grid;
         grid-template-columns: repeat(4, 1fr);
+        }
 
         .train-item {
             padding: .8vmin;
