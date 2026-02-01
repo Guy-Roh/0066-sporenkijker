@@ -45,7 +45,7 @@ export const MoveCameraToStation = (
         const target: Vector3Tuple = [
             activeStation.position[0],
             activeStation.position[1],
-            activeStation.position[2] + (isMobile ? 0.5 : 1),
+            activeStation.position[2],
         ];
 
         const camPos: Vector3Tuple = [

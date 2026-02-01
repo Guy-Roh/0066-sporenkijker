@@ -41,7 +41,7 @@ $anim: all 0.32s cubic-bezier(.17, .67, .32, .99);
 
 
 
-.main-panel {
+aside.main-panel {
     position: absolute;
     bottom: 1vmin;
     left: 0;
@@ -50,7 +50,7 @@ $anim: all 0.32s cubic-bezier(.17, .67, .32, .99);
     width: 60%;
     height: fit-content;
     z-index: 20;
-    padding: 2vmin;
+    padding: 1.6vmin;
     border-radius: 1vmin;
     transition: $anim;
     font-weight: 600;
@@ -93,7 +93,7 @@ $anim: all 0.32s cubic-bezier(.17, .67, .32, .99);
 
         button {
             text-transform: uppercase;
-            height: 6vh;
+            height: 5vh;
             transition: $anim;
             border-radius: .8vmin;
             margin: 0.2vmin;
@@ -123,6 +123,13 @@ $anim: all 0.32s cubic-bezier(.17, .67, .32, .99);
                 color: $cobalt;
             }
         }
+    }
+
+    .camera-offset {
+        font-size: 2.4vmin;
+        margin-top: 1vmin;
+        text-align: center;
+        color: $charcoal;
     }
 
     .minimize-btn {

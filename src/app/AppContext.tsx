@@ -24,6 +24,8 @@ interface AppContextType {
     setIsLoading: (loading: boolean) => void;
     error: string | null;
     setError: (error: string | null) => void;
+    cameraOffset: [number, number, number] | null;
+    setCameraOffset: (offset: [number, number, number] | null) => void;
 }
 
 const AppContext = createContext<AppContextType | undefined>(undefined);
@@ -44,6 +46,7 @@ export const AppProvider = ({
     const cameraControlsRef = useRef<CameraControls>(null);
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
+    const [cameraOffset, setCameraOffset] = useState<[number, number, number] | null>(null);
     return (
         <AppContext.Provider
             value={{
@@ -61,6 +64,8 @@ export const AppProvider = ({
                 setIsLoading,
                 error,
                 setError,
+                cameraOffset,
+                setCameraOffset,
             }}
         >
             {children}
