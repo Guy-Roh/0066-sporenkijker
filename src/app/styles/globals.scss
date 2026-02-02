@@ -87,7 +87,7 @@ aside.main-panel {
         }
 
         button {
-            text-transform: uppercase;
+            text-transform: capitalize;
             height: 5vh;
             transition: $anim;
             border-radius: .8vmin;
@@ -168,7 +168,7 @@ aside.main-panel {
     h2 {
         margin-bottom: 2vmin;
         font-size: 2.6vmin;
-        text-transform: uppercase;
+        text-transform: capitalize;
         font-weight: 700;
 
         @include mobile() {
@@ -192,22 +192,17 @@ aside.main-panel {
             border-radius: .8vmin;
             font-size: 2.2vmin;
 
+
             .destination {
                 font-weight: 600;
-                font-size: 1.6vmin;
 
-                @include mobile() {
-                    font-size: 2.6vmin;
-                }
+
             }
 
             .details {
                 font-weight: 400;
-                font-size: 1.8vmin;
 
-                @include mobile() {
-                    font-size: 2.6vmin;
-                }
+
             }
 
             &.active {
@@ -217,12 +212,26 @@ aside.main-panel {
             }
 
             @include desktop() {
+
+                .destination {
+                    font-size: 1.6vmin;
+                }
+
+                .details {
+                    font-size: 1.8vmin;
+                }
+
                 &:hover {
                     cursor: pointer;
                     background-color: $cloud;
                     color: $cobalt;
                 }
             }
+
+            @include mobile() {
+                font-size: 2.8vmin;
+            }
+
 
         }
     }
