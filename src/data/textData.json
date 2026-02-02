@@ -1,6 +1,6 @@
 {
-    "main_panel_title": "selecteer een station",
-    "loading_message": "gegevens laden...",
+    "main_panel_title": "Selecteer een station",
+    "loading_message": "Data laden...",
     "error_message": "fout bij het ophalen van gegevens.",
     "no_trains_message": "geen vertrekkende treinen gevonden.",
     "departure_time": "vertrektijd",

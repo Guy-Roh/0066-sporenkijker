@@ -3,17 +3,15 @@
 import { MeshTransmissionMaterial } from "@react-three/drei";
 import { useAppContext } from "@/app/AppContext";
 import { Mesh, Object3D } from "three";
-import { CleanId } from "../Helpers/Trains";
+import { CleanId, formatPlatformId } from "../Helpers/Trains";
 
 const MapMesh = () => {
     const { activeStation, nodes, currentPlatform } = useAppContext();
 
     const getSelectedTrainKey = () => {
         if (!currentPlatform || !activeStation) return null;
-        const paddedPlatform = currentPlatform.number
-            .toString()
-            .padStart(3, "0");
-        return `${CleanId(activeStation.id)}${paddedPlatform}`;
+        const formattedPlatform = formatPlatformId(currentPlatform.number);
+        return `${CleanId(activeStation.id)}${formattedPlatform}`;
     };
 
     const selectedTrainKey = getSelectedTrainKey();

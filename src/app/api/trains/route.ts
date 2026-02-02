@@ -1,29 +1,19 @@
+import { IRailDeparture } from '@/app/type';
 import { NextResponse } from 'next/server';
 
-// Define the shape of the iRail API response
-interface IRailDeparture {
-    id: string;
-    delay: string; // iRail returns this as string seconds
-    station: string;
-    time: string; // Unix timestamp in seconds
-    vehicle: string;
-    platform: string;
-}
-
 export async function GET(request: Request) {
-    // Parse query params to allow dynamic station selection
     const { searchParams } = new URL(request.url);
     const stationId = searchParams.get('stationId') || 'BE.NMBS.008821006';
 
     const url = `https://api.irail.be/liveboard/?id=${stationId}&format=json`;
 
     try {
+
         const res = await fetch(url, {
             headers: {
-                'User-Agent': 'sporenkijker/0.59',
+                'User-Agent': 'sporenkijker/0.88',
                 'Accept': 'application/json',
             },
-            // Cache control: Revalidate every 60 seconds to avoid stale data
             next: { revalidate: 60 }
         });
 
@@ -32,24 +22,19 @@ export async function GET(request: Request) {
         }
 
         const data = await res.json();
-        const departures: IRailDeparture[] = data.departures?.departure || [];
 
-        // Filter Logic
+        const departures: IRailDeparture[] = data.departures?.departure || [];
         const nowInSeconds = Math.floor(Date.now() / 1000);
 
         const relevantTrains = departures.filter((train) => {
             const scheduledTime = parseInt(train.time);
-            // Safety check: ensure delay is a number, default to 0
             const delay = parseInt(train.delay || '0');
             const realDeparture = scheduledTime + delay;
-
-            // Difference in minutes
             const diffMinutes = (realDeparture - nowInSeconds) / 60;
 
-            return diffMinutes > -1 && diffMinutes <= 15 && train.platform !== '?'; // only upcoming trains with known platforms
+            return diffMinutes > -1 && diffMinutes <= 15 && train.platform !== '?';
         });
 
-        // Keep only earliest train per platform
         const platformMap = new Map<string, IRailDeparture>();
         relevantTrains.forEach((train) => {
             const existing = platformMap.get(train.platform);
@@ -67,21 +52,30 @@ export async function GET(request: Request) {
 
         const uniqueTrains = Array.from(platformMap.values());
 
-        // Format the output object
         const result = uniqueTrains.map((train) => ({
             destination: train.station,
             platform: train.platform,
             scheduledTime: new Date(parseInt(train.time) * 1000).toLocaleTimeString('en-GB', {
                 hour: '2-digit',
                 minute: '2-digit',
+                timeZone: 'Europe/Brussels' 
             }),
-            delay: parseInt(train.delay || '0') / 60, // Delay in minutes
+            delay: parseInt(train.delay || '0') / 60,
             vehicleId: train.vehicle
         }));
+        console.log("Train data response:", result);
 
-        return NextResponse.json({ station: stationId, trains: result });
+        return new Response(JSON.stringify({ station: stationId, trains: result }), {
+            status: 200,
+            headers: {
+                'Content-Type': 'application/json',
+                // This tells the browser: "Don't save this locally, always ask for new data"
+                'Cache-Control': 'no-store, max-age=0' 
+            }
+        });
 
     } catch (error) {
-        return NextResponse.json({ error: error }, { status: 500 });
+        const message = error instanceof Error ? error.message : 'Unknown error';
+        return NextResponse.json({ error: message }, { status: 500 });
     }
 }
