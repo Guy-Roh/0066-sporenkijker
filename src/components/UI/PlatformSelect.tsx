@@ -10,6 +10,7 @@ import { faClock, faTrainTram } from "@fortawesome/free-solid-svg-icons";
 import { fetchTrainData } from "../Helpers/GetData";
 import { useCallback, useEffect } from "react";
 import { Train } from "@/app/type";
+import Loading from "./Loading";
 
 const PlatformSelect = () => {
     const {
@@ -40,16 +41,17 @@ const PlatformSelect = () => {
             }
             const data = await fetchTrainData(activeStation.id);
 
-            // Sort trains by platform number naturally (1, 2, 10 instead of 1, 10, 2)
+            // Sort trains by platform number
             if (data?.trains) {
                 data.trains.sort((a: Train, b: Train) =>
                     a.platform.toString().localeCompare(b.platform.toString(), undefined, { numeric: true })
                 );
+
             }
 
             setTrainsData(data);
-            console.log("Fetched train data:", data);
-        } catch (err) {
+/*             console.log("Fetched train data:", data);
+ */        } catch (err) {
             setError("Failed to load train data");
             console.error(err);
         } finally {
@@ -61,7 +63,7 @@ const PlatformSelect = () => {
         if (activeStation) {
             handleStationChange();
         }
-                    setCurrentPlatform(null);
+        setCurrentPlatform(null);
 
     }, [activeStation, handleStationChange, setCurrentPlatform]);
 
@@ -112,7 +114,7 @@ const PlatformSelect = () => {
             <div className="platform-panel glass">
                 <h2>{activeStation.name}</h2>
                 <div style={{ padding: "20px", textAlign: "center" }}>
-                    <p>Loading live data...</p>
+                    <Loading />
                 </div>
             </div>
         );

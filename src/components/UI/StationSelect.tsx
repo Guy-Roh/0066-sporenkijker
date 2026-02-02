@@ -51,7 +51,6 @@ const StationSelect = () => {
                     stationNode.position.z,
                 ],
                 offset: {
-                    // Default to [0,0,0] if the JSON data is missing these fields to satisfy the type interface
                     desktop: selectedStation.offset?.desktop as Vector3Tuple,
                     mobile: selectedStation.offset?.mobile as Vector3Tuple,
                     selectedPlatform: [

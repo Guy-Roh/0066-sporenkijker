@@ -7,6 +7,14 @@ export interface Platform {
     stationId?: string;
 }
 
+export interface IRailDeparture {
+    id: string;
+    delay: string;
+    station: string;
+    time: string; 
+    vehicle: string;
+    platform: string;
+}
 
 export type NodesMap = Record<string, Object3D>;
 

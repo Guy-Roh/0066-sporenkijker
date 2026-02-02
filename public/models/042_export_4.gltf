@@ -6,7 +6,8 @@
 	"extensionsUsed":[
 		"KHR_materials_transmission",
 		"KHR_materials_emissive_strength",
-		"EXT_texture_webp"
+		"EXT_texture_webp",
+		"KHR_materials_unlit"
 	],
 	"extensionsRequired":[
 		"EXT_texture_webp"
@@ -3896,7 +3897,7 @@
 		},
 		{
 			"mesh":246,
-			"name":"BE.NMBS.008833001.A",
+			"name":"BE.NMBS.008833001.00A",
 			"rotation":[
 				0,
 				0.09517546743154526,
@@ -3911,7 +3912,7 @@
 		},
 		{
 			"mesh":247,
-			"name":"BE.NMBS.008833001.B",
+			"name":"BE.NMBS.008833001.00B",
 			"rotation":[
 				0,
 				0.09517546743154526,
@@ -3926,7 +3927,7 @@
 		},
 		{
 			"mesh":248,
-			"name":"BE.NMBS.008833001.C",
+			"name":"BE.NMBS.008833001.00C",
 			"rotation":[
 				0,
 				0.09517546743154526,
@@ -4076,7 +4077,7 @@
 		},
 		{
 			"mesh":258,
-			"name":"BE.NMBS.008833001.D",
+			"name":"BE.NMBS.008833001.00D",
 			"rotation":[
 				0,
 				0.09517546743154526,
@@ -4370,10 +4371,16 @@
 		},
 		{
 			"doubleSided":true,
+			"extensions":{
+				"KHR_materials_unlit":{}
+			},
 			"name":"Map",
 			"pbrMetallicRoughness":{
+				"baseColorTexture":{
+					"index":2
+				},
 				"metallicFactor":0,
-				"roughnessFactor":0.6000000238418579
+				"roughnessFactor":0.9
 			}
 		},
 		{
@@ -4401,7 +4408,7 @@
 				],
 				"metallicFactor":0,
 				"metallicRoughnessTexture":{
-					"index":2
+					"index":3
 				}
 			}
 		},
@@ -8204,6 +8211,14 @@
 				}
 			},
 			"sampler":0
+		},
+		{
+			"extensions":{
+				"EXT_texture_webp":{
+					"source":3
+				}
+			},
+			"sampler":0
 		}
 	],
 	"images":[
@@ -8216,6 +8231,11 @@
 			"mimeType":"image/webp",
 			"name":"gloss-rough",
 			"uri":"gloss-rough.webp"
+		},
+		{
+			"mimeType":"image/webp",
+			"name":"ShadowMap_2_4k_denoised",
+			"uri":"ShadowMap_2_4k_denoised.webp"
 		},
 		{
 			"mimeType":"image/webp",

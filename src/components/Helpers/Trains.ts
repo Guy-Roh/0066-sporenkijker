@@ -6,10 +6,21 @@ export const CleanId = (stationId: string) => {
     return stationId.replace(/\./g, "");
 }
 
-export const getTrainPosition = (platformNumber: string, stationId: string, meshNodes: Record<string, Object3D>) => {
-    const paddedPlatform = platformNumber.toString().padStart(3, "0");
-    const trainKey = `${CleanId(stationId)}${paddedPlatform}`;
+export const formatPlatformId = (platformNumber: string) => {
+    let formattedPlatform = platformNumber.trim();
+    // If platform is a letter (A, B, C, D, etc.), don't pad with zeros
+    if (!isNaN(Number(formattedPlatform))) {
+        formattedPlatform = formattedPlatform.toString().padStart(3, "0");
+    }
 
+    return formattedPlatform;
+
+}
+
+export const getTrainPosition = (platformNumber: string, stationId: string, meshNodes: Record<string, Object3D>) => {
+    const formattedPlatform = formatPlatformId(platformNumber);
+    const trainKey = `${CleanId(stationId)}${formattedPlatform}`;
+    console.log("Train Key:", trainKey);
     const trainNode = meshNodes[trainKey];
     if (trainNode) {
         return [
@@ -31,10 +42,8 @@ export const filterTrains = (meshNodes: NodesMap, trainsData: TrainData) => {
         trains
             .filter((t: Train) => t.platform && t.platform !== "?")
             .map((t: Train) => {
-                const paddedPlatform = t.platform
-                    .toString()
-                    .padStart(3, "0");
-                return `${CleanId(rawStationId)}${paddedPlatform}`;
+                const formattedPlatform = formatPlatformId(t.platform);
+                return `${CleanId(rawStationId)}${formattedPlatform}`;
             })
     ); 
 
