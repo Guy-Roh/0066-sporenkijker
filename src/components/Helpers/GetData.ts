@@ -15,7 +15,7 @@ export const fetchTrainData = async (stationId: string): Promise<TrainData> => {
 
     const result: TrainData = await response.json();
     if(result.trains.length === 0){
-        //sometimes this API returns an empty array but the data is fetched. So we need to try just once more
+        //sometimes this API returns an empty array but the data is fetched. So we just need to double check and if it is empty on the second try, we accept it.
         const retryResponse = await fetch(`api/${api}?stationId=${encodeURIComponent(stationId)}`, {
             cache: 'no-store'
         });

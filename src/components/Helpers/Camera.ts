@@ -57,8 +57,6 @@ export const MoveCameraToStation = (
     const type = isMobile ? 'mobile' : 'default';
     const currentOffset = getStationOffset(activeStation, isMobile);
     const currentZoom = cameraConfig.zoomLevel[type];
-/*     console.log("Using offset:", currentOffset);
-    console.log("Active station:", activeStation); */
 
     if (activeStation && activeStation.position) {
         const target: Vector3Tuple = [

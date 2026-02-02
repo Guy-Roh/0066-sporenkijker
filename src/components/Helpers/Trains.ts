@@ -20,7 +20,6 @@ export const formatPlatformId = (platformNumber: string) => {
 export const getTrainPosition = (platformNumber: string, stationId: string, meshNodes: Record<string, Object3D>) => {
     const formattedPlatform = formatPlatformId(platformNumber);
     const trainKey = `${CleanId(stationId)}${formattedPlatform}`;
-    console.log("Train Key:", trainKey);
     const trainNode = meshNodes[trainKey];
     if (trainNode) {
         return [
