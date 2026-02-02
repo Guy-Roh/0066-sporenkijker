@@ -8,7 +8,8 @@ import { Vector3Tuple } from "three";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClock, faTrainTram } from "@fortawesome/free-solid-svg-icons";
 import { fetchTrainData } from "../Helpers/GetData";
-import { useEffect } from "react";
+import { useCallback, useEffect } from "react";
+import { Train } from "@/app/type";
 
 const PlatformSelect = () => {
     const {
@@ -26,7 +27,7 @@ const PlatformSelect = () => {
         error
     } = useAppContext();
 
-    const handleStationChange = async () => {
+    const handleStationChange = useCallback(async () => {
         setIsLoading(true);
         setError(null);
         setTrainsData(null);
@@ -38,25 +39,39 @@ const PlatformSelect = () => {
                 return;
             }
             const data = await fetchTrainData(activeStation.id);
+
+            // Sort trains by platform number naturally (1, 2, 10 instead of 1, 10, 2)
+            if (data?.trains) {
+                data.trains.sort((a: Train, b: Train) =>
+                    a.platform.toString().localeCompare(b.platform.toString(), undefined, { numeric: true })
+                );
+            }
+
             setTrainsData(data);
+            console.log("Fetched train data:", data);
         } catch (err) {
             setError("Failed to load train data");
             console.error(err);
         } finally {
             setIsLoading(false);
         }
-    };
+    }, [activeStation, setError, setIsLoading, setTrainsData]);
 
     useEffect(() => {
         if (activeStation) {
             handleStationChange();
         }
-    }, [activeStation]);
+                    setCurrentPlatform(null);
+
+    }, [activeStation, handleStationChange, setCurrentPlatform]);
 
 
 
     const formatDestination = (dest: string) => {
         if (dest === "Brussels-South/Brussels-Midi") return "Brussel Zuid";
+        if (dest === "Brussels Airport - Zaventem") return "Brussels Airport";
+        if (dest === "Antwerp-Central") return "Antwerpen Centraal";
+        if (dest === "Bruges") return "Brugge";
         return dest;
     };
 
@@ -137,8 +152,8 @@ const PlatformSelect = () => {
                     <div
                         key={index}
                         className={`train-item ${isSelectedTrain(train.platform)
-                                ? "active"
-                                : ""
+                            ? "active"
+                            : ""
                             }`}
                         onClick={() => handlePlatformChange(train.platform)}
                     >
