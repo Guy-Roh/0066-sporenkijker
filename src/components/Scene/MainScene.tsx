@@ -53,7 +53,7 @@ const MainScene = () => {
 
     useEffect(() => {
         ResetCamera(cameraControlsRef, isMobile, true);
-    }, []);
+    }, [cameraControlsRef, isMobile]);
 
     useEffect(() => {
         setNodes(filterTrains(meshNodes, trainsData as TrainData));

@@ -22,7 +22,7 @@ export const getTrainPosition = (platformNumber: string, stationId: string, mesh
     }
 }
 
-// This function filters the mesh nodes to include only the stations and the platforms relevant to the trains at the specified station
+// This function filters the mesh nodes to include only the stations and the trains selected
 export const filterTrains = (meshNodes: NodesMap, trainsData: TrainData) => {
     const rawStationId = trainsData?.station || "";
     const trains = trainsData?.trains || [];
@@ -37,8 +37,8 @@ export const filterTrains = (meshNodes: NodesMap, trainsData: TrainData) => {
                 return `${CleanId(rawStationId)}${paddedPlatform}`;
             })
     ); 
-    // this will hold keys like "BENMBS008821121002"
 
+    // this will hold keys like "BENMBS008821121002" which are platform nodes, which is the station id + platform number
     const validStationIds = new Set(stationData.allStations.map(s => CleanId(s.id)));
 
     const selectedNodes: NodesMap = {};
@@ -48,10 +48,10 @@ export const filterTrains = (meshNodes: NodesMap, trainsData: TrainData) => {
             // This is a station node
             selectedNodes[name] = node;
         } else if (validTrainKeys.has(name)) {
-            // This is a platform with an active train
+            // These are the selected train/platform nodes 
             selectedNodes[name] = node;
         } else if (!name.startsWith("BE")) {
-            // Keep all non-station/platform nodes
+            // This is the rest of the map nodes (not train or station)
             selectedNodes[name] = node;
         } 
     }
