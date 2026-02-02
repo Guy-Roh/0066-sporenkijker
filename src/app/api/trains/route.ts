@@ -58,19 +58,17 @@ export async function GET(request: Request) {
             scheduledTime: new Date(parseInt(train.time) * 1000).toLocaleTimeString('en-GB', {
                 hour: '2-digit',
                 minute: '2-digit',
-                timeZone: 'Europe/Brussels' 
+                timeZone: 'Europe/Brussels'
             }),
             delay: parseInt(train.delay || '0') / 60,
             vehicleId: train.vehicle
         }));
-        console.log("Train data response:", result);
 
         return new Response(JSON.stringify({ station: stationId, trains: result }), {
             status: 200,
             headers: {
                 'Content-Type': 'application/json',
-                // This tells the browser: "Don't save this locally, always ask for new data"
-                'Cache-Control': 'no-store, max-age=0' 
+                'Cache-Control': 'no-store, max-age=0'
             }
         });
 
