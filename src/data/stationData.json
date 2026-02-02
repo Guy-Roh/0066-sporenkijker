@@ -5,8 +5,7 @@
             "id": "BE.NMBS.008814001",
             "offset": {
                 "desktop": [4, 6, 10],
-                "mobile": [0, 4, 12],
-                "selectedPlatform": [0, 0.3, 6]
+                "mobile": [0, 4, 12]
             }
         },
         {
@@ -14,8 +13,7 @@
             "id": "BE.NMBS.008813003",
             "offset": {
                 "desktop": [1, 3, 8],
-                "mobile": [0.6, 6, 7.5],
-                "selectedPlatform": [0, 0.3, 6]
+                "mobile": [0.6, 6, 7.5]
             }
         },
         {
@@ -23,17 +21,15 @@
             "id": "BE.NMBS.008812005",
             "offset": {
                 "desktop": [1, 3, 8],
-                "mobile": [-0.4, 4, 11],
-                "selectedPlatform": [0, 0.3, 6]
+                "mobile": [-0.4, 4, 11]
             }
         },
         {
             "name": "Antwerpen Centraal",
             "id": "BE.NMBS.008821006",
             "offset": {
-                "desktop": [1, 3, 8],
-                "mobile": [2, 3, 8],
-                "selectedPlatform": [0, 0.45, 6]
+                "desktop": [1, 4, 12],
+                "mobile": [2, 3, 8]
             }
         },
         {
@@ -41,8 +37,7 @@
             "id": "BE.NMBS.008821121",
             "offset": {
                 "desktop": [1, 2.6, 6],
-                "mobile": [2, 3, 8],
-                "selectedPlatform": [3.6, 1, 6]
+                "mobile": [2, 3, 8]
             }
         },
         {
@@ -50,8 +45,7 @@
             "id": "BE.NMBS.008892007",
             "offset": {
                 "desktop": [1, 3, 8],
-                "mobile": [6, 7, 8],
-                "selectedPlatform": [0, 0.3, 6]
+                "mobile": [6, 7, 8]
             }
         },
         {
@@ -59,8 +53,7 @@
             "id": "BE.NMBS.008833001",
             "offset": {
                 "desktop": [1, 3, 8],
-                "mobile": [0.6, 0.7, 8],
-                "selectedPlatform": [0, 0.3, 6]
+                "mobile": [0.6, 0.7, 8]
             }
         },
         {
@@ -68,8 +61,7 @@
             "id": "BE.NMBS.008822004",
             "offset": {
                 "desktop": [0, 4, 12],
-                "mobile": [0, 7, 14],
-                "selectedPlatform": [0, 0.3, 6]
+                "mobile": [0, 7, 14]
             }
         },
         {
@@ -77,8 +69,7 @@
             "id": "BE.NMBS.008891009",
             "offset": {
                 "desktop": [1, 3, 8],
-                "mobile": [1.4, 6, 7.8],
-                "selectedPlatform": [0, 0.3, 6]
+                "mobile": [1.4, 6, 7.8]
             }
         },
         {
@@ -86,8 +77,7 @@
             "id": "BE.NMBS.008896008",
             "offset": {
                 "desktop": [1, 3, 8],
-                "mobile": [-8, 5, -7.3],
-                "selectedPlatform": [0, 0.3, 6]
+                "mobile": [-8, 5, -7.3]
             }
         }
     ]

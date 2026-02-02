@@ -42,7 +42,6 @@ $anim: all 0.32s cubic-bezier(.17, .67, .32, .99);
 
 
 aside.main-panel {
-    position: absolute;
     bottom: 1vmin;
     left: 0;
     right: 0;
@@ -75,7 +74,6 @@ aside.main-panel {
         width: 94%;
         font-size: 2.5vmin;
 
-
     }
 
     .station-select {
@@ -83,9 +81,6 @@ aside.main-panel {
         position: relative;
         grid-template-columns: repeat(3, 1fr);
         font-size: 2.6vmin;
-
-
-
 
         @include small-desktop() {
             grid-template-columns: repeat(2, 1fr);
@@ -110,17 +105,16 @@ aside.main-panel {
                 font-weight: 600;
             }
 
-            &:hover {
-                cursor: pointer;
-                background-color: $cloud;
+            @include desktop() {
+                letter-spacing: .1vmin;
+                font-weight: 600;
 
-                @include desktop() {
-                    letter-spacing: .1vmin;
-                    font-weight: 600;
-
+                &:hover {
+                    cursor: pointer;
+                    background-color: $cloud;
+                    color: $cobalt;
                 }
 
-                color: $cobalt;
             }
         }
     }
@@ -176,18 +170,19 @@ aside.main-panel {
         font-size: 2.6vmin;
         text-transform: uppercase;
         font-weight: 700;
+
         @include mobile() {
             font-size: 4vmin;
         }
     }
 
     .trains-list {
-
         display: flex;
         flex-direction: column;
+
         @include small-desktop() {
-                 display: grid;
-        grid-template-columns: repeat(4, 1fr);
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
         }
 
         .train-item {
@@ -221,11 +216,14 @@ aside.main-panel {
                 font-weight: 600;
             }
 
-            &:hover {
-                cursor: pointer;
-                background-color: $cloud;
-                color: $cobalt;
+            @include desktop() {
+                &:hover {
+                    cursor: pointer;
+                    background-color: $cloud;
+                    color: $cobalt;
+                }
             }
+
         }
     }
 

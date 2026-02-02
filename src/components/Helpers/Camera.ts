@@ -5,7 +5,7 @@ import { Vector3Tuple } from "three";
 
 export const cameraConfig = {
     position: {
-        default: [16, 80, 50],
+        default: [17, 85, 50],
         mobile: [36, 160, 90],
     },
     offset: {
@@ -27,6 +27,26 @@ const getStationOffset = (station: Station | null, isMobile: boolean) => {
     return isMobile ? cameraConfig.offset.mobile : cameraConfig.offset.default;
 };
 
+
+export const ResetCamera = (
+    cameraControlsRef: RefObject<CameraControls | null>,
+    isMobile: boolean,
+    initialRender: boolean = true
+) => {
+    if (!cameraControlsRef?.current) return;
+    const isAnimated = !initialRender;
+
+    const type = isMobile ? 'mobile' : 'default';
+    const defaultPos = cameraConfig.position[type];
+
+    cameraControlsRef.current.setLookAt(
+        defaultPos[0], defaultPos[1], defaultPos[2],
+        0, -30, 0,
+        isAnimated
+    );
+    cameraControlsRef.current.zoomTo(1, isAnimated);
+}
+
 export const MoveCameraToStation = (
     cameraControlsRef: RefObject<CameraControls | null>,
     activeStation: Station | null,
@@ -37,10 +57,9 @@ export const MoveCameraToStation = (
     const type = isMobile ? 'mobile' : 'default';
     const currentOffset = getStationOffset(activeStation, isMobile);
     const currentZoom = cameraConfig.zoomLevel[type];
-    const defaultPos = cameraConfig.position[type];
     console.log("Using offset:", currentOffset);
     console.log("Active station:", activeStation);
-    
+
     if (activeStation && activeStation.position) {
         const target: Vector3Tuple = [
             activeStation.position[0],
@@ -62,15 +81,8 @@ export const MoveCameraToStation = (
 
         cameraControlsRef.current.zoomTo(currentZoom, true);
 
-
     } else {
-        cameraControlsRef.current.setLookAt(
-            defaultPos[0], defaultPos[1], defaultPos[2],
-            0, 0, 0,
-            true
-        );
-        cameraControlsRef.current.zoomTo(1, true);
-
+        ResetCamera(cameraControlsRef, isMobile, false);
     }
 };
 
@@ -81,7 +93,7 @@ export const PanCameraToPlatform = (
 ) => {
     if (!cameraControlsRef?.current) return;
 
-    const currentOffset = activeStation?.offset?.selectedPlatform || cameraConfig.offset.selectedPlatform;
+    const currentOffset = activeStation?.offset?.selectedPlatform as Vector3Tuple
 
     const currentZoom = cameraConfig.zoomLevel.selectedPlatform;
     const target: Vector3Tuple = [
@@ -104,24 +116,4 @@ export const PanCameraToPlatform = (
 
     cameraControlsRef.current.zoomTo(currentZoom, true);
 
-}
-
-export const ResetCamera = (
-    cameraControlsRef: RefObject<CameraControls | null>,
-    isMobile: boolean,
-    initialRender: boolean = true
-) => {
-    if (!cameraControlsRef?.current) return;
-    const animation = !initialRender;
-
-    const type = isMobile ? 'mobile' : 'default';
-    const defaultPos = cameraConfig.position[type];
-
-    cameraControlsRef.current.setLookAt(
-        defaultPos[0], defaultPos[1], defaultPos[2],
-        0, 0, 0,
-        animation
-    );
-    cameraControlsRef.current.zoomTo(1, animation);
-    cameraControlsRef.current.truck(0, 30, true);
 }

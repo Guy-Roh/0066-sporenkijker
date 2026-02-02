@@ -1,10 +1,10 @@
 import { useAppContext } from "@/app/AppContext";
 import { Station } from "@/app/type";
 import textData from "@/data/textData.json";
-import { fetchTrainData } from "../Helpers/GetData";
 import { MoveCameraToStation, ResetCamera } from "../Helpers/Camera";
 import stationData from "@/data/stationData.json";
 import { CleanId } from "../Helpers/Trains";
+import { Vector3Tuple } from "three";
 
 const StationSelect = () => {
     const {
@@ -14,14 +14,12 @@ const StationSelect = () => {
         cameraControlsRef,
         isMobile,
         setTrainsData,
-        setIsLoading,
         setError,
         isLoading,
         error,
     } = useAppContext();
 
     const handleStationChange = async (stationId: string) => {
-        // If clicked station is already active, unset it and reset camera
         if (activeStation?.id === stationId) {
             setActiveStation(null);
             setTrainsData(null);
@@ -38,39 +36,36 @@ const StationSelect = () => {
 
         const stationNode = nodes ? nodes[CleanId(stationId)] : null;
 
+        const calculateOffset = () => {
+            const xOffset = 6 * Math.tan(stationNode?.rotation.y as number)
+            return xOffset as number;
+        }
+
         const targetStation: Station = stationNode
+
             ? {
-                  ...selectedStation,
-                  position: [
-                      stationNode.position.x,
-                      stationNode.position.y,
-                      stationNode.position.z,
-                  ],
-                    rotation: [
-                        stationNode.rotation.x,
-                        stationNode.rotation.y,
-                        stationNode.rotation.z,
+                ...selectedStation,
+                position: [
+                    stationNode.position.x,
+                    stationNode.position.y,
+                    stationNode.position.z,
+                ],
+                offset: {
+                    // Default to [0,0,0] if the JSON data is missing these fields to satisfy the type interface
+                    desktop: selectedStation.offset?.desktop as Vector3Tuple,
+                    mobile: selectedStation.offset?.mobile as Vector3Tuple,
+                    selectedPlatform: [
+                        calculateOffset(), 
+                        1,
+                        6
                     ],
-              }
+                },
+            }
             : selectedStation;
 
         setActiveStation(targetStation);
         MoveCameraToStation(cameraControlsRef, targetStation, isMobile);
 
-        // Fetch train data
-        setIsLoading(true);
-        setError(null);
-        setTrainsData(null);
-
-        try {
-            const data = await fetchTrainData(targetStation.id);
-            setTrainsData(data);
-        } catch (err) {
-            setError("Failed to load train data");
-            console.error(err);
-        } finally {
-            setIsLoading(false);
-        }
     };
 
     return (
