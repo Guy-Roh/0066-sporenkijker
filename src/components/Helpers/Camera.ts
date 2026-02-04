@@ -16,7 +16,7 @@ export const cameraConfig = {
     zoomLevel: {
         default: 4,
         mobile: 2,
-        selectedPlatform: 8,
+        selectedPlatform: 5,
     }
 };
 

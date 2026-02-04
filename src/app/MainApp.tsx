@@ -3,7 +3,7 @@
 import { Canvas } from "@react-three/fiber";
 import MainScene from "@/components/Scene/MainScene";
 import Loading from "@/components/UI/Loading";
-import { Stats } from "@react-three/drei";
+import { PostProcess } from "./postprocess/PostProcess";
 
 const WebGPUApp = () => {
     const isMobile = /Mobi|Android/i.test(navigator.userAgent);
@@ -14,8 +14,8 @@ const WebGPUApp = () => {
             renderer={{ antialias: !isMobile}}
             fallback={<Loading />}
         >
+            <PostProcess />
             <MainScene />
-            <Stats />
         </Canvas>
     );
 }
