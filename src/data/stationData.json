@@ -4,32 +4,32 @@
             "name": "Brussel Zuid",
             "id": "BE.NMBS.008814001",
             "offset": {
-                "desktop": [4, 6, 10],
-                "mobile": [0, 4, 12]
+                "desktop": [0, 5.6, 10],
+                "mobile": [0, 8, 12]
             }
         },
         {
             "name": "Brussel Centraal",
             "id": "BE.NMBS.008813003",
             "offset": {
-                "desktop": [1, 3, 8],
-                "mobile": [0.6, 6, 7.5]
+                "desktop": [0, 4.5, 7.5],
+                "mobile": [0, 8, 12]
             }
         },
         {
             "name": "Brussel Noord",
             "id": "BE.NMBS.008812005",
             "offset": {
-                "desktop": [1, 3, 8],
-                "mobile": [-0.4, 4, 11]
+                "desktop": [0, 5, 10],
+                "mobile": [0, 8, 12]
             }
         },
         {
             "name": "Antwerpen Centraal",
             "id": "BE.NMBS.008821006",
             "offset": {
-                "desktop": [1, 4, 12],
-                "mobile": [2, 3, 8]
+                "desktop": [1.6, 6, 18],
+                "mobile": [2, 3.5, 9]
             }
         },
         {
@@ -44,16 +44,16 @@
             "name": "Gent Sint-Pieters",
             "id": "BE.NMBS.008892007",
             "offset": {
-                "desktop": [1, 3, 8],
-                "mobile": [6, 7, 8]
+                "desktop": [4, 7, 10],
+                "mobile": [6, 7, 10]
             }
         },
         {
             "name": "Leuven",
             "id": "BE.NMBS.008833001",
             "offset": {
-                "desktop": [1, 3, 8],
-                "mobile": [0.6, 0.7, 8]
+                "desktop": [5, 3, 6.5],
+                "mobile": [-2, 4, 9 ]
             }
         },
         {
@@ -69,15 +69,15 @@
             "id": "BE.NMBS.008891009",
             "offset": {
                 "desktop": [1, 3, 8],
-                "mobile": [1.4, 6, 7.8]
+                "mobile": [-2, 5, 8]
             }
         },
         {
             "name": "Kortrijk",
             "id": "BE.NMBS.008896008",
             "offset": {
-                "desktop": [1, 3, 8],
-                "mobile": [-8, 5, -7.3]
+                "desktop": [-10, 5, 8],
+                "mobile": [-15, 7, -7]
             }
         }
     ]

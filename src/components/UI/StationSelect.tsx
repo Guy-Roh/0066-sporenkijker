@@ -17,6 +17,7 @@ const StationSelect = () => {
         setError,
         isLoading,
         error,
+        cameraOffset
     } = useAppContext();
 
     const handleStationChange = async (stationId: string) => {
@@ -39,6 +40,7 @@ const StationSelect = () => {
         const calculateOffset = () => {
             const xOffset = 6 * Math.tan(stationNode?.rotation.y as number)
             return xOffset as number;
+            // Adjust X offset based on station empty rotation, this makes sure that the camera is always aligned with the platforms
         }
 
         const targetStation: Station = stationNode
@@ -55,7 +57,7 @@ const StationSelect = () => {
                     mobile: selectedStation.offset?.mobile as Vector3Tuple,
                     selectedPlatform: [
                         calculateOffset(), 
-                        1,
+                        1.6,
                         6
                     ],
                 },
@@ -72,7 +74,7 @@ const StationSelect = () => {
             <h3>{textData.main_panel_title}</h3>
 
             {isLoading && <p>Loading data...</p>}
-            {error && <p style={{ color: "red" }}>{error}</p>}
+            {error && <p className="text-red-500">{error}</p>}
 
             <div className="station-select">
                 {stationData.allStations.map((station) => (
@@ -90,6 +92,11 @@ const StationSelect = () => {
                     </button>
                 ))}
             </div>
+            <span className="offset">
+                {cameraOffset
+                    ? `Camera Offset: x:${cameraOffset[0].toFixed(2)} y:${cameraOffset[1].toFixed(2)} z:${cameraOffset[2].toFixed(2)}`
+                    : 'Camera Offset: N/A'}
+            </span>
         </div>
     );
 };

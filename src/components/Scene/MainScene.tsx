@@ -38,7 +38,7 @@ const FX = ({ activeStation }: { activeStation: Station | null }) => {
 const MainScene = () => {
     const { activeStation, setNodes, trainsData, cameraControlsRef, isMobile, setCameraOffset } =
         useAppContext();
-    const { nodes: meshNodes } = useGLTF("/models/042_sporenkijker_export_11.gltf");
+    const { nodes: meshNodes } = useGLTF("/models/042_sporenkijker_export_12.gltf");
 
     const handleCameraChange = () => {
         if (cameraControlsRef.current) {
