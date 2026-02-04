@@ -52,7 +52,6 @@ const MapMesh = () => {
                                 </mesh>
                             );
                         }
-                        // for the empties that carry the location of the stations
                         return (
                             <group
                                 key={name}
