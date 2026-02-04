@@ -10,7 +10,7 @@ import { ResetCamera } from "../Helpers/Camera";
 import { Vector3 } from "three";
 
 const MainScene = () => {
-    const { activeStation, setNodes, trainsData, cameraControlsRef, isMobile, setCameraOffset } =
+    const { setNodes, trainsData, cameraControlsRef, isMobile, setCameraOffset } =
         useAppContext();
     const { nodes: meshNodes } = useGLTF("/models/042_sporenkijker_export_12.gltf");
 
