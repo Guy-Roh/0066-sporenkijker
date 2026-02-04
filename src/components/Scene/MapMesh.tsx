@@ -1,6 +1,5 @@
 "use client";
 
-import { MeshTransmissionMaterial } from "@react-three/drei";
 import { useAppContext } from "@/app/AppContext";
 import { Mesh, Object3D } from "three";
 import { CleanId, formatPlatformId } from "../Helpers/Trains";
@@ -22,7 +21,6 @@ const MapMesh = () => {
                 Object.entries(nodes).map(
                     ([name, node]: [string, Object3D]) => {
                         if (node instanceof Mesh) {
-                            const isGlass = node.material?.name === "Glass";
                             const isSelectedTrain = name === selectedTrainKey;
 
                             return (
@@ -33,16 +31,7 @@ const MapMesh = () => {
                                     position={node.position}
                                     rotation={node.rotation}
                                 >
-                                    {isGlass && (
-                                        <MeshTransmissionMaterial
-                                            transmission={1}
-                                            thickness={0.6}
-                                            roughness={0.05}
-                                            chromaticAberration={0.03}
-                                            ior={1.5}
-                                            color={"rgba(168, 229, 255, 1)"}
-                                        />
-                                    )}
+
                                     {isSelectedTrain && (
                                         <meshStandardMaterial
                                             emissive="#1d82ff"

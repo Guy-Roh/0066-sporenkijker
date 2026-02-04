@@ -1,4 +1,4 @@
-import MainApp from "@/app/WebGLApp";
+import MainApp from "./MainApp";
 import PlatformSelect from "@/components/UI/PlatformSelect";
 import MainPanel from "@/components/UI/MainPanel";
 

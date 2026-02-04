@@ -1,54 +1,29 @@
 "use client";
 
 import { Canvas } from "@react-three/fiber";
-import * as THREE from "three";
 import MainScene from "@/components/Scene/MainScene";
-import WebGPU from "three/addons/capabilities/WebGPU.js";
-import { Effects } from "@react-three/drei";
-
-const FallBack = () => <div>Loading...</div>;
-
-const WebGLApp = () => {
-    return (
-        <Canvas
-            className="main-app"
-            fallback={<FallBack />}
-            gl={{antialias: true}}
-            dpr={[1,1.3]}
-            
-        >
-            <MainScene />
-        </Canvas>
-
-    );
-};
+import Loading from "@/components/UI/Loading";
+import { Stats } from "@react-three/drei";
 
 const WebGPUApp = () => {
-    const glPass = async (props: any) => {
-        const renderer = new THREE.WebGPURenderer(props);
-        await renderer.init();
-        return renderer;
-    }
-
+    const isMobile = /Mobi|Android/i.test(navigator.userAgent);
     return (
-            <Canvas
-                shadows
-                id="main-scene-canvas"
-                gl={glPass}
-                camera={{ position: [0, 10, 15], fov: 50 }}
-            >
-                <Effects DepthOfField={{ focusDistance: 4, focalLength: 1, bokehScale: 8 }} />
-                <MainScene />
-            </Canvas>
+        <Canvas
+            shadows
+            className="main-app"
+            renderer={{ antialias: !isMobile}}
+            fallback={<Loading />}
+        >
+            <MainScene />
+            <Stats />
+        </Canvas>
     );
 }
 
 const MainApp = () => {
-    if (WebGPU.isAvailable()) {
-        return <WebGPUApp />;
-    } else {
-        return <WebGLApp />;
-    }
+    return (
+        <WebGPUApp />
+    )
 };
 
 export default MainApp;
