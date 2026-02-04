@@ -92,11 +92,11 @@ const StationSelect = () => {
                     </button>
                 ))}
             </div>
-            <span className="offset">
+{/*             <span className="offset">
                 {cameraOffset
                     ? `Camera Offset: x:${cameraOffset[0].toFixed(2)} y:${cameraOffset[1].toFixed(2)} z:${cameraOffset[2].toFixed(2)}`
                     : 'Camera Offset: N/A'}
-            </span>
+            </span> */}
         </div>
     );
 };
