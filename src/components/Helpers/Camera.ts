@@ -11,7 +11,7 @@ export const cameraConfig = {
     offset: {
         default: [1, 3, 8],
         mobile: [0.6, 0.7, 8],
-        selectedPlatform: [0, 0.3, 6],
+        // the selectedPlatform offset is calculated using the rotation of the station empty inside StationSelect.tsx
     },
     zoomLevel: {
         default: 4,

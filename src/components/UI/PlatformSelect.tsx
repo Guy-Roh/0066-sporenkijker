@@ -110,22 +110,18 @@ const PlatformSelect = () => {
 
     if (isLoading) {
         return (
-            <div className="platform-panel glass">
+            <div className="platform-panel glass p-4 text-center">
                 <h2>{activeStation.name}</h2>
-                <div style={{ padding: "20px", textAlign: "center" }}>
                     <Loading />
-                </div>
             </div>
         );
     }
 
     if (error) {
         return (
-            <div className="platform-panel glass">
+            <div className="platform-panel glass p-4 text-center text-red-500">
                 <h2>{activeStation.name}</h2>
-                <div style={{ padding: "20px", textAlign: "center", color: "red" }}>
                     <p>{error}</p>
-                </div>
             </div>
         );
     }
