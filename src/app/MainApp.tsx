@@ -11,7 +11,7 @@ const WebGPUApp = () => {
         <Canvas
             shadows
             className="main-app"
-            renderer
+            renderer={{ antialias: true}}
             fallback={<Loading />}
         >
             <PostProcess />
