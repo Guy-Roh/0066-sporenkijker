@@ -6,12 +6,12 @@ import Loading from "@/components/UI/Loading";
 import { PostProcess } from "./postprocess/PostProcess";
 
 const WebGPUApp = () => {
-    const isMobile = /Mobi|Android/i.test(navigator.userAgent);
-    return (
+/*     const isMobile = /Mobi|Android/i.test(navigator.userAgent);
+ */    return (
         <Canvas
             shadows
             className="main-app"
-            renderer={{ antialias: !isMobile}}
+            renderer
             fallback={<Loading />}
         >
             <PostProcess />
