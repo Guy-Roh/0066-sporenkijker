@@ -2,22 +2,29 @@
 
 import { Canvas } from "@react-three/fiber";
 import MainScene from "@/components/Scene/MainScene";
+import Loading from "@/components/UI/Loading";
+import { PostProcess } from "./postprocess/PostProcess";
 
-const FallBack = () => <div>Loading...</div>;
-
-const MainApp = () => {
-    return (
+const WebGPUApp = () => {
+/*     const isMobile = /Mobi|Android/i.test(navigator.userAgent);
+ */    return (
         <Canvas
+            shadows
             className="main-app"
-            fallback={<FallBack />}
-            gl={{antialias: true}}
-            dpr={[1,1.3]}
-            
+            renderer={{ antialias: true}}
+            fallback={<Loading />}
         >
+            <PostProcess />
             <MainScene />
         </Canvas>
 
     );
+}
+
+const MainApp = () => {
+    return (
+        <WebGPUApp />
+    )
 };
 
 export default MainApp;

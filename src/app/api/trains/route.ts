@@ -11,7 +11,7 @@ export async function GET(request: Request) {
 
         const res = await fetch(url, {
             headers: {
-                'User-Agent': 'sporenkijker/0.88',
+                'User-Agent': 'Sporen-kijker/1.01',
                 'Accept': 'application/json',
             },
             next: { revalidate: 60 }

@@ -57,7 +57,7 @@ const StationSelect = () => {
                     mobile: selectedStation.offset?.mobile as Vector3Tuple,
                     selectedPlatform: [
                         calculateOffset(), 
-                        1.6,
+                        1.2,
                         6
                     ],
                 },

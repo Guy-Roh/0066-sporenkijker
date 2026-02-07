@@ -15,8 +15,8 @@ export const cameraConfig = {
     },
     zoomLevel: {
         default: 4,
-        mobile: 3,
-        selectedPlatform: 8,
+        mobile: 2,
+        selectedPlatform: 5,
     }
 };
 
@@ -44,7 +44,7 @@ export const ResetCamera = (
         0, -30, 0,
         isAnimated
     );
-    cameraControlsRef.current.zoomTo(1, isAnimated);
+    cameraControlsRef.current.zoomTo(.6, isAnimated);
 }
 
 export const MoveCameraToStation = (
