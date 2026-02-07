@@ -17,7 +17,7 @@ const StationSelect = () => {
         setError,
         isLoading,
         error,
-        cameraOffset
+        
     } = useAppContext();
 
     const handleStationChange = async (stationId: string) => {
