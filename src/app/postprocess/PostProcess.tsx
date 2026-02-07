@@ -8,7 +8,7 @@ export const PostProcess = () => {
   const { renderer, scene, camera } = useThree();
 
   const postProcessing = useMemo(() => {
-    const post = new THREE.PostProcessing(renderer);
+    const post = new THREE.PostProcessing(renderer as unknown as THREE.WebGPURenderer);
     
     const scenePass = pass(scene, camera);
     
