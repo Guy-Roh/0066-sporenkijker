@@ -36,7 +36,6 @@ const MainScene = () => {
 
     return (
         <>
-            <color attach="background" args={["#1d1d1d"]} />
             <CameraControls
                 ref={cameraControlsRef}
                 onChange={handleCameraChange}
@@ -47,8 +46,7 @@ const MainScene = () => {
                 environmentRotation={[0, 2.44346,0 ]}
                 background={false}
             />
-{/*             <FX activeStation={activeStation} />
- */}            <MapMesh />
+            <MapMesh />
 
         </>
     );
