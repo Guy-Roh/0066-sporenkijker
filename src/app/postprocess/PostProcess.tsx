@@ -5,23 +5,23 @@ import { bloom } from "three/examples/jsm/tsl/display/BloomNode.js";
 import { useMemo } from "react";
 
 export const PostProcess = () => {
-  const { renderer, scene, camera } = useThree();
+    const { renderer, scene, camera } = useThree();
 
-  const postProcessing = useMemo(() => {
-    const post = new THREE.PostProcessing(renderer as unknown as THREE.WebGPURenderer);
-    
-    const scenePass = pass(scene, camera);
-    
-    //bloom effect, the numbers are strength, radius, threshold
-    const bloomPass = bloom(scenePass, 0.7, 0.8, 0.9);
+    const postProcessing = useMemo(() => {
+        const post = new THREE.PostProcessing(renderer as unknown as THREE.WebGPURenderer);
 
-    post.outputNode = scenePass.add(bloomPass);
-    return post;
-  }, [renderer, scene, camera]);
+        const scenePass = pass(scene, camera);
 
-  useFrame(() => {
-    postProcessing.render();
-  }, { phase: "render" });
+        //bloom effect, the numbers are strength, radius, threshold
+        const bloomPass = bloom(scenePass, 0.7, 0.8, 0.9);
 
-  return null;
+        post.outputNode = scenePass.add(bloomPass);
+        return post;
+    }, [renderer, scene, camera]);
+
+    useFrame(() => {
+        postProcessing.render();
+    }, { phase: "render" });
+
+    return null;
 };
