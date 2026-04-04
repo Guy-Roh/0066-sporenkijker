@@ -52,7 +52,6 @@ const PlatformSelect = () => {
             setTrainsData(data);
         } catch (err) {
             setError("Failed to load train data");
-            console.error(err);
         } finally {
             setIsLoading(false);
         }
