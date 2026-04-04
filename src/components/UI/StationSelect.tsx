@@ -71,7 +71,7 @@ const StationSelect = () => {
 
     return (
         <div>
-            <h3>{textData.main_panel_title}</h3>
+            <h3 className="text-center text-gray-400">{textData.main_panel_title}</h3>
 
             {isLoading && <p>Loading data...</p>}
             {error && <p className="text-red-500">{error}</p>}
@@ -92,11 +92,7 @@ const StationSelect = () => {
                     </button>
                 ))}
             </div>
-{/*             <span className="offset">
-                {cameraOffset
-                    ? `Camera Offset: x:${cameraOffset[0].toFixed(2)} y:${cameraOffset[1].toFixed(2)} z:${cameraOffset[2].toFixed(2)}`
-                    : 'Camera Offset: N/A'}
-            </span> */}
+
         </div>
     );
 };
