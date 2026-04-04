@@ -132,9 +132,7 @@ const PlatformSelect = () => {
         return (
             <div className="platform-panel glass">
                 <h2>{activeStation.name}</h2>
-                <div className="platform-panel">
-                    <h2>{textData.no_trains_message}</h2>
-                </div>
+                {textData.no_trains_message}
             </div>
         );
     }
