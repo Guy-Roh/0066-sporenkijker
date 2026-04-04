@@ -73,6 +73,8 @@ const PlatformSelect = () => {
         if (dest === "Brussels Airport - Zaventem") return "Brussels Airport";
         if (dest === "Antwerp-Central") return "Antwerpen Centraal";
         if (dest === "Bruges") return "Brugge";
+        if (dest === "Brussels-North") return "Brussel Noord"
+        if (dest === "Ghent-Sint-Pieters") return "Gent Sint-Pieters"
         return dest;
     };
 
