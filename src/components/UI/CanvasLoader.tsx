@@ -18,7 +18,7 @@ const CanvasLoader = () => {
     return (
         <div className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-[#202020]">
             <p className="text-white text-sm mb-3 tracking-wide">
-                Loading scene…
+                Sporenkijker is aan het laden...
             </p>
             <div className="w-64 h-1 bg-gray-700 rounded overflow-hidden">
                 <div
