@@ -5,6 +5,7 @@ import { AppProvider } from "./AppContext";
 import { userAgent } from "next/server";
 import { headers } from "next/headers";
 import { Analytics } from "@vercel/analytics/next"
+import Footer from "@/components/UI/Footer";
 
 const notoSans = Noto_Sans({
     subsets: ["latin"],
@@ -31,6 +32,7 @@ export default async function RootLayout({
             <body className={`${notoSans.variable} antialiased`}>
                 <AppProvider isMobile={isMobile}>{children}</AppProvider>
                 <Analytics/>
+                <Footer/>
             </body>
         </html>
     );
