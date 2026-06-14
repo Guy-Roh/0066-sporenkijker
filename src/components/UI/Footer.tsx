@@ -4,7 +4,6 @@ const Footer = () => {
     return (
         <a className='fixed bottom-2 right-2 flex items-center gap-1 text-white text-xs opacity-70 uppercase font-semibold'                 href='https://www.haedin.com'
 >
-            <span>created by</span>
             <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 1690 262"
