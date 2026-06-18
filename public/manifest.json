@@ -1,0 +1,16 @@
+{
+  "name": "Sporenkijker | WebGPU Live Digital Twin",
+  "short_name": "Sporenkijker",
+  "description": "Live WebGPU digital twin of Flanders' top 10 train stations with real-time data. Built by Haedin.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#202020",
+  "theme_color": "#202020",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "any",
+      "type": "image/x-icon"
+    }
+  ]
+}
