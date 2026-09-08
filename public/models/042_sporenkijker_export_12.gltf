@@ -4849,7 +4849,7 @@
 			],
 			"extensions":{
 				"KHR_materials_emissive_strength":{
-					"emissiveStrength":1.0000240802764893
+					"emissiveStrength":0.1
 				}
 			},
 			"name":"Train",

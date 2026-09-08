@@ -2,7 +2,7 @@ import React from 'react'
 
 const Footer = () => {
     return (
-        <a className='fixed bottom-2 right-2 flex items-center gap-1 text-white text-xs opacity-70 uppercase font-semibold'                 href='https://www.haedin.com'
+        <a className='absolute bottom-2 right-2 flex items-center gap-1 text-white text-xs opacity-70 uppercase font-semibold'                 href='https://www.haedin.com'
 >
             <svg
                 xmlns="http://www.w3.org/2000/svg"

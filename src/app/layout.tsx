@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Noto_Sans } from "next/font/google";
 import "./styles/globals.scss";
 import { AppProvider } from "./AppContext";
@@ -53,6 +53,13 @@ export const metadata: Metadata = {
     alternates: {
         canonical: "https://sporenkijker.be",
     }
+};
+
+export const viewport: Viewport = {
+    width: "device-width",
+    initialScale: 1,
+    maximumScale: 1,
+    userScalable: false,
 };
 
 export default async function RootLayout({

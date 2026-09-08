@@ -71,12 +71,12 @@ const StationSelect = () => {
 
     return (
         <div>
-            <h3 className="text-center text-gray-400">{textData.main_panel_title}</h3>
 
             {isLoading && <p>Loading data...</p>}
             {error && <p className="text-red-500">{error}</p>}
+            <h3 className="text-center text-black ">{textData.main_panel_title}</h3>
 
-            <div className="station-select">
+            <div className="station-select mb-6">
                 {stationData.allStations.map((station) => (
                     <button
                         key={station.id}

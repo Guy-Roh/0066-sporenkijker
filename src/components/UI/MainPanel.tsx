@@ -21,8 +21,8 @@ const MainPanel = () => {
         >
             <StationSelect/>
 
-            <button className="minimize-btn" onClick={handleMinimize}>
-                {'ↆ'}
+            <button className="minimize-btn backdrop-blur-xl" onClick={handleMinimize}>
+                {'⇳'}
 
             </button>
         </aside>
