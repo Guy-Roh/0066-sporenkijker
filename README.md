@@ -56,7 +56,7 @@ npm start
 
 ## 3D Model Structure
 
-The GLTF model (`042_sporenkijker_export_12.gltf`) contains:
+The GLTF model (`/models/042_sporenkijker_export_12.gltf`) contains:
 - Base map geometry (tracks, terrain)
 - Station empties (positioned reference objects)
 - Platform meshes named: `{StationID}{PlatformNumber}` (e.g., `BE.NMBS.008814001003`)
